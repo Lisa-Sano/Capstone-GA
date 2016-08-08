@@ -9,12 +9,16 @@
     <title><%= current_page.data.title || "Middleman" %></title>
 
     <link href='//fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="javascripts/require.js"></script>
 
     <%= stylesheet_link_tag :site %>
-    <%= javascript_include_tag :all %>
   </head>
 
   <body class="<%= page_classes %>">
     <%= yield %>
   </body>
+
+  <%= javascript_include_tag :barChart %>
 </html>

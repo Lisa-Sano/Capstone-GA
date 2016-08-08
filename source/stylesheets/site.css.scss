@@ -2,7 +2,7 @@
 @import "normalize";
 
 body {
-  background: #ECC561;
+  background: #fff;
   text-align: center;
   font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 1em;
@@ -64,4 +64,74 @@ h1 {
   to {
     -webkit-transform: scale(1);
   }
+}
+
+/*___________________________________________________*/
+
+.y.axisLeft text {
+    fill: #0099cc;
+}
+
+.chart text {
+  fill: black;
+  font: 10px sans-serif;
+  text-anchor: end;
+}
+
+.bar:hover {
+  fill: #ff9966;
+}
+
+.axis {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.bar1 {
+  fill: #0099cc;
+}
+.bar2 {
+  fill: #990099;
+}
+
+.envLine {
+  fill:rgb(220,220,220);
+  stroke: none;
+}
+
+.percent0 { fill: #ffffff; }
+.percent5 { fill: #f2f2f2; }
+.percent10 { fill: #e6e6e6; }
+.percent15 { fill: #d9d9d9; }
+.percent20 { fill: #cccccc; }
+.percent25 { fill: #bfbfbf; }
+.percent30 { fill: #b3b3b3; }
+.percent35 { fill: #a6a6a6; }
+.percent40 { fill: #999999; }
+.percent45 { fill: #8c8c8c; }
+.percent50 { fill: #808080; }
+.percent55 { fill: #737373; }
+.percent60 { fill: #666666; }
+.percent65 { fill: #595959; }
+.percent70 { fill: #4d4d4d; }
+.percent75 { fill: #404040; }
+.percent80 { fill: #333333; }
+.percent85 { fill: #262626; }
+.percent90 { fill: #1a1a1a; }
+.percent95 { fill: #0d0d0d; }
+.percent100 { fill: #000000; }
+
+.env-container { 
+  fill: #262626;
+  stroke: black;
 }
