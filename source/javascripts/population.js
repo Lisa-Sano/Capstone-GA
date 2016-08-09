@@ -2,7 +2,7 @@ var Population = function(pop={}) {
   this.size = (pop.population == null ? 1000 : pop.population.length),
   this.population = pop.population || generateMoths(this.size),
   this.max_env = 255,
-  this.env = 223,
+  this.env = pop.env || 223,
   this.fitness = evalFitness(this.population, this.max_env, this.env),
   this.probs = probabilities(this.fitness),
   this.mate = function() {
