@@ -10,7 +10,7 @@ var end_chrom_vals;
 for (let i = 0; i < num_gens; i++) {
   let probs = pop.probs;
   let fitness = pop.fitness;
-  let chrom_ vals = [];
+  let chrom_vals = [];
   pop.population.forEach(function(m) {
     chrom_vals.push(parseInt(m.chromosome, 2));
   })
