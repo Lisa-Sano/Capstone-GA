@@ -38,6 +38,8 @@ var Simulate = function(num, pop) {
   document.write(". STARTING chromosome score: " + start_chrom_vals);
   document.write(". ENDING chromosome score: " + end_chrom_vals);
   document.write(". number of generations: " + num);
+
+  return pop;
 }
 
 module.exports = Simulate;
