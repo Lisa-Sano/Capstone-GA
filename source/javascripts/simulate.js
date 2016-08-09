@@ -1,4 +1,4 @@
-var Population = require('population');
+var Population = require('./population');
 
 var pop = new Population();
 
@@ -16,15 +16,17 @@ for (let i = 0; i < num_gens; i++) {
   })
 
   if (i === 0) {
-    start_chrom_vals = chrom_vals.reduce(function(acc, cur) {
+    let sum = chrom_vals.reduce(function(acc, cur) {
       return acc + cur;
     }, 0);
+    start_chrom_vals = Math.floor(sum/pop.size);
   }
 
   if (i === (num_gens-1)) {
-    end_chrom_vals = chrom_vals.reduce(function(acc, cur) {
+    let sum = chrom_vals.reduce(function(acc, cur) {
       return acc + cur;
     }, 0);
+    end_chrom_vals = Math.floor(sum/pop.size);
   }
 
   var new_pop = [];
@@ -38,8 +40,8 @@ for (let i = 0; i < num_gens; i++) {
   pop = new Population(pop_hash);
 }
 
-// console.log("");
-// console.log("ENVIRONMENT score: #{env}");
-// console.log("STARTING chromosome score: #{start_chrom_vals}");
-// console.log("ENDING chromosome score: #{end_chrom_vals}");
-// console.log("number of generations: #{num_gens}");
+
+document.write("ENVIRONMENT score: " + env);
+document.write(". STARTING chromosome score: " + start_chrom_vals);
+document.write(". ENDING chromosome score: " + end_chrom_vals);
+document.write(". number of generations: " + num_gens);
