@@ -3,6 +3,7 @@ var Moth = require("./moth");
 var Population = function(pop={}) {
   this.size = (pop.population == null ? 1000 : pop.population.length),
   this.population = pop.population || generateMoths(this.size),
+  this.chrom_vals = getChromVals(this.population),
   this.max_env = 255,
   this.env = pop.env || 223,
   this.fitness = evalFitness(this.population, this.max_env, this.env),
@@ -21,6 +22,14 @@ var Population = function(pop={}) {
     mutateChromosome(new_chrom);
     let new_moth = new Moth({chrom: new_chrom});
     return new_moth;
+  }
+
+  function getChromVals(population) {
+    let vals = [];
+    population.forEach(function(m) {
+      vals.push(m.value);
+    })
+    return vals;
   }
 
   function generateMoths(num) {

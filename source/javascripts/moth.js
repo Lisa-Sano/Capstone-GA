@@ -1,6 +1,7 @@
 var Moth = function(obj={}) {
   this.chrom_length = 8,
-  this.chromosome = obj.chrom || randChromosome(this.chrom_length)
+  this.chromosome = obj.chrom || randChromosome(this.chrom_length),
+  this.value = parseInt(this.chromosome, 2)
 
   function randChromosome(length) {
     var num = Math.floor(Math.random() * 256) + 1 ;
