@@ -17,7 +17,7 @@ var Population = function(pop={}) {
     let second_piece = moth2.chromosome.slice(crossover, 8);
     let new_chrom = first_piece + second_piece;
     mutateChromosome(new_chrom);
-    let new_moth = Moth.new({chrom: new_chrom});
+    let new_moth = new Moth({chrom: new_chrom});
     return new_moth;
   }
 
@@ -59,14 +59,13 @@ var Population = function(pop={}) {
 
   function weightedSample(probs, population) {
     let r = Math.random();
-    let counter = 0;
+    console.log("r is: " + r);
 
-    probs.forEach(function(p) {
-      if(r < p) {
+    for (let i = 0; i < probs.length; i++) {
+      if (r < probs[i]) {
         return population[counter];
       }
-      counter++;
-    });
+    };
 
     return population[probs.length - 1];
   }
