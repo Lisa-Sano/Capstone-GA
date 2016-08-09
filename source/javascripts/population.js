@@ -4,7 +4,7 @@ var Population = function(pop={}) {
   this.max_env = 255,
   this.env = 223,
   this.fitness = eval_fitness(this.population, this.max_env, this.env),
-  this.probs = probabilities()
+  this.probs = probabilities(this.fitness)
 
   function generateMoths(num) {
     var pop = [];
@@ -26,7 +26,21 @@ var Population = function(pop={}) {
     return f;
   }
 
-  function probabilities() {
+  function probabilities(fitness) {
+    var fit_sum = fitness.reduce(function(acc, cur) {
+      return acc + cur;
+    }, 0);
+    var prob_sum = 0.0;
+    var probs = [];
+    var counter = 0;
+
+    fitness.forEach(function(f) {
+      probs[counter] = prob_sum + (f / fit_sum);
+      prob_sum = probs[counter];
+      counter++;
+    });
+
+    return probs;
   }
 
   function weighted sample() {
@@ -43,20 +57,6 @@ var Population = function(pop={}) {
 }
 
 
-//   def probabilities
-//     fitness = eval_fitness
-//     fit_sum = fitness.reduce(:+)
-//     prob_sum = 0.0
-//     probs = []
-
-//     fitness.each_with_index do |f, i| 
-//       probs[i] = prob_sum + (f / fit_sum)
-
-//       prob_sum = probs[i]
-//     end
-
-//     return probs
-//   end
 
 //   def weighted_sample
 //     r = rand
