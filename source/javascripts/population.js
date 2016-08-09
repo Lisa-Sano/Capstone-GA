@@ -1,4 +1,4 @@
-var Moth = require("moth");
+var Moth = require("./moth");
 
 var Population = function(pop={}) {
   this.size = (pop.population == null ? 1000 : pop.population.length),
@@ -61,7 +61,6 @@ var Population = function(pop={}) {
 
   function weightedSample(probs, population) {
     let r = Math.random();
-    console.log("r is: " + r);
 
     for (let i = 0; i < probs.length; i++) {
       if (r < probs[i]) {

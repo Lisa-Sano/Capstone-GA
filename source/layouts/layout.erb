@@ -11,7 +11,6 @@
     <link href='//fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
     <script src="https://d3js.org/d3.v4.min.js"></script>
-    <script src="javascripts/require.js"></script>
 
     <%= stylesheet_link_tag :site %>
   </head>
@@ -20,5 +19,10 @@
     <%= yield %>
   </body>
 
-  <%= javascript_include_tag :barChart %>
+<!--   <%= javascript_include_tag :moth %>
+  <%= javascript_include_tag :population %>
+  <%= javascript_include_tag :simulate %>
+  <%= javascript_include_tag :frequency %> -->
+<!--   <%= javascript_include_tag :barChart %> -->
+  <script type="text/javascript" src="./.tmp/dist/javascripts/simulate.js" charset="utf-8"></script>
 </html>

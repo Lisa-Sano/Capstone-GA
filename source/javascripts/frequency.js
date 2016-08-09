@@ -1,4 +1,4 @@
-module.exports = function frequency(population) {
+module.exports = function (population) {
   let buckets = {};
 
   for (let i = 0; i < 21; i++) {
