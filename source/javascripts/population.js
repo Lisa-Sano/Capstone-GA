@@ -7,8 +7,8 @@ var Population = function(pop={}) {
   this.probs = probabilities(this.fitness),
   this.mate = function() {
     // take a weighted sampling of two moths
-    let moth1 = weighted_sample(this.probs, this.population);
-    let moth2 = weighted_sample(this.probs, this.population);
+    let moth1 = weightedSample(this.probs, this.population);
+    let moth2 = weightedSample(this.probs, this.population);
 
     // pick a random index of the chromosome to cross the chromosomes of the 2 moths
     let crossover = Math.floor(Math.random() * 8);
@@ -16,8 +16,8 @@ var Population = function(pop={}) {
     let first_piece = moth1.chromosome.slice(0,crossover);
     let second_piece = moth2.chromosome.slice(crossover, 8);
     let new_chrom = first_piece + second_piece;
-    let mut_chrom = mutateChromosome(new_chrom.copy());
-    let new_moth = Moth.new({chrom: mut_chrom});
+    mutateChromosome(new_chrom);
+    let new_moth = Moth.new({chrom: new_chrom});
     return new_moth;
   }
 
