@@ -15,7 +15,7 @@ var webpack = require('webpack');
 
 module.exports = {
   entry: {
-    simulate: './source/javascripts/simulate.js'
+    simulate: './source/javascripts/all.js'
   },
 
   resolve: {
