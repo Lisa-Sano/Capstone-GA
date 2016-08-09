@@ -63,7 +63,7 @@ var Population = function(pop={}) {
 
     for (let i = 0; i < probs.length; i++) {
       if (r < probs[i]) {
-        return population[counter];
+        return population[i];
       }
     };
 
