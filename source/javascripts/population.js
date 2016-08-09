@@ -6,15 +6,6 @@ var Population = function(pop={}) {
   this.fitness = eval_fitness(this.population, this.max_env, this.env),
   this.probs = probabilities()
 
-  function eval_fitness(pop, max, env) {
-    var f = [];
-    pop.forEach(function(m) {
-      f.push(Math.pow(max - Math.abs(env - parseInt(m.chromosome, 2)), 1.001));
-    });
-
-    return f;
-  }
-
   function generateMoths(num) {
     var pop = [];
     for (let i = 0; i < num; i++) {
@@ -24,6 +15,15 @@ var Population = function(pop={}) {
     }
 
     return pop;
+  }
+
+  function eval_fitness(pop, max, env) {
+    var f = [];
+    pop.forEach(function(m) {
+      f.push(Math.pow(max - Math.abs(env - parseInt(m.chromosome, 2)), 1.001));
+    });
+
+    return f;
   }
 
   function probabilities() {
