@@ -1,3 +1,5 @@
+var Moth = require("moth");
+
 var Population = function(pop={}) {
   this.size = (pop.population == null ? 1000 : pop.population.length),
   this.population = pop.population || generateMoths(this.size),
