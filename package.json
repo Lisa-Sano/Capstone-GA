@@ -1,0 +1,23 @@
+{
+  "name": "capstone-ga",
+  "version": "1.0.0",
+  "description": "genetic algorithm for camouflage",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "webpack": "^1.13.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lisa-Sano/Capstone-GA.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lisa-Sano/Capstone-GA/issues"
+  },
+  "homepage": "https://github.com/Lisa-Sano/Capstone-GA#readme"
+}
