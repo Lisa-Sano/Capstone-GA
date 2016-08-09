@@ -88,3 +88,5 @@ var Population = function(pop={}) {
     return Math.floor(Math.random() * (1/rate)) === 0;
   }
 }
+
+module.exports = Population;
