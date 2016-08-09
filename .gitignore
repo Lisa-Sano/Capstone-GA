@@ -56,6 +56,8 @@ jspm_packages
 # Ignore .DS_Store file
 .DS_Store
 
+.tmp
+
 # Ordinarily, I'd say we'd want to ignore packages installed by Bower, but I
 # don't think Jenkins is going to run `bower install` for us, so for now we
 # have to commit the Foundation vendor stuff into the repo.
