@@ -32,6 +32,9 @@ var ending_data = frequency(ending);
 var environ = (Math.round(223/12.75)) * 5;
 
 
+// ----------------------------------------------------------- //
+
+
 var margin = {top: 80, right: 80, bottom: 80, left: 80},
     width = 700 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
