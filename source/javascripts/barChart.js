@@ -1,12 +1,15 @@
 var Chart = function() {
-    this.margin = {top: 30, right: 50, bottom: 30, left: 50},
+    this.margin = {top: 30, right: 50, bottom: 50, left: 50},
     this.width = 500 - this.margin.left - this.margin.right,
-    this.height = 350 - this.margin.top - this.margin.bottom,
+    this.height = 370 - this.margin.top - this.margin.bottom,
     this.updateChart = function(starting_data, ending_data, environ) {
       d3.select(".chart")
         .attr("width", this.width + this.margin.left + this.margin.right)
         .attr("height", this.height + this.margin.top + this.margin.bottom);
         
+      d3.select(".legend")
+        .attr("transform", "translate(" + ((this.width - this.margin.left) / 2) + "," + (this.height + this.margin.bottom + 10) + ")");
+
       var svg = d3.select(".chart").selectAll(".gchart").data([starting_data]);
         
       svg.enter().append("g")
@@ -29,8 +32,8 @@ var Chart = function() {
       var yAxis = d3.axisLeft(y).ticks(10, "%");
 
       x.domain(starting_data.map(function(d) { return d.percent; }));
-      y.domain([0, (d3.max(ending_data, function(d) { return d.frequency; }) + .03)]);
-      // y.domain([0,1]);
+      // y.domain([0, (d3.max(ending_data, function(d) { return d.frequency; }) + .03)]);
+      y.domain([0,1]);
 
       var barWidth = (width - 100) / starting_data.length;
 
@@ -77,7 +80,7 @@ var Chart = function() {
           .attr("width", barWidth/2)
         .merge(bar2)
           .attr("x", function(d) { return x(d.percent) + (barWidth/2) + 1; })
-          .attr("y", function(d) { console.log(d.frequency); return y(d.frequency); })
+          .attr("y", function(d) { return y(d.frequency); })
           .attr("height", function(d) { return height - y(d.frequency); });
 
       var colorAxis = svg.selectAll(".saturation").data(starting_data);
