@@ -10,6 +10,7 @@ var pop = new Population();
 var starting = frequency(pop.chrom_vals);
 var num_gens = 100;
 var counter = 0;
+var ending;
 
 for (let i = 0; i < num_gens; i += 1) {
   
@@ -25,9 +26,9 @@ for (let i = 0; i < num_gens; i += 1) {
 
   setTimeout(function() {
     pop = Simulate(n, pop);
-    var ending = frequency(pop.chrom_vals);
+    ending = frequency(pop.chrom_vals);
     chart.updateChart(starting, ending, (Math.round(pop.env/12.75)) * 5);
-    if (i >= num_gens-1) { console.log("DONE!")}},
+    console.log("number: " + i)},
     (counter * 200));
 
   counter++;
