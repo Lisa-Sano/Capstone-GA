@@ -14,7 +14,7 @@ $(document).ready(function() {
 
   chart.initChart(starting, environ);
 
-  graphic.initGraphic(pop.chrom_vals, pop.env);
+  graphic.drawGraphic(pop.chrom_vals, pop.env);
 
   $("#start").click(function() {
     var num_gens = 100;
@@ -41,7 +41,7 @@ $(document).ready(function() {
         pop = Simulate(n, pop);
         ending = frequency(pop.chrom_vals);
         chart.updateChart(starting, ending);
-        graphic.updateGraphic(pop.chrom_vals);
+        graphic.drawGraphic(pop.chrom_vals);
         console.log("number: " + i)},
         (counter * 250));
 
@@ -55,6 +55,9 @@ $(document).ready(function() {
     starting = frequency(pop.chrom_vals);
 
     $(".gchart").remove();
-    chart.resetChart(starting, (Math.round(pop.env/12.75)*5));
+    chart.initChart(starting, (Math.round(pop.env/12.75)*5));
+
+    $(".env").remove();
+    graphic.drawGraphic(pop.chrom_vals, pop.env);
   });
 });
