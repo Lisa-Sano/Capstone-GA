@@ -127,10 +127,6 @@ var Chart = function() {
           .attr("x", function(d) { return x(d.percent) + (barWidth/2) + 1; })
           .attr("y", function(d) { return y(d.frequency); })
           .attr("height", function(d) { return height - y(d.frequency); });
-    },
-    this.resetChart = function(starting_data, environ) {
-      d3.select(".gchart").remove();
-      this.initChart(starting_data, environ);
     }
 }
 
