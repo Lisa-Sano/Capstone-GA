@@ -1,6 +1,11 @@
 var Moth = function(obj={}) {
+  // binary chrom length of 8 - possible values up to 255
   this.chrom_length = 8,
+
+  // can be initialized with an existing chromosome or randomly generated
   this.chromosome = obj.chrom || randChromosome(this.chrom_length),
+
+  // parseInt(bin, 2) to turn a binary string back into a number
   this.value = parseInt(this.chromosome, 2)
 
   function randChromosome(length) {
@@ -18,5 +23,3 @@ function lpad(string, pad, length) {
 }
 
 module.exports = Moth;
-
-// parseInt(bin, 2) to turn a binary string back into a number
