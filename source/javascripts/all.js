@@ -2,14 +2,19 @@ var Population = require('./population');
 var Simulate = require('./simulate');
 var frequency = require('./frequency');
 var Chart = require('./barChart');
+var Graphic = require('./main');
 
 
 $(document).ready(function() {
   var chart = new Chart();
   var pop = new Population();
   var starting = frequency(pop.chrom_vals);
+  var graphic = new Graphic();
+  var environ = (Math.round(pop.env/12.75)*5);
 
-  chart.initChart(starting, (Math.round(pop.env/12.75)*5));
+  chart.initChart(starting, environ);
+
+  graphic.initGraphic(pop.chrom_vals, pop.env);
 
   $("#start").click(function() {
     var num_gens = 100;
@@ -36,6 +41,7 @@ $(document).ready(function() {
         pop = Simulate(n, pop);
         ending = frequency(pop.chrom_vals);
         chart.updateChart(starting, ending);
+        graphic.updateGraphic(pop.chrom_vals);
         console.log("number: " + i)},
         (counter * 250));
 
