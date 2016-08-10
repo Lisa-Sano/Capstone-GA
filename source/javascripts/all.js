@@ -1,15 +1,21 @@
 var Population = require('./population');
 var Simulate = require('./simulate');
 var frequency = require('./frequency');
-var updateChart = require('./barChart');
+var Chart = require('./barChart');
 
+
+var chart = new Chart();
+chart.chart;
 
 var pop = new Population();
+var starting = frequency(pop.chrom_vals);
 var num_gens = 100;
 
-var last_pop = Simulate(num_gens, pop);
+for (let i = 0; i < num_gens; i += 5) {
+  setTimeout(function() {
 
-var starting = frequency(pop.chrom_vals);
-var ending = frequency(last_pop.chrom_vals);
-
-updateChart(starting, ending, (Math.round(pop.env/12.75)) * 5);
+    pop = Simulate(5, pop);
+    var ending = frequency(pop.chrom_vals);
+    chart.updateChart(starting, ending, (Math.round(pop.env/12.75)) * 5)
+    console.log("number " + i)}, (i * 50));
+}

@@ -34,11 +34,6 @@ var Simulate = function(num, pop) {
     pop = new Population(pop_hash);
   }
 
-  document.write("ENVIRONMENT score: " + pop.env);
-  document.write(". STARTING chromosome score: " + start_chrom_vals);
-  document.write(". ENDING chromosome score: " + end_chrom_vals);
-  document.write(". number of generations: " + num);
-
   return pop;
 }
 
