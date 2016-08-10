@@ -1,7 +1,7 @@
 var Moth = require("./moth");
 
 var Population = function(pop={}) {
-  this.size = (pop.population == null ? 1000 : pop.population.length),
+  this.size = (pop.population == null ? 500 : pop.population.length),
   this.population = pop.population || generateMoths(this.size),
   this.chrom_vals = getChromVals(this.population),
   this.max_env = 255,
@@ -45,7 +45,8 @@ var Population = function(pop={}) {
   function evalFitness(pop, max, env) {
     let f = [];
     pop.forEach(function(m) {
-      f.push(Math.pow(max - Math.abs(env - parseInt(m.chromosome, 2)), 1.001));
+      // f.push(Math.pow(max - Math.abs(env - parseInt(m.chromosome, 2)), 1.001));
+      f.push(max - Math.abs(env - parseInt(m.chromosome, 2)));
     });
 
     return f;
