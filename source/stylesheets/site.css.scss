@@ -143,3 +143,19 @@ h1 {
   fill: #990099;
 }
 
+.control {
+  margin: 2rem 0;
+  display: block;
+}
+
+.chart {
+ display: inline-block;
+ float: left;
+}
+
+.main-graphic {
+  position: relative;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
