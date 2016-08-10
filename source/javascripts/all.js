@@ -42,6 +42,7 @@ $(document).ready(function() {
         ending = frequency(pop.chrom_vals);
         chart.updateChart(starting, ending);
         graphic.drawGraphic(pop.chrom_vals);
+        $(".gen").html(i+1);
         console.log("number: " + i)},
         (counter * 250));
 
@@ -59,5 +60,7 @@ $(document).ready(function() {
 
     $(".env").remove();
     graphic.drawGraphic(pop.chrom_vals, pop.env);
+
+    $(".gen").html("1")
   });
 });
