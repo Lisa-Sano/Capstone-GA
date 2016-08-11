@@ -28,10 +28,33 @@ describe('Population', function() {
     });
   });
 
+  describe('getChromVals function', function() {
+    let vals = getChromVals([m1, m2, m3]);
+
+    it('returns an array', function() {
+      assert.equal(true, Array.isArray(vals));
+    });
+
+    it('returns an array of the numerical values of the chromosome binaries', function() {
+      assert.deepEqual([1, 2, 3], vals);
+    });
+  });
+
+  describe('evalFitness function', function() {
+    let fitness = evalFitness([m1, m2, m3], 255, 100);
+
+    it('should return an array', function() {
+      assert.equal(true, Array.isArray(fitness));
+    });
+
+    it('should evaluate a higher fitness for chromosome values closer to the env color', function() {
+      assert.equal(true, (fitness[0] < fitness[2]));
+    });
+  });
 
   it('should have a max_env property of 255', function() {
     assert.equal(255, p.max_env);
-  })
+  });
 
   describe('size property', function() {
     it('should return a number', function() {
