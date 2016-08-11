@@ -78,6 +78,26 @@ describe('Population', function() {
       assert.equal(true, (p2.fitness[0] < p2.fitness[2]));
     });
   });
+
+  describe('probs property function', function() {
+    it('should return an array', function() {
+      assert.equal(true, Array.isArray(p2.probs));
+    });
+
+    it('should have a last value of 1', function() {
+      assert.equal(1, p2.probs[p2.probs.length - 1]);
+    });
+
+    it('should be the same length as the population', function() {
+      assert.equal(3, p2.population.length);
+    });
+
+    it('the delta between highest fitness vs prev val should be larger than lower fitness vs prev val', function() {
+      var probability_of_2 = p2.probs[1] - p2.probs[0];
+      var probability_of_3 = p2.probs[2] - p2.probs[1];
+      assert.equal(true, probability_of_2 < probability_of_3);
+    });
+  });
 });
 
 
