@@ -3,9 +3,9 @@ var Population = require('../source/javascripts/population');
 
 var p;
 var p2;
-var m1 = {chrom: '00000001'};
-var m2 = {chrom: '00000010'};
-var m3 = {chrom: '00000011'};
+var m1 = {chrom: '00000001', value: 1};
+var m2 = {chrom: '00000010', value: 2};
+var m3 = {chrom: '00000011', value: 3};
 
 describe('Population', function() {
   before(function(){
@@ -15,6 +15,10 @@ describe('Population', function() {
       env: 100
     });
   });
+
+  it('should have a max_env property of 255', function() {
+    assert.equal(255, p.max_env);
+  })
 
   describe('size property', function() {
     it('should return a number', function() {
@@ -31,7 +35,7 @@ describe('Population', function() {
   });
 
   describe('population property', function() {
-    it('should return an array', function() {
+    it('should be an array', function() {
       assert.equal(true, Array.isArray(p.population));
     });
 
@@ -43,4 +47,21 @@ describe('Population', function() {
       assert.deepEqual([m1, m2, m3], p2.population);
     });
   });
+
+  describe('chrom_vals property', function() {
+    it('should be an array', function() {
+      assert.equal(true, Array.isArray(p2.chrom_vals));
+    });
+
+    it('should contain the numerical values of the binary chromosomes', function() {
+      assert.deepEqual([1, 2, 3], p2.chrom_vals);
+    })
+  });
+
 });
+
+
+
+
+
+
