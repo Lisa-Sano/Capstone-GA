@@ -1,5 +1,17 @@
 var assert = require('assert');
+var rewire = require('rewire');
 var Population = require('../source/javascripts/population');
+
+var pop = rewire('../source/javascripts/population.js');
+
+getChromVals = pop.__get__('getChromVals');
+generateMoths = pop.__get__('generateMoths');
+evalFitness = pop.__get__('evalFitness');
+probabilities = pop.__get__('probabilities');
+weightedSample = pop.__get__('weightedSample');
+mutateChromosome = pop.__get__('mutateChromosome');
+willMutate = pop.__get__('willMutate');
+
 
 var p;
 var p2;
