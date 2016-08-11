@@ -52,7 +52,7 @@ var Population = function(pop={}) {
   function evalFitness(pop, max, env) {
     let f = [];
     pop.forEach(function(m) {
-      f.push(max - (Math.abs(env - parseInt(m.chromosome, 2)) * 0.2));
+      f.push(max - (Math.abs(env - m.value) * 0.2));
     });
 
     return f;
