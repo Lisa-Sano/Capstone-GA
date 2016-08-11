@@ -1,5 +1,10 @@
 var assert = require('assert');
+var rewire = require('rewire');
 var Moth = require('../source/javascripts/moth');
+
+var moth = rewire('../source/javascripts/moth.js');
+
+lpad = moth.__get__('lpad');
 
 var m;
 var m2;
@@ -41,6 +46,14 @@ describe('Moth', function() {
       assert.equal('00001111', m2.chromosome);
       assert.equal(15, parseInt(m2.chromosome, 2));
       assert.equal(8, m.chrom_length);
+    });
+  });
+
+  describe('lpad function', function() {
+    var p = lpad("", "0", 8);
+
+    it('should return a string of particular length', function() {
+      assert.equal(8, p.length);
     });
   });
 });
