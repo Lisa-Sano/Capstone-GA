@@ -52,6 +52,29 @@ describe('Population', function() {
     });
   });
 
+  describe('probabilities function', function() {
+    let fitness = [1, 2, 3];
+    let probs = probabilities(fitness);
+
+    it('should return an array', function() {
+      assert.equal(true, Array.isArray(probs));
+    });
+
+    it('should have a last value of 1', function() {
+      assert.equal(1, probs[probs.length - 1]);
+    });
+
+    it('should be the same length as the fitness array', function() {
+      assert.equal(probs.length, fitness.length);
+    });
+
+    it('the delta between highest fitness vs prev val should be larger than lower fitness vs prev val', function() {
+      var probability_of_2 = probs[1] - probs[0];
+      var probability_of_3 = probs[2] - probs[1];
+      assert.equal(true, probability_of_2 < probability_of_3);
+    });
+  });
+
   it('should have a max_env property of 255', function() {
     assert.equal(255, p.max_env);
   });
