@@ -17,7 +17,7 @@ $(document).ready(function() {
   graphic.drawGraphic(pop.chrom_vals, pop.env);
 
   $("#start").click(function() {
-    var num_gens = 100;
+    var num_gens = 200;
     var counter = 0;
     var ending;
 
@@ -31,9 +31,12 @@ $(document).ready(function() {
       } else if (i < 30) {
         var n = 5;
         i += 4;
-      } else {
+      } else if (i < 100) {
         var n = 10;
         i += 9;
+      } else {
+        var n = 20;
+        i += 19;
       }
 
       // update chart every 250ms

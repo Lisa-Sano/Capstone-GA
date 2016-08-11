@@ -155,3 +155,11 @@ h1 {
 .main-graphic {
 
 }
+
+.moth {
+  transition: stroke 0.25s ease;
+}
+
+.env:hover .moth {
+  stroke: #cc5200;
+}

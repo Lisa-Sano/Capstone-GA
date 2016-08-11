@@ -1,5 +1,5 @@
 var Chart = function() {
-    this.margin = {top: 30, right: 50, bottom: 50, left: 50},
+    this.margin = {top: 30, right: 40, bottom: 50, left: 60},
     this.width = 500 - this.margin.left - this.margin.right,
     this.height = 370 - this.margin.top - this.margin.bottom,
     this.initChart = function(starting_data, environ) {     
@@ -23,7 +23,7 @@ var Chart = function() {
       var height = this.height;
       var width = this.width;
       var x = d3.scaleBand()
-        .rangeRound([0, width]);
+        .rangeRound([0, width])
       var y = d3.scaleLinear()
         .domain([0,1])
         .range([height, 0]);
@@ -45,8 +45,8 @@ var Chart = function() {
           .call(yAxis)
         .append("text")
           .attr("transform", "rotate(-90)")
-          .attr("y", 6)
-          .attr("dy", ".71em")
+          .attr("y", -width/8)
+          .attr("x", -height/2.5)
           .style("text-anchor", "end")
           .text("Frequency");
 
@@ -76,7 +76,7 @@ var Chart = function() {
       bar1.enter().append("rect")
           .attr("class", "bar bar1")
           .attr("width", barWidth/2)
-          .attr("x", function(d) { return x(d.percent); })
+          .attr("x", function(d) { return x(d.percent) + 1; })
         .merge(bar1)
           .attr("y", function(d) { return y(d.frequency); })
           .attr("height", function(d) { return height - y(d.frequency); });
@@ -86,7 +86,7 @@ var Chart = function() {
       bar2.enter().append("rect")
           .attr("class", "bar bar2")
           .attr("width", barWidth/2)
-          .attr("x", function(d) { return x(d.percent) + (barWidth/2) + 1; })
+          .attr("x", function(d) { return x(d.percent) + (barWidth/2) + 2; })
         .merge(bar1)
           .attr("y", function(d) { return y(d.frequency); })
           .attr("height", function(d) { return height - y(d.frequency); });
@@ -124,7 +124,7 @@ var Chart = function() {
 
       // update
       bar2.merge(bar2).transition(t)
-          .attr("x", function(d) { return x(d.percent) + (barWidth/2) + 1; })
+          .attr("x", function(d) { return x(d.percent) + (barWidth/2) + 2; })
           .attr("y", function(d) { return y(d.frequency); })
           .attr("height", function(d) { return height - y(d.frequency); });
     }
