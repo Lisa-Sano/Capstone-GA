@@ -75,6 +75,17 @@ describe('Population', function() {
     });
   });
 
+  describe('weightedSample function', function() {
+    let probs = [0.2, 0.5, 1];
+    let sample = weightedSample(probs, [m1, m2, m3]);
+
+    it('should return a member of the given population that responds to .chrom and .value', function() {
+      assert.equal('object', typeof(sample));
+      assert.notEqual(null, sample.chrom);
+      assert.notEqual(null, sample.value);
+    });
+  });
+
   it('should have a max_env property of 255', function() {
     assert.equal(255, p.max_env);
   });
