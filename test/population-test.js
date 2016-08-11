@@ -16,6 +16,7 @@ describe('Population', function() {
     });
   });
 
+
   it('should have a max_env property of 255', function() {
     assert.equal(255, p.max_env);
   })
@@ -58,6 +59,25 @@ describe('Population', function() {
     })
   });
 
+  describe('env property', function() {
+    it('should be set if an obj with env key is passed in', function() {
+      assert.equal(100, p2.env);
+    });
+
+    it('should by default be set to a number if no env is passed in', function() {
+      assert.equal('number', typeof(p.env));
+    })
+  });
+
+  describe('fitness property function', function() {
+    it('should return an array', function() {
+      assert.equal(true, Array.isArray(p2.fitness));
+    });
+
+    it('should evaluate a higher fitness for chromosome values closer to the env color', function() {
+      assert.equal(true, (p2.fitness[0] < p2.fitness[2]));
+    });
+  });
 });
 
 
