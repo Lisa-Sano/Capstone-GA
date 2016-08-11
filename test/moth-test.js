@@ -55,5 +55,9 @@ describe('Moth', function() {
     it('should return a string of particular length', function() {
       assert.equal(8, p.length);
     });
+
+    it('should return string "00000000"when given ("", "0", 8)', function() {
+      assert.equal('00000000', p);
+    });
   });
 });
