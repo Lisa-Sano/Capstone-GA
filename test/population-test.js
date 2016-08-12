@@ -79,7 +79,7 @@ describe('Population', function() {
     let probs = [0.2, 0.5, 1];
     let sample = weightedSample(probs, [m1, m2, m3]);
 
-    it('should return a member of the given population that responds to .chrom and .value', function() {
+    it('should return a member of the given population', function() {
       assert.equal('object', typeof(sample));
       assert.notEqual(null, sample.chrom);
       assert.notEqual(null, sample.value);
@@ -95,11 +95,11 @@ describe('Population', function() {
       assert.equal('number', typeof(p.size));
     });
 
-    it('should be 500 by default if no population is provided', function() {
+    it('should be 500 by default', function() {
       assert.equal(500, p.size);
     })
 
-    it('should equal the length of the population', function() {
+    it('should equal the length of the population, if provided', function() {
       assert.equal(3, p2.size);
     });
   });
@@ -109,7 +109,7 @@ describe('Population', function() {
       assert.equal(true, Array.isArray(p.population));
     });
 
-    it('should be 500 long by default if no population is provided', function() {
+    it('should be 500 long by default', function() {
       assert.equal(500, p.population.length);
     })
 

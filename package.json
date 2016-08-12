@@ -12,7 +12,7 @@
     "webpack": "^1.13.1"
   },
   "scripts": {
-    "test": "node_modules/.bin/mocha -R nyan",
+    "test": "node_modules/.bin/mocha",
     "build": "webpack"
   },
   "repository": {

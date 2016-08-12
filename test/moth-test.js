@@ -16,11 +16,8 @@ describe('Moth', function() {
   });
 
   describe('chromosome property', function() {
-    it('should return a string', function() {
-      assert.equal("string", typeof(m.chromosome));
-    });
-
     it('should return a string of 8 elements', function() {
+      assert.equal("string", typeof(m.chromosome));
       assert.equal(8, m.chromosome.length);
     });
   });
@@ -52,12 +49,18 @@ describe('Moth', function() {
   describe('lpad function', function() {
     var p = lpad("", "0", 8);
 
-    it('should return a string of particular length', function() {
+    it('should return a string of given length', function() {
       assert.equal(8, p.length);
     });
 
-    it('should return string "00000000"when given ("", "0", 8)', function() {
+    it('should return a string of 0\'s if given an empty string to pad', function() {
       assert.equal('00000000', p);
     });
+
+    it('should add padding 0\'s to the left of the given string', function() {
+      var pad2 = lpad("1111", "0", 8);
+
+      assert.equal('00001111', pad2);
+    })
   });
 });
