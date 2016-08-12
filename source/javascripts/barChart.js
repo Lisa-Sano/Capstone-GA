@@ -4,6 +4,7 @@ var Chart = function() {
     this.height = 370 - this.margin.top - this.margin.bottom,
     this.initChart = function(starting_data, environ) {     
 
+
     // INITIALIZE CHART and LEGEND 
       d3.select(".chart")
         .attr("width", this.width + this.margin.left + this.margin.right)
@@ -11,6 +12,14 @@ var Chart = function() {
         
       d3.select(".legend")
         .attr("transform", "translate(" + ((this.width - this.margin.left) / 2) + "," + (this.height + this.margin.bottom + 10) + ")");
+      
+      // INITIALIZE TOOLTIP
+      var tip = d3.tip()
+        .attr('class', 'd3-tip')
+        .offset([-10, 0])
+        .html(function(d) {
+          return "<strong>Frequency:</strong> <span class='tooltip-freq'>" + (d.frequency * 100).toFixed(2) + "%</span>";
+        });
 
       // INITIALIZE GLOBAL TAG
       var svg = d3.select(".chart").selectAll(".gchart").data([starting_data]);
@@ -18,6 +27,8 @@ var Chart = function() {
       svg.enter().append("g")
         .attr("class", "gchart")
         .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
+
+      d3.select(".chart").call(tip);
       
       // SET ORDINAL X AXIS AND LINEAR Y AXIS RANGES
       var height = this.height;
@@ -77,6 +88,8 @@ var Chart = function() {
           .attr("class", "bar bar1")
           .attr("width", barWidth/2)
           .attr("x", function(d) { return x(d.percent) + 1; })
+          .on('mouseover', tip.show)
+          .on('mouseout', tip.hide)
         .merge(bar1)
           .attr("y", function(d) { return y(d.frequency); })
           .attr("height", function(d) { return height - y(d.frequency); });
@@ -87,6 +100,8 @@ var Chart = function() {
           .attr("class", "bar bar2")
           .attr("width", barWidth/2)
           .attr("x", function(d) { return x(d.percent) + (barWidth/2) + 2; })
+          .on('mouseover', tip.show)
+          .on('mouseout', tip.hide)
         .merge(bar1)
           .attr("y", function(d) { return y(d.frequency); })
           .attr("height", function(d) { return height - y(d.frequency); });
