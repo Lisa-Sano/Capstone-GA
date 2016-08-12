@@ -1,7 +1,7 @@
 var Chart = function() {
-    this.margin = {top: 30, right: 40, bottom: 50, left: 60},
+    this.margin = {top: 50, right: 40, bottom: 50, left: 60},
     this.width = 500 - this.margin.left - this.margin.right,
-    this.height = 370 - this.margin.top - this.margin.bottom,
+    this.height = 400 - this.margin.top - this.margin.bottom,
     this.initChart = function(starting_data, environ) {     
 
 
@@ -11,8 +11,11 @@ var Chart = function() {
         .attr("height", this.height + this.margin.top + this.margin.bottom);
         
       d3.select(".legend")
-        .attr("transform", "translate(" + ((this.width - this.margin.left) / 2) + "," + (this.height + this.margin.bottom + 10) + ")");
-      
+        .attr("transform", "translate(" + ((this.width - this.margin.left) / 2) + ",0)");
+
+      d3.select(".legend").selectAll("text")
+        .style("font-size","0.8rem");
+
       // INITIALIZE TOOLTIP
       var tip = d3.tip()
         .attr('class', 'd3-tip')
@@ -40,7 +43,7 @@ var Chart = function() {
         .range([height, 0]);
 
       // REFERENCE AXES
-      var xAxis = d3.axisBottom(x);
+      var xAxis = d3.axisBottom(x).ticks(0);
       var yAxis = d3.axisLeft(y).ticks(10, "%");
 
       // SET X DOMAIN BASED ON SATURATION VALUES
@@ -55,21 +58,34 @@ var Chart = function() {
           .attr("transform", "translate(0,0)")
           .call(yAxis)
         .append("text")
+          .style("font-size","0.8rem")
           .attr("transform", "rotate(-90)")
           .attr("y", -width/8)
           .attr("x", -height/2.5)
           .style("text-anchor", "end")
           .text("Frequency");
 
+      // CREATE X AXIS
+      d3.select(".gchart").append("g")
+          .attr("class", "x axis axisBottom")
+          .attr("transform", "translate(0," + height + ")")
+          .call(xAxis)
+        .append("text")
+          .style("font-size","0.8rem")
+          .attr("y", 40)
+          .attr("x", (width - this.margin.left)/2)
+          .style("text-anchor", "start")
+          .text("Moth Color");
+
       // SHOW COLOR GRADIENT ON THE X AXIS
       var colorAxis = d3.select(".gchart").selectAll(".saturation").data(starting_data);
 
       colorAxis.enter().append("rect")
           .attr("class", function(d) { return "saturation percent" + d.percent})
-          .attr("x", function(d) { return x(d.percent) - 2.5; })
+          .attr("x", function(d) { return x(d.percent); })
           .attr("y", height)
           .attr("height", "20")
-          .attr("width", "19");
+          .attr("width", "20");
 
       // SHOW ENVIRONMENT COLOR
       d3.select(".gchart").append("rect")
@@ -87,7 +103,7 @@ var Chart = function() {
       bar1.enter().append("rect")
           .attr("class", "bar bar1")
           .attr("width", barWidth/2)
-          .attr("x", function(d) { return x(d.percent) + 1; })
+          .attr("x", function(d) { return x(d.percent) + 2; })
           .on('mouseover', tip.show)
           .on('mouseout', tip.hide)
         .merge(bar1)
@@ -99,7 +115,7 @@ var Chart = function() {
       bar2.enter().append("rect")
           .attr("class", "bar bar2")
           .attr("width", barWidth/2)
-          .attr("x", function(d) { return x(d.percent) + (barWidth/2) + 2; })
+          .attr("x", function(d) { return x(d.percent) + (barWidth/2) + 3; })
           .on('mouseover', tip.show)
           .on('mouseout', tip.hide)
         .merge(bar1)
@@ -139,7 +155,7 @@ var Chart = function() {
 
       // update
       bar2.merge(bar2).transition(t)
-          .attr("x", function(d) { return x(d.percent) + (barWidth/2) + 2; })
+          .attr("x", function(d) { return x(d.percent) + (barWidth/2) + 3; })
           .attr("y", function(d) { return y(d.frequency); })
           .attr("height", function(d) { return height - y(d.frequency); });
     }
