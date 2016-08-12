@@ -1,13 +1,10 @@
 var assert = require('assert');
 var rewire = require('rewire');
+var sinon = require('sinon');
 var Population = require('../source/javascripts/population');
 
 var pop = rewire('../source/javascripts/population.js');
 
-getChromVals = pop.__get__('getChromVals');
-generateMoths = pop.__get__('generateMoths');
-evalFitness = pop.__get__('evalFitness');
-probabilities = pop.__get__('probabilities');
 weightedSample = pop.__get__('weightedSample');
 mutateChromosome = pop.__get__('mutateChromosome');
 willMutate = pop.__get__('willMutate');
@@ -20,59 +17,27 @@ var m2 = {chrom: '00000010', value: 2};
 var m3 = {chrom: '00000011', value: 3};
 
 describe('Population', function() {
-  before(function(){
+  before(function() {
+    sinon.stub(Population.prototype, 'getMoths', function(num) {
+      let pop = [];
+      for (let i = 0; i < num; i++) {
+        let m = {chromosome: '00000000', value: 0, chrom_length: 8};
+        pop.push(m);
+      }
+      return pop;
+    });
+
     p = new Population();
     p2 = new Population({
       population: [m1, m2, m3],
       env: 100
     });
+
+    console.log(p);
   });
 
-  describe('getChromVals function', function() {
-    let vals = getChromVals([m1, m2, m3]);
-
-    it('returns an array', function() {
-      assert.equal(true, Array.isArray(vals));
-    });
-
-    it('returns an array of the numerical values of the chromosome binaries', function() {
-      assert.deepEqual([1, 2, 3], vals);
-    });
-  });
-
-  describe('evalFitness function', function() {
-    let fitness = evalFitness([m1, m2, m3], 255, 100);
-
-    it('should return an array', function() {
-      assert.equal(true, Array.isArray(fitness));
-    });
-
-    it('should evaluate a higher fitness for chromosome values closer to the env color', function() {
-      assert.equal(true, (fitness[0] < fitness[2]));
-    });
-  });
-
-  describe('probabilities function', function() {
-    let fitness = [1, 2, 3];
-    let probs = probabilities(fitness);
-
-    it('should return an array', function() {
-      assert.equal(true, Array.isArray(probs));
-    });
-
-    it('should have a last value of 1', function() {
-      assert.equal(1, probs[probs.length - 1]);
-    });
-
-    it('should be the same length as the fitness array', function() {
-      assert.equal(probs.length, fitness.length);
-    });
-
-    it('the delta between highest fitness vs prev val should be larger than lower fitness vs prev val', function() {
-      var probability_of_2 = probs[1] - probs[0];
-      var probability_of_3 = probs[2] - probs[1];
-      assert.equal(true, probability_of_2 < probability_of_3);
-    });
+  after(function() {
+    Population.prototype.getMoths.restore();
   });
 
   describe('weightedSample function', function() {
