@@ -5,10 +5,8 @@ var Population = require('../source/javascripts/population');
 
 var pop = rewire('../source/javascripts/population.js');
 
-weightedSample = pop.__get__('weightedSample');
 mutateChromosome = pop.__get__('mutateChromosome');
 willMutate = pop.__get__('willMutate');
-
 
 var p;
 var p2;
@@ -18,36 +16,56 @@ var m3 = {chrom: '00000011', value: 3};
 
 describe('Population', function() {
   before(function() {
-    sinon.stub(Population.prototype, 'getMoths', function(num) {
-      let pop = [];
-      for (let i = 0; i < num; i++) {
-        let m = {chromosome: '00000000', value: 0, chrom_length: 8};
-        pop.push(m);
+    var mockMoth = function(properties) {
+      return {
+        chromosome: properties.chrom || '00000000',
+        value: properties.chrom || 0,
+        chrom_length: 8
       }
-      return pop;
-    });
+    };
 
-    p = new Population();
+    p = new Population({}, mockMoth);
     p2 = new Population({
       population: [m1, m2, m3],
       env: 100
     });
-
-    console.log(p);
   });
 
-  after(function() {
-    Population.prototype.getMoths.restore();
+  describe('newMoth function', function() {
+    it('should return a Moth object with specific chromosome if given a properties obj containing chrom key', function() {
+      let new_moth = p.newMoth(m1);
+      assert.equal(m1.chrom, new_moth.chromosome);
+      assert.equal(1, new_moth.value);
+      assert.equal(8, new_moth.chrom_length);
+    })
   });
 
   describe('weightedSample function', function() {
-    let probs = [0.2, 0.5, 1];
-    let sample = weightedSample(probs, [m1, m2, m3]);
-
     it('should return a member of the given population', function() {
+      let sample = p2.weightedSample();
       assert.equal('object', typeof(sample));
       assert.notEqual(null, sample.chrom);
       assert.notEqual(null, sample.value);
+    });
+  });
+
+  describe('mate function', function() {
+    let moths = {moth_one: {chromosome: '00000000', value: 0}, moth_two: {chromosome: '11111111', value: 255}};
+
+    it('should return an object with Moth properties', function() {
+      assert.equal('object', typeof(p.mate(moths)));
+    });
+
+    it('should cross over the chromosomes from the two moth objects chosen for mating', function() {
+      let child = p.mate(moths);
+      assert.equal(true, child.chromosome.includes("0"));
+      assert.equal(true, child.chromosome.includes("1"));
+    });
+
+    it('should always contain values from both parents in chromosome (can\'t cross over at first or last index)', function() {
+      let child = p.mate(moths);
+      assert.equal('0', child.chromosome[0]);
+      assert.equal('1', child.chromosome[7]);
     });
   });
 
@@ -56,7 +74,7 @@ describe('Population', function() {
   });
 
   describe('size property', function() {
-    it('should return a number', function() {
+    it('should return a number', function() { 
       assert.equal('number', typeof(p.size));
     });
 
@@ -69,7 +87,7 @@ describe('Population', function() {
     });
   });
 
-  describe('population property', function() {
+  describe('population property / getMoths function', function() {
     it('should be an array', function() {
       assert.equal(true, Array.isArray(p.population));
     });
@@ -83,7 +101,7 @@ describe('Population', function() {
     });
   });
 
-  describe('chrom_vals property', function() {
+  describe('chrom_vals property / getChromVals function', function() {
     it('should be an array', function() {
       assert.equal(true, Array.isArray(p2.chrom_vals));
     });
@@ -103,7 +121,7 @@ describe('Population', function() {
     })
   });
 
-  describe('fitness property function', function() {
+  describe('fitness property / evalFitness function', function() {
     it('should return an array', function() {
       assert.equal(true, Array.isArray(p2.fitness));
     });
