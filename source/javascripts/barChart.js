@@ -58,10 +58,10 @@ var Chart = function() {
           .attr("transform", "translate(0,0)")
           .call(yAxis)
         .append("text")
-          .style("font-size","0.8rem")
+          .style("font-size","0.9rem")
           .attr("transform", "rotate(-90)")
-          .attr("y", -width/8)
-          .attr("x", -height/2.5)
+          .attr("y", -width/9)
+          .attr("x", -height/3)
           .style("text-anchor", "end")
           .text("Frequency");
 
@@ -71,8 +71,8 @@ var Chart = function() {
           .attr("transform", "translate(0," + height + ")")
           .call(xAxis)
         .append("text")
-          .style("font-size","0.8rem")
-          .attr("y", 40)
+          .style("font-size","1rem")
+          .attr("y", 45)
           .attr("x", (width - this.margin.left)/2)
           .style("text-anchor", "start")
           .text("Moth Color");
@@ -135,7 +135,6 @@ var Chart = function() {
         .range([height, 0]);
 
       x.domain(ending_data.map(function(d) { return d.percent; }));
-      // y.domain([0, (d3.max(ending_data, function(d) { return d.frequency; }) + .03)]);
       y.domain([0,1]);
 
       var barWidth = (width - 100) / ending_data.length;
