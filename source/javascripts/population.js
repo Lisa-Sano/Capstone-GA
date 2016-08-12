@@ -1,13 +1,14 @@
 var Moth = require("./moth");
 
-var Population = function(pop={}) {
-  this.size = (pop.population == null ? 500 : pop.population.length),
-  this.population = pop.population || this.getMoths(this.size),
-  this.chrom_vals = getChromVals(this.population),
-  this.max_env = 255,
-  this.env = pop.env || Math.floor(Math.random() * (this.max_env + 1)),
-  this.fitness = evalFitness(this.population, this.max_env, this.env),
-  this.probs = probabilities(this.fitness)
+var Population = function(pop={}, moth_obj=Moth) {
+  this.newMoth = function(properties={}) { return new moth_obj(properties) };
+  this.size = (pop.population == null ? 500 : pop.population.length);
+  this.population = pop.population || this.getMoths(this.size);
+  this.chrom_vals = getChromVals(this.population);
+  this.max_env = 255;
+  this.env = pop.env || Math.floor(Math.random() * (this.max_env + 1));
+  this.fitness = evalFitness(this.population, this.max_env, this.env);
+  this.probs = probabilities(this.fitness);
 }
 
 Population.prototype.mate = function() {
@@ -19,6 +20,7 @@ Population.prototype.mate = function() {
   let crossover = Math.floor(Math.random() * 8);
 
   let first_piece = moth1.chromosome.slice(0,crossover);
+
   let second_piece = moth2.chromosome.slice(crossover, 8);
   let new_chrom = first_piece + second_piece;
 
@@ -26,27 +28,26 @@ Population.prototype.mate = function() {
   mutateChromosome(new_chrom);
 
   // initialize a new moth based on the (potentially) mutated chromosome
-  let new_moth = new Moth({chrom: new_chrom});
-  return new_moth;
+  return this.newMoth({chrom: new_chrom});
 }
 
 // if population not initialized with an array of moths, generate a new population
 Population.prototype.getMoths = function(num) {
   let pop = [];
   for (let i = 0; i < num; i++) {
-    let m = new Moth();
-    pop.push(m);
+    pop.push(this.newMoth());
   }
-
+  
   return pop;
-}
+};
 
 // create an array of chromosome values for the entire population
 function getChromVals(population) {
   let vals = [];
   population.forEach(function(m) {
     vals.push(m.value);
-  })
+  });
+
   return vals;
 }
 
