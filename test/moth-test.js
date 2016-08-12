@@ -20,6 +20,10 @@ describe('Moth', function() {
       assert.equal("string", typeof(m.chromosome));
       assert.equal(8, m.chromosome.length);
     });
+
+    it('should only contain binary numbers 0 or 1 by default', function() {
+      assert.equal(true, /^[01]+$/.test(m.chromosome));
+    });
   });
 
   describe('chrom_length property', function() {
