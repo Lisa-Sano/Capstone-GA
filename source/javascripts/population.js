@@ -2,31 +2,43 @@ var Moth = require("./moth");
 
 var Population = function(pop={}) {
   this.size = (pop.population == null ? 500 : pop.population.length),
-  this.population = pop.population || generateMoths(this.size),
+  this.population = pop.population || this.getMoths(this.size),
   this.chrom_vals = getChromVals(this.population),
   this.max_env = 255,
   this.env = pop.env || Math.floor(Math.random() * (this.max_env + 1)),
   this.fitness = evalFitness(this.population, this.max_env, this.env),
-  this.probs = probabilities(this.fitness),
-  this.mate = function() {
-    // take a weighted sampling of two moths based on fitness scores/probabilities
-    let moth1 = weightedSample(this.probs, this.population);
-    let moth2 = weightedSample(this.probs, this.population);
+  this.probs = probabilities(this.fitness)
+}
 
-    // pick a random index of the chromosome to crossover
-    let crossover = Math.floor(Math.random() * 8);
+Population.prototype.mate = function() {
+  // take a weighted sampling of two moths based on fitness scores/probabilities
+  let moth1 = weightedSample(this.probs, this.population);
+  let moth2 = weightedSample(this.probs, this.population);
 
-    let first_piece = moth1.chromosome.slice(0,crossover);
-    let second_piece = moth2.chromosome.slice(crossover, 8);
-    let new_chrom = first_piece + second_piece;
+  // pick a random index of the chromosome to crossover
+  let crossover = Math.floor(Math.random() * 8);
 
-    // mutate the newly generated chromosome
-    mutateChromosome(new_chrom);
+  let first_piece = moth1.chromosome.slice(0,crossover);
+  let second_piece = moth2.chromosome.slice(crossover, 8);
+  let new_chrom = first_piece + second_piece;
 
-    // initialize a new moth based on the (potentially) mutated chromosome
-    let new_moth = new Moth({chrom: new_chrom});
-    return new_moth;
+  // mutate the newly generated chromosome
+  mutateChromosome(new_chrom);
+
+  // initialize a new moth based on the (potentially) mutated chromosome
+  let new_moth = new Moth({chrom: new_chrom});
+  return new_moth;
+}
+
+// if population not initialized with an array of moths, generate a new population
+Population.prototype.getMoths = function(num) {
+  let pop = [];
+  for (let i = 0; i < num; i++) {
+    let m = new Moth();
+    pop.push(m);
   }
+
+  return pop;
 }
 
 // create an array of chromosome values for the entire population
@@ -36,17 +48,6 @@ function getChromVals(population) {
     vals.push(m.value);
   })
   return vals;
-}
-
-// if population not initialized with an array of moths, generate a new population
-function generateMoths(num) {
-  let pop = [];
-  for (let i = 0; i < num; i++) {
-    let m = new Moth();
-    pop.push(m);
-  }
-
-  return pop;
 }
 
 // calculate the fitness (closer value of chromosome compared to environment value = higher score)
