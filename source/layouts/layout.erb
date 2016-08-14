@@ -23,7 +23,16 @@
       <button id="start">Start</button>
       <button id="reset">Reset</button>
     </div>
-    <p>Generation: <span class="gen">1</span></p>
+
+    <form>
+    <span class="population">Population:</span>
+      <input class="radio" id="uniform" type="radio" name="starting-pop" value="uniform" checked>
+      <label for="uniform">Uniform</label>
+      <input class="radio" id="random" type="radio" name="starting-pop" value="random">
+      <label for="random">Random</label>
+    </form>
+
+    <p class="generation">Generation: <span class="gen">1</span></p>
     <%= yield %>
 
   </body>
