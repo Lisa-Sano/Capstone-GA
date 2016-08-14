@@ -1,7 +1,13 @@
 var Moth = require("./moth");
 
-var Population = function(pop={}, moth_obj=Moth) {
-  this.newMoth = function(properties={}) { return new moth_obj(properties) };
+var Population = function(pop={}, white=false, moth_obj=Moth) {
+  this.newMoth = function(properties={}) {
+    if (white) {
+      properties["chrom"] = '00000000';
+    }
+
+    return new moth_obj(properties)
+  };
   this.size = (pop.population == null ? 500 : pop.population.length);
   this.population = pop.population || this.getMoths(this.size);
   this.chrom_vals = getChromVals(this.population);
