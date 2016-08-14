@@ -9,14 +9,9 @@ $(document).ready(function() {
   var pop = getPopulation();
   var starting = frequency(pop.chrom_vals);
   var graphic = new Graphic();
-  var environ = (Math.round(pop.env/12.75)*5);
   var chart = new Chart();
 
-
-
-  chart.initChart(starting, environ);
-
-  graphic.drawGraphic(pop.chrom_vals, pop.env);
+  drawD3(starting, pop);
 
   $("#start").click(function() {
     var num_gens = 500;
@@ -47,12 +42,9 @@ $(document).ready(function() {
       // update chart every 250ms
       setTimeout(function() {
         pop = Simulate(n, pop);
-        ending = frequency(pop.chrom_vals);
-        chart.updateChart(starting, ending);
-        graphic.drawGraphic(pop.chrom_vals);
+        drawD3(starting, pop);
         $(".gen").html(i+1);
-        console.log("number: " + i)},
-        (counter * 250));
+      }, (counter * 250));
 
       counter++;
     }
@@ -65,25 +57,30 @@ $(document).ready(function() {
     starting = frequency(pop.chrom_vals);
 
     $(".gchart").remove();
-    chart.initChart(starting, (Math.round(pop.env/12.75)*5));
-
     $(".env").remove();
-    graphic.drawGraphic(pop.chrom_vals, pop.env);
+    $(".gen").html("1");
 
-    $(".gen").html("1")
+    drawD3(starting, pop);
   });
-});
 
-function getPopulation() {
-  var uniform;
-  var properties = {};
 
-  if ($('input[id=uniform]:checked').length > 0) {
-    uniform = true;
-    properties.env = 235;
-  } else {
-    uniform = false;
+  function getPopulation() {
+    var uniform;
+    var properties = {};
+
+    if ($('input[id=uniform]:checked').length > 0) {
+      uniform = true;
+      properties.env = 235;
+    } else {
+      uniform = false;
+    }
+
+    return new Population(properties, uniform);
   }
 
-  return new Population(properties, uniform);
-}
+  function drawD3(starting, pop) {
+    chart.drawChart(starting, frequency(pop.chrom_vals), Math.round(pop.env/12.75)*5);
+    graphic.drawGraphic(pop.chrom_vals, pop.env);
+  }
+});
+

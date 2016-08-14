@@ -1,11 +1,9 @@
 var Chart = function() {
-    this.margin = {top: 50, right: 40, bottom: 50, left: 60},
-    this.width = 500 - this.margin.left - this.margin.right,
-    this.height = 400 - this.margin.top - this.margin.bottom,
-    this.initChart = function(starting_data, environ) {     
-
-
-    // INITIALIZE CHART and LEGEND 
+    this.margin = {top: 50, right: 40, bottom: 50, left: 60};
+    this.width = 500 - this.margin.left - this.margin.right;
+    this.height = 400 - this.margin.top - this.margin.bottom;
+    this.drawChart = function(starting_data, ending_data, environ) {
+      // INITIALIZE CHART and LEGEND 
       d3.select(".chart")
         .attr("width", this.width + this.margin.left + this.margin.right)
         .attr("height", this.height + this.margin.top + this.margin.bottom);
@@ -51,9 +49,11 @@ var Chart = function() {
 
       // SET BAR WIDTH BASED ON DATA SET
       var barWidth = (width - 100) / starting_data.length;
+
+      var axisL = d3.select(".gchart").selectAll(".axisLeft").data([starting_data]);
       
       // CREATE LEFT Y AXIS
-      d3.select(".gchart").append("g")
+      axisL.enter().append("g")
           .attr("class", "y axis axisLeft")
           .attr("transform", "translate(0,0)")
           .call(yAxis)
@@ -66,7 +66,9 @@ var Chart = function() {
           .text("Frequency");
 
       // CREATE X AXIS
-      d3.select(".gchart").append("g")
+      var axisB = d3.select(".gchart").selectAll(".axisBottom").data([ending_data]);
+
+      axisB.enter().append("g")
           .attr("class", "x axis axisBottom")
           .attr("transform", "translate(0," + height + ")")
           .call(xAxis)
@@ -88,7 +90,9 @@ var Chart = function() {
           .attr("width", "20");
 
       // SHOW ENVIRONMENT COLOR
-      d3.select(".gchart").append("rect")
+      var envL = d3.select(".gchart").selectAll(".envLine").data([ending_data]);
+
+      envL.enter().append("rect")
           .attr("class", "envLine")
           .attr("filter", "url(#f1)")
           .attr("x", x(environ))
@@ -96,8 +100,11 @@ var Chart = function() {
           .attr("height", height - 2)
           .attr("width", "20");
 
+      var t = d3.transition()
+          .duration(250)
+          .ease(d3.easeLinear);
+
       // STARTING POPULATION DATA
-      // bind data
       var bar1 = d3.select(".gchart").selectAll(".bar1").data(starting_data);
 
       bar1.enter().append("rect")
@@ -106,11 +113,11 @@ var Chart = function() {
           .attr("x", function(d) { return x(d.percent) + 2; })
           .on('mouseover', tip.show)
           .on('mouseout', tip.hide)
-        .merge(bar1)
+        .merge(bar1).transition(t)
           .attr("y", function(d) { return y(d.frequency); })
           .attr("height", function(d) { return height - y(d.frequency); });
 
-      var bar2 = d3.select(".gchart").selectAll(".bar2").data(starting_data);
+      var bar2 = d3.select(".gchart").selectAll(".bar2").data(ending_data);
 
       bar2.enter().append("rect")
           .attr("class", "bar bar2")
@@ -118,46 +125,11 @@ var Chart = function() {
           .attr("x", function(d) { return x(d.percent) + (barWidth/2) + 3; })
           .on('mouseover', tip.show)
           .on('mouseout', tip.hide)
-        .merge(bar1)
+
+        .merge(bar2).transition(t)
           .attr("y", function(d) { return y(d.frequency); })
           .attr("height", function(d) { return height - y(d.frequency); });
-    },
-    this.updateChart = function(starting_data, ending_data) {
-      var svg = d3.select(".gchart");
-        
-      var height = this.height;
-      var width = this.width;
-
-      var x = d3.scaleBand()
-        .rangeRound([0, width]);
-
-      var y = d3.scaleLinear()
-        .range([height, 0]);
-
-      x.domain(ending_data.map(function(d) { return d.percent; }));
-      y.domain([0,1]);
-
-      var barWidth = (width - 100) / ending_data.length;
-
-      var t = d3.transition()
-          .duration(250)
-          .ease(d3.easeLinear);
-
-      // bind data
-      var bar2 = svg.selectAll(".bar2").data(ending_data);
-
-      // enter
-      bar2.enter().append("rect")
-          .attr("class", "bar bar2")
-          .attr("width", barWidth/2);
-
-
-      // update
-      bar2.merge(bar2).transition(t)
-          .attr("x", function(d) { return x(d.percent) + (barWidth/2) + 3; })
-          .attr("y", function(d) { return y(d.frequency); })
-          .attr("height", function(d) { return height - y(d.frequency); });
-    }
+    };
 }
 
 module.exports = Chart;
