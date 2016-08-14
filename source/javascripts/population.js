@@ -11,25 +11,6 @@ var Population = function(pop={}, moth_obj=Moth) {
   this.probs = probabilities(this.fitness);
 }
 
-Population.prototype.mate = function(moths={}) {
-  // take a weighted sampling of two moths based on fitness scores/probabilities
-  let moth1 = moths.moth_one || this.weightedSample();
-  let moth2 = moths.moth_two || this.weightedSample();
-
-  // pick a random index of the chromosome to crossover
-  let crossover = Math.floor(Math.random() * (7 - 1) + 1);
-
-  let first_piece = moth1.chromosome.slice(0,crossover);
-  let second_piece = moth2.chromosome.slice(crossover, 8);
-  let new_chrom = first_piece + second_piece;
-
-  // mutate the newly generated chromosome
-  mutateChromosome(new_chrom);
-
-  // initialize a new moth based on the (potentially) mutated chromosome
-  return this.newMoth({chrom: new_chrom});
-}
-
 // if population not initialized with an array of moths, generate a new population
 Population.prototype.getMoths = function(num) {
   let pop = [];
@@ -51,6 +32,22 @@ Population.prototype.weightedSample = function() {
   };
 
   return this.population[this.probs.length - 1];
+}
+
+Population.prototype.mate = function(moths={}) {
+  // take a weighted sampling of two moths based on fitness scores/probabilities
+  let moth1 = moths.moth_one || this.weightedSample();
+  let moth2 = moths.moth_two || this.weightedSample();
+
+  // pick a random index of the chromosome to crossover
+  let crossover = Math.floor(Math.random() * (7 - 1) + 1);
+
+  let first_piece = moth1.chromosome.slice(0,crossover);
+  let second_piece = moth2.chromosome.slice(crossover, 8);
+  let new_chrom = first_piece + second_piece;
+
+  // initialize a new moth based on the (potentially) mutated chromosome
+  return this.newMoth({chrom: mutateChromosome(new_chrom)});
 }
 
 // create an array of chromosome values for the entire population
