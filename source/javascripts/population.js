@@ -6,9 +6,9 @@ var Population = function(pop={}, white=false, moth_obj=Moth) {
       properties["chrom"] = '00000000';
     }
 
-    return new moth_obj(properties)
+    return new moth_obj(properties);
   };
-  this.size = (pop.population == null ? 500 : pop.population.length);
+  this.size = (pop.population == null ? 250 : pop.population.length);
   this.population = pop.population || this.getMoths(this.size);
   this.chrom_vals = getChromVals(this.population);
   this.max_env = 255;
@@ -25,7 +25,7 @@ Population.prototype.getMoths = function(num) {
   }
 
   return pop;
-};
+}
 
 // returns a Moth, sampled using the weighted probabilities
 Population.prototype.weightedSample = function() {
@@ -35,7 +35,7 @@ Population.prototype.weightedSample = function() {
     if (r < this.probs[i]) {
       return this.population[i];
     }
-  };
+  }
 
   return this.population[this.probs.length - 1];
 }
@@ -62,22 +62,16 @@ Population.prototype.mate = function(moths={}) {
 
 // create an array of chromosome values for the entire population
 function getChromVals(population) {
-  let vals = [];
-  population.forEach(function(m) {
-    vals.push(m.value);
+  return population.map(function(m) {
+    return m.value;
   });
-
-  return vals;
 }
 
 // calculate the fitness (closer value of chromosome compared to environment value = higher score)
 function evalFitness(pop, max, env) {
-  let f = [];
-  pop.forEach(function(m) {
-    f.push((max - (Math.abs(env - m.value)) * 0.1) / max);
+  return pop.map(function(m) {
+    return (max - (Math.abs(env - m.value)) * 0.1) / max;
   });
-
-  return f;
 }
 
 // weighted probabilities based on fitness score
@@ -103,17 +97,13 @@ function probabilities(fitness) {
 // mutates 0 to 1, or 1 to 0 (goes through every index and mutates
 // if willMutate() returns true)
 function mutateChromosome(chrom) {
-  let chrom_array = chrom.split('');
-  let counter = 0;
-
-  chrom_array.forEach(function(n) {
+  for (let i = 0; i < chrom.length; i++) {
     if (willMutate()) {
-      chrom_array[counter] = [1, 0][parseInt(n)];
+      chrom = chrom.substr(0, i) + [1, 0][parseInt(chrom[i])] + chrom.substr(i+1);
     }
-    counter++;
-  });
+  }
 
-  return chrom_array.join('');
+  return chrom;
 }
 
 // determine whether a single binary value will mutate
