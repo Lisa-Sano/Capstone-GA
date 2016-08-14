@@ -8,7 +8,7 @@ var Population = function(pop={}, white=false, moth_obj=Moth) {
 
     return new moth_obj(properties);
   };
-  this.size = (pop.population == null ? 250 : pop.population.length);
+  this.size = (pop.population == null ? 500 : pop.population.length);
   this.population = pop.population || this.getMoths(this.size);
   this.chrom_vals = getChromVals(this.population);
   this.max_env = 255;
@@ -46,6 +46,7 @@ Population.prototype.mate = function(moths={}) {
   let moth2 = moths.moth_two || this.weightedSample();
 
   while (moth1 === moth2) {
+    // this.same += 1
     moth2 = moths.moth_two || this.weightedSample();
   }
 

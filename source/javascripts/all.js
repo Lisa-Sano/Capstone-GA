@@ -10,43 +10,26 @@ $(document).ready(function() {
   var starting = frequency(pop.chrom_vals);
   var graphic = new Graphic();
   var chart = new Chart();
-  var num_gens;
+  var num_gens = 500;
 
   drawD3(starting, pop);
 
   $("#start").click(function() {
     var counter = 0;
     var ending;
-    var n;
 
-    for (let i = 0; i < num_gens; i += 1) {
-      
-      // many changes will happen early, so start the simulation slow
-      // then speed up as it gets to higher generations
+    for (let i = 0; i < num_gens; i += 10) {
+      var n = 10;
 
-      switch (true) {
-        case i < 10:
-          n = 1;
-          break;
-        case i < 40:
-          n = 5;
-          i += 4;
-          break;
-        case i < 200:
-          n = 20;
-          i += 19;
-          break;
-        default:
-          n = 50;
-          i += 49;
-      }
+      // simulate 10 gens every 250ms
+      (function (n, i, counter) {
+        setTimeout(function() {
+          pop = Simulate(n, pop);
+          drawD3(starting, pop);
+          $(".gen").html(i+10);
+        }, (counter * 250));
+      }) (n, i, counter);
 
-      // update chart every 250ms
-      setTimeout(function() {
-        pop = Simulate(n, pop);
-        drawD3(starting, pop);
-        $(".gen").html(i+1);
-      }, (counter * 250));
 
       counter++;
     }
@@ -60,7 +43,6 @@ $(document).ready(function() {
 
     $(".gchart").remove();
     $(".env").remove();
-    $(".gen").html("1");
 
     drawD3(starting, pop);
   });
@@ -72,11 +54,9 @@ $(document).ready(function() {
 
     if ($('input[id=uniform]:checked').length > 0) {
       uniform = true;
-      num_gens = 500;
       properties.env = 235;
     } else {
       uniform = false;
-      num_gens = 300;
     }
 
     return new Population(properties, uniform);
