@@ -10,11 +10,11 @@ $(document).ready(function() {
   var starting = frequency(pop.chrom_vals);
   var graphic = new Graphic();
   var chart = new Chart();
+  var num_gens;
 
   drawD3(starting, pop);
 
   $("#start").click(function() {
-    var num_gens = 500;
     var counter = 0;
     var ending;
     var n;
@@ -72,9 +72,11 @@ $(document).ready(function() {
 
     if ($('input[id=uniform]:checked').length > 0) {
       uniform = true;
+      num_gens = 500;
       properties.env = 235;
     } else {
       uniform = false;
+      num_gens = 300;
     }
 
     return new Population(properties, uniform);
