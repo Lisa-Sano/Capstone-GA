@@ -23,20 +23,22 @@ $(document).ready(function() {
       
       // many changes will happen early, so start the simulation slow
       // then speed up as it gets to higher generations
-      if (i < 10) {
-        n = 1;
-      } else if (i < 30) {
-        n = 5;
-        i += 4;
-      } else if (i < 100) {
-        n = 10;
-        i += 9;
-      } else if (i < 200) {
-        n = 20;
-        i += 19;
-      } else {
-        n = 50;
-        i += 49;
+
+      switch (true) {
+        case i < 10:
+          n = 1;
+          break;
+        case i < 40:
+          n = 5;
+          i += 4;
+          break;
+        case i < 200:
+          n = 20;
+          i += 19;
+          break;
+        default:
+          n = 50;
+          i += 49;
       }
 
       // update chart every 250ms
