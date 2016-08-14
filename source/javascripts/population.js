@@ -45,6 +45,10 @@ Population.prototype.mate = function(moths={}) {
   let moth1 = moths.moth_one || this.weightedSample();
   let moth2 = moths.moth_two || this.weightedSample();
 
+  while (moth1 === moth2) {
+    moth2 = moths.moth_two || this.weightedSample();
+  }
+
   // pick a random index of the chromosome to crossover
   let crossover = Math.floor(Math.random() * (7 - 1) + 1);
 
