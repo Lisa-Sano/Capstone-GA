@@ -26,9 +26,8 @@ $(document).ready(function() {
 
     for (let i = 0; i < num_gens; i += 1) {
       
-      // the most changes will occur at generations < 15, so update
-      // chart every generation until 15, then every 5 until 30, then
-      // every 10 until the end
+      // many changes will happen early, so start the simulation slow
+      // then speed up as it gets to higher generations
       if (i < 10) {
         n = 1;
       } else if (i < 30) {
