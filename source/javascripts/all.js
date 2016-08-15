@@ -1,70 +1,87 @@
-var Population = require('./population');
-var Simulate = require('./simulate');
-var frequency = require('./frequency');
+var Simulation = require('./simulate');
 var Chart = require('./barChart');
 var Graphic = require('./main');
+var frequency = require('./frequency');
 
+const MAX_ENV = 255;
+const POP_SIZE = 500;
+const MUTATION_RATE = 0.00005;
 
 $(document).ready(function() {
-  var pop = getPopulation();
-  var starting = frequency(pop.chrom_vals);
+  var env;
+  var config;
+  var mySim;
+  var starting;
   var graphic = new Graphic();
   var chart = new Chart();
   var num_gens = 1000;
 
-  drawD3(starting, pop);
+  initializeSim();
+
+  drawD3(starting, mySim.population, config);
 
   $("#start").click(function() {
-    var counter = 0;
-    var ending;
     var n = 10;
 
-    for (let i = 0; i < num_gens; i += 10) {
+    for (let i = 0; i < num_gens; i += n) {
 
       // simulate 10 gens every 250ms
-      (function (n, i, counter) {
+      (function (n, i) {
         setTimeout(function() {
-          pop = Simulate(n, pop);
-          drawD3(starting, pop);
+          mySim.runSimulation(n);
+          drawD3(starting, mySim.population, config);
           $(".gen").html(i+10);
-        }, (counter * 250));
-      }) (n, i, counter);
+        }, (i * 25));
+      }) (n, i);
 
-
-      counter++;
     }
   });
 
   $("#reset, .radio").click(function() {
-    console.log("RESET!!!!!");
-
-    pop = getPopulation();
-    starting = frequency(pop.chrom_vals);
-
     $(".gchart").remove();
     $(".env").remove();
 
-    drawD3(starting, pop);
+    initializeSim();
+
+    drawD3(starting, mySim.population, config);
   });
 
 
-  function getPopulation() {
-    var uniform;
-    var properties = {};
-
-    if ($('input[id=uniform]:checked').length > 0) {
-      uniform = true;
-      properties.env = 235;
-    } else {
-      uniform = false;
+  function makeConfig() {
+    var config = {
+      max_env: MAX_ENV,
+      population_size: POP_SIZE,
+      mutation_rate: MUTATION_RATE
     }
 
-    return new Population(properties, uniform);
+    if ($('input[id=uniform]:checked').length > 0) {
+      config.uniform = true;
+      config.env = 235;
+    } else {
+      config.uniform = false;
+      config.env = Math.floor(Math.random() * (255 + 1));
+    }
+
+    return config;
   }
 
-  function drawD3(starting, pop) {
-    chart.drawChart(starting, frequency(pop.chrom_vals), Math.round(pop.env/12.75)*5);
-    graphic.drawGraphic(pop.chrom_vals, pop.env);
+  function drawD3(starting, pop, config) {
+    let chrom_vals = getChromVals(mySim.population);
+    chart.drawChart(starting, frequency(chrom_vals), Math.round(config.env/12.75)*5);
+    graphic.drawGraphic(chrom_vals, config.env);
+  }
+
+  function initializeSim() {
+    config = makeConfig();
+    mySim = new Simulation(config);
+    starting = frequency(getChromVals(mySim.population));
+  }
+
+
+  function getChromVals(population) {
+    return population.map(function(m) {
+      return m.value;
+    });
   }
 });
 
