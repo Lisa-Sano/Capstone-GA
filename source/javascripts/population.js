@@ -71,7 +71,7 @@ function getChromVals(population) {
 // calculate the fitness (closer value of chromosome compared to environment value = higher score)
 function evalFitness(pop, max, env) {
   return pop.map(function(m) {
-    return (max - (Math.abs(env - m.value)) * 0.1) / max;
+    return (max - (Math.abs(env - m.value)) * 0.25) / max;
   });
 }
 
@@ -108,7 +108,7 @@ function mutateChromosome(chrom) {
 }
 
 // determine whether a single binary value will mutate
-function willMutate(rate=0.00002) {
+function willMutate(rate=0.00005) {
   return Math.floor(Math.random() * (1/rate)) === 0;
 }
 
