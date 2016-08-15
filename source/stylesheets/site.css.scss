@@ -109,27 +109,32 @@ h1 {
   stroke: none;
 }
 
-.percent0 { fill: #ffffff; }
-.percent5 { fill: #f2f2f2; }
-.percent10 { fill: #e6e6e6; }
-.percent15 { fill: #d9d9d9; }
-.percent20 { fill: #cccccc; }
-.percent25 { fill: #bfbfbf; }
-.percent30 { fill: #b3b3b3; }
-.percent35 { fill: #a6a6a6; }
-.percent40 { fill: #999999; }
-.percent45 { fill: #8c8c8c; }
+.gradient { 
+  stroke: black;
+  stroke-width: 0.5px;
+}
+
+.percent100 { fill: #ffffff; }
+.percent95 { fill: #f2f2f2; }
+.percent90 { fill: #e6e6e6; }
+.percent85 { fill: #d9d9d9; }
+.percent80 { fill: #cccccc; }
+.percent75 { fill: #bfbfbf; }
+.percent70 { fill: #b3b3b3; }
+.percent65 { fill: #a6a6a6; }
+.percent60 { fill: #999999; }
+.percent55 { fill: #8c8c8c; }
 .percent50 { fill: #808080; }
-.percent55 { fill: #737373; }
-.percent60 { fill: #666666; }
-.percent65 { fill: #595959; }
-.percent70 { fill: #4d4d4d; }
-.percent75 { fill: #404040; }
-.percent80 { fill: #333333; }
-.percent85 { fill: #262626; }
-.percent90 { fill: #1a1a1a; }
-.percent95 { fill: #0d0d0d; }
-.percent100 { fill: #000000; }
+.percent45 { fill: #737373; }
+.percent40 { fill: #666666; }
+.percent35 { fill: #595959; }
+.percent30 { fill: #4d4d4d; }
+.percent25 { fill: #404040; }
+.percent20 { fill: #333333; }
+.percent15 { fill: #262626; }
+.percent10 { fill: #1a1a1a; }
+.percent5 { fill: #0d0d0d; }
+.percent0 { fill: #000000; }
 
 .env-container { 
   stroke: black;

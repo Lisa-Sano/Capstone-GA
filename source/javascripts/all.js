@@ -6,6 +6,7 @@ var frequency = require('./frequency');
 const MAX_ENV = 255;
 const POP_SIZE = 500;
 const MUTATION_RATE = 0.00005;
+const NUM_GENS = 1000;
 
 $(document).ready(function() {
   var env;
@@ -14,7 +15,6 @@ $(document).ready(function() {
   var starting;
   var graphic = new Graphic();
   var chart = new Chart();
-  var num_gens = 1000;
 
   initializeSim();
 
@@ -23,7 +23,7 @@ $(document).ready(function() {
   $("#start").click(function() {
     var n = 10;
 
-    for (let i = 0; i < num_gens; i += n) {
+    for (let i = 0; i < NUM_GENS; i += n) {
 
       // simulate 10 gens every 250ms
       (function (n, i) {
@@ -56,7 +56,7 @@ $(document).ready(function() {
 
     if ($('input[id=uniform]:checked').length > 0) {
       config.uniform = true;
-      config.env = 235;
+      config.env = 20;
     } else {
       config.uniform = false;
       config.env = Math.floor(Math.random() * (255 + 1));

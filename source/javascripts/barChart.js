@@ -82,10 +82,10 @@ Chart.prototype.drawChart = function(starting_data, ending_data, environ) {
       .text("Moth Color");
 
   // SHOW COLOR GRADIENT ON THE X AXIS
-  var colorAxis = d3.select(".gchart").selectAll(".saturation").data(starting_data);
+  var colorAxis = d3.select(".gchart").selectAll(".gradient").data(starting_data);
 
   colorAxis.enter().append("rect")
-      .attr("class", function(d) { return "saturation percent" + d.percent})
+      .attr("class", function(d) { return "gradient percent" + d.percent})
       .attr("x", function(d) { return x(d.percent); })
       .attr("y", height)
       .attr("height", "20")

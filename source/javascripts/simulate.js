@@ -12,7 +12,7 @@ Simulate.prototype = {
     var moth_properties = {};
 
     if (this.config.uniform) {
-      moth_properties.chrom = '00000000';
+      moth_properties.chrom = '11111111';
     }
 
     for (let i = 0; i < this.config.population_size; i++) {

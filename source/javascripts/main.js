@@ -4,8 +4,7 @@ var Graphic = function() {
         width = 450 - margin.left - margin.right,
         height = 450 - margin.top - margin.bottom;
 
-    var sat = 255-environ;
-    var rgb = "rgb(" + sat + "," + sat + "," + sat + ")";
+    var rgb = "rgb(" + environ + "," + environ + "," + environ + ")";
 
 
     d3.select(".main-graphic")
@@ -42,7 +41,7 @@ var Graphic = function() {
       .merge(moths)
         .attr("cx", function() { return Math.random() * (width - 5) + 5 } )
         .attr("cy", function() { return Math.random() * (height - 5) + 5 } )
-        .attr("fill", function(d) { return "rgb(" + (255-d) + "," + (255-d) + "," + (255-d) + ")"; });
+        .attr("fill", function(d) { return "rgb(" + d + "," + d + "," + d + ")"; });
 
   }
 }

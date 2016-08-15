@@ -5,7 +5,7 @@ module.exports = function (population) {
     buckets[i] = 0;
   }
 
-  // bars represent 5% saturation increase
+  // bars represent 5% increase in white
   population.forEach( function(n) { buckets[Math.round(n / 12.75)]++ });
 
   result = [];
