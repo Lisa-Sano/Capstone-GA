@@ -19,6 +19,10 @@ describe('Matchmaker', function() {
     m = new Matchmaker(config);
   });
 
+  it('should have a config property', function() {
+    assert.notEqual(null, m.config);
+  });
+
   describe('mate function', function() {
     before(function(){
       child_chromosome = m.mate([moth1, moth2]);
