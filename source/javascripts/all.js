@@ -3,6 +3,7 @@ var Chart = require('./barChart');
 var Graphic = require('./main');
 var frequency = require('./frequency');
 var Moth = require('./moth');
+var Matchmaker = require('./matchmaker');
 
 const MAX_ENV = 255;
 const POP_SIZE = 500;
@@ -48,12 +49,13 @@ $(document).ready(function() {
   });
 
 
-  function makeConfig() {
+  function makeConfig(obj={}) {
     var config = {
       max_env: MAX_ENV,
       population_size: POP_SIZE,
       mutation_rate: MUTATION_RATE,
-      moth: Moth
+      moth: obj.moth || Moth,
+      matchmaker: obj.matchmaker || Matchmaker
     }
 
     if ($('input[id=uniform]:checked').length > 0) {
