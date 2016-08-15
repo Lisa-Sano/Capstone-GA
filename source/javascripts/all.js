@@ -4,11 +4,12 @@ var Graphic = require('./main');
 var frequency = require('./frequency');
 var Moth = require('./moth');
 var Matchmaker = require('./matchmaker');
+var drawChromosomes = require('./chromosome');
 
 const MAX_ENV = 255;
 const POP_SIZE = 500;
 const MUTATION_RATE = 0.00005;
-const NUM_GENS = 1000;
+const NUM_GENS = 500;
 
 $(document).ready(function() {
   var env;
@@ -17,6 +18,7 @@ $(document).ready(function() {
   var starting;
   var graphic = new Graphic();
   var chart = new Chart();
+  drawChromosomes();
 
   initializeSim();
 
