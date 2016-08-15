@@ -41,6 +41,15 @@ describe('Matchmaker', function() {
   });
 
   describe('mutateChromosome function', function() {
+    it('should return a string of 8 elements', function() {
+      var mutated = mutateChromosome(moth1.chromosome, 1);
+      assert.equal("string", typeof(mutated));
+      assert.equal(8, mutated.length);
+    });
+
+    it('should return a string only containing binary numbers', function() {
+      assert.equal(true, /^[01]+$/.test(child_chromosome));
+    });
 
     it('should flip all values of string if the mutation rate is 1', function() {
       var mutated1 = mutateChromosome(moth1.chromosome, 1);
