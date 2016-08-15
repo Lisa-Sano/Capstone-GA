@@ -17,22 +17,6 @@ var Simulate = function(num, pop) {
     // get array of individual probablities of mating (calculated based on fitness scores)
     let probs = pop.probs;
 
-    // collect population's average chrom value for the FIRST generation
-    if (i === 0) {
-      let sum = chrom_vals.reduce(function(acc, cur) {
-        return acc + cur;
-      }, 0);
-      start_chrom_vals = Math.floor(sum/pop.size);
-    }
-
-    // collect population's average chrom value for the LAST generation
-    if (i === (num-1)) {
-      let sum = chrom_vals.reduce(function(acc, cur) {
-        return acc + cur;
-      }, 0);
-      end_chrom_vals = Math.floor(sum/pop.size);
-    }
-
     // create the same number of children as the starting pop by mating
     var new_pop = [];
     // pop.same = 0;
