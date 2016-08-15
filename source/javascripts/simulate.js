@@ -1,4 +1,3 @@
-var Moth = require('./moth');
 var Matchmaker = require('./matchmaker');
 
 var Simulate = function(config) {
@@ -16,7 +15,7 @@ Simulate.prototype = {
     }
 
     for (let i = 0; i < this.config.population_size; i++) {
-      population.push(new Moth(moth_properties));
+      population.push(new this.config.moth(moth_properties));
     }
 
     return population;
@@ -35,7 +34,7 @@ Simulate.prototype = {
       // pop.same = 0;
       for (let i = 0; i < this.config.population_size; i++) {
         let pair = getPair(this.population, probs);
-        let moth = new Moth({chrom: matchmaker.mate(pair)});
+        let moth = new this.config.moth({chrom: matchmaker.mate(pair)});
         new_pop.push(moth);
       }
 

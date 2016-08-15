@@ -2,6 +2,7 @@ var Simulation = require('./simulate');
 var Chart = require('./barChart');
 var Graphic = require('./main');
 var frequency = require('./frequency');
+var Moth = require('./moth');
 
 const MAX_ENV = 255;
 const POP_SIZE = 500;
@@ -51,7 +52,8 @@ $(document).ready(function() {
     var config = {
       max_env: MAX_ENV,
       population_size: POP_SIZE,
-      mutation_rate: MUTATION_RATE
+      mutation_rate: MUTATION_RATE,
+      moth: Moth
     }
 
     if ($('input[id=uniform]:checked').length > 0) {
