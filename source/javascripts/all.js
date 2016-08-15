@@ -17,9 +17,9 @@ $(document).ready(function() {
   $("#start").click(function() {
     var counter = 0;
     var ending;
+    var n = 10;
 
     for (let i = 0; i < num_gens; i += 10) {
-      var n = 10;
 
       // simulate 10 gens every 250ms
       (function (n, i, counter) {

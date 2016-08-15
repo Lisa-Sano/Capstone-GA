@@ -103,7 +103,7 @@ Chart.prototype.drawChart = function(starting_data, ending_data, environ) {
       .attr("width", "20");
 
   var t = d3.transition()
-      .duration(300)
+      .duration(250)
       .ease(d3.easeLinear);
 
   // STARTING POPULATION DATA

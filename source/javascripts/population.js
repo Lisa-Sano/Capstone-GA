@@ -46,7 +46,6 @@ Population.prototype.mate = function(moths={}) {
   let moth2 = moths.moth_two || this.weightedSample();
 
   while (moth1 === moth2) {
-    // this.same += 1
     moth2 = moths.moth_two || this.weightedSample();
   }
 
