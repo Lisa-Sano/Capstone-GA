@@ -10,7 +10,7 @@ $(document).ready(function() {
   var starting = frequency(pop.chrom_vals);
   var graphic = new Graphic();
   var chart = new Chart();
-  var num_gens = 500;
+  var num_gens = 1000;
 
   drawD3(starting, pop);
 
