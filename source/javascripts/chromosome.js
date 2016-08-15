@@ -12,7 +12,7 @@ module.exports = function() {
   text.enter().append("text")
     .attr("class", "parent-text")
     .attr("x", "75")
-    .attr("y", "20")
+    .attr("y", "30")
     .text("Parents:")
     .attr("font-size", "15");
 
