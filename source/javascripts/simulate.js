@@ -1,5 +1,3 @@
-var Matchmaker = require('./matchmaker');
-
 var Simulate = function(config) {
   this.config = config;
   this.population = this.initializePopulation();
@@ -21,7 +19,7 @@ Simulate.prototype = {
     return population;
   },
   runSimulation: function (numberOfGenerations) {
-    var matchmaker = new Matchmaker(this.config);
+    var matchmaker = new this.config.matchmaker(this.config);
 
     // run the simulation (numberOfGenerations) number of times
     for (let i = 0; i < numberOfGenerations; i++) {
