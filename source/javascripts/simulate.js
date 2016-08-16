@@ -24,7 +24,7 @@ Simulate.prototype = {
     // run the simulation (numberOfGenerations) number of times
     for (let i = 0; i < numberOfGenerations; i++) {
       // get array of all the numerical chromosome values
-      let fitness = evalFitness(this.population, this.config.max_env, this.config.env);
+      let fitness = evalFitness(this.population, this.config);
       let probs = probabilities(fitness);
 
       // create the same number of children as the starting pop by mating
@@ -66,9 +66,9 @@ function getPair(population, probabilities) {
 }
 
 // calculate the fitness (closer value of chromosome compared to environment value = higher score)
-function evalFitness(pop, max, env) {
+function evalFitness(pop, config) {
   return pop.map(function(m) {
-    return (max - (Math.abs(env - m.value)) * 0.3) / max;
+    return (config.max_env - (Math.abs(config.env - m.value)) * config.fitness_advantage) / config.max_env;
   });
 }
 

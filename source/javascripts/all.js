@@ -7,8 +7,6 @@ var Matchmaker = require('./matchmaker');
 var drawChromosomes = require('./chromosome');
 
 const MAX_ENV = 255;
-// const POP_SIZE = 500;
-const MUTATION_RATE = 0.00005;
 
 $(document).ready(function() {
   var num_gens = $('#num-gens').val();
@@ -77,7 +75,8 @@ $(document).ready(function() {
     var config = {
       max_env: MAX_ENV,
       population_size: $('#pop-size').val(),
-      mutation_rate: MUTATION_RATE,
+      mutation_rate: $('#mut-rate').val(),
+      fitness_advantage: $('#fitness').val(),
       moth: obj.moth || Moth,
       matchmaker: obj.matchmaker || Matchmaker
     }

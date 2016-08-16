@@ -30,15 +30,38 @@
           <input class="radio" id="random" type="radio" name="starting-pop" value="random">
           <label class="radio-label" for="random">Random</label>
 
-        <div class="nums">
-          <label for="pop-size">Population size:</label>
-          <input id="pop-size" type="number" name="pop-size" min="100" max="700" value="500" step="100">
-          <span></span>
-          <label for="num-gens">Number of Generations:</label>
+        <table>
+        <tr>
+          <td>
+          <label for="pop-size">Population size <span class="range">(100-1000)</span>:</label>
+          </td>
+          <td class="input-box">
+          <input id="pop-size" type="number" name="pop-size" min="100" max="1000" value="500" step="100">
+          </td>
+          <td>
+          <label for="num-gens"># of Generations <span class="range">(100-1000)</span>:</label>
+          </td>
+          <td class="input-box">
           <input id="num-gens" type="number" name="num-gens" min="100" max="1000" value="500" step="100">
-        </div>
+          </td>
+          </tr>
 
+          <tr>
+            <td>
+          <label for="mut-rate">Mutation rate <span class="range">(0-1)</span>:</label>
+          </td>
+          <td class="input-box">
+          <input id="mut-rate" type="number" name="mut-rate" min="0" max="1" value="0.0001" step="0.0001">
+          </td>
+          <td>
+          <label for="fitness">Fitness advantage <span class="range">(0-1)</span>:</label>
+          </td>
+          <td class="input-box">
+          <input id="fitness" type="number" name="fitness" min="0" max="1" value="0.3" step="0.1">
+          </td>
+          </tr>
 
+        </table>
       </form>
     </div>
 
