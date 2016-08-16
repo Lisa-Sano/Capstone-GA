@@ -68,7 +68,7 @@ function getPair(population, probabilities) {
 // calculate the fitness (closer value of chromosome compared to environment value = higher score)
 function evalFitness(pop, max, env) {
   return pop.map(function(m) {
-    return (max - (Math.abs(env - m.value)) * 0.25) / max;
+    return (max - (Math.abs(env - m.value)) * 0.3) / max;
   });
 }
 

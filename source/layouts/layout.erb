@@ -22,17 +22,27 @@
     <div class="control">
       <button id="start">Start</button>
       <button id="reset">Reset</button>
+
+      <form id="myForm">
+        <span class="population">Population:</span>
+          <input class="radio" id="uniform" type="radio" name="starting-pop" value="uniform" checked>
+          <label class="radio-label" for="uniform">Uniform</label>
+          <input class="radio" id="random" type="radio" name="starting-pop" value="random">
+          <label class="radio-label" for="random">Random</label>
+
+        <div class="nums">
+          <label for="pop-size">Population size:</label>
+          <input id="pop-size" type="number" name="pop-size" min="100" max="700" value="500" step="100">
+          <span></span>
+          <label for="num-gens">Number of Generations:</label>
+          <input id="num-gens" type="number" name="num-gens" min="100" max="1000" value="500" step="100">
+        </div>
+
+
+      </form>
     </div>
 
-    <form>
-    <span class="population">Population:</span>
-      <input class="radio" id="uniform" type="radio" name="starting-pop" value="uniform" checked>
-      <label for="uniform">Uniform</label>
-      <input class="radio" id="random" type="radio" name="starting-pop" value="random">
-      <label for="random">Random</label>
-    </form>
-
-    <p class="generation">Generation: <span class="gen"></span></p>
+    <p class="generation">Generation: <span class="gen">0</span></p>
     <%= yield %>
 
   </body>

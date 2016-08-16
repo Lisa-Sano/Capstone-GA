@@ -7,11 +7,11 @@ var Matchmaker = require('./matchmaker');
 var drawChromosomes = require('./chromosome');
 
 const MAX_ENV = 255;
-const POP_SIZE = 500;
+// const POP_SIZE = 500;
 const MUTATION_RATE = 0.00005;
-const NUM_GENS = 500;
 
 $(document).ready(function() {
+  var num_gens = $('#num-gens').val();
   var env;
   var config;
   var mySim;
@@ -26,35 +26,57 @@ $(document).ready(function() {
 
   $("#start").click(function() {
     var n = 10;
+    var text = $('.gen').text();
 
-    for (let i = 0; i < NUM_GENS; i += n) {
+
+    for (let i = 0; i < num_gens; i += n) {
 
       // simulate 10 gens every 250ms
       (function (n, i) {
         setTimeout(function() {
           mySim.runSimulation(n);
           drawD3(starting, mySim.population, config);
-          $(".gen").html(i+10);
+          $(".gen").html(parseInt(text) + i+10);
         }, (i * 25));
       }) (n, i);
 
     }
   });
 
-  $("#reset, .radio").click(function() {
+  $('#reset, #myForm :input, .radio').on('click', function() {
+    // get all the inputs into an array.
+    var $inputs = $('#myForm :input');
+
+    var values = {};
+    $inputs.each(function() {
+        $(this.name).val($(this).val());
+    });
+
+    num_gens = $('#num-gens').val();
+
+    resetSim();
+  });
+
+  $('#myForm').keypress(function(e){
+    if(e.which == 13){//Enter key pressed
+        $('#reset').click();//Trigger search button click event
+    }
+  });
+
+  function resetSim() {
     $(".gchart").remove();
     $(".env").remove();
+    $(".gen").html('0');
 
     initializeSim();
 
     drawD3(starting, mySim.population, config);
-  });
-
+  }
 
   function makeConfig(obj={}) {
     var config = {
       max_env: MAX_ENV,
-      population_size: POP_SIZE,
+      population_size: $('#pop-size').val(),
       mutation_rate: MUTATION_RATE,
       moth: obj.moth || Moth,
       matchmaker: obj.matchmaker || Matchmaker
