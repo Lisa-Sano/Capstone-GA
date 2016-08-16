@@ -158,9 +158,20 @@ h3 {
   fill: #990099;
 }
 
-.control {
+.start-stop {
   margin: 2rem 0;
   display: block;
+}
+
+.start-stop button {
+  width: 10%;
+  font-size: 1.6rem;
+}
+
+.control {
+  border: 1px solid black;
+  margin: 3rem auto;
+  width: 70%;
 }
 
 .moth {
@@ -206,6 +217,7 @@ h3 {
 
 .generation {
   font-size: 1.2rem;
+  margin-bottom: 0.7rem;
 }
 
 .population {
@@ -217,7 +229,9 @@ h3 {
 }
 
 .how-it-works {
-  margin: 2% 20%;
+  margin: 0 auto 2rem auto;
+  /*border: 1px solid black;*/
+  width: 70%;
 }
 
 .list {
@@ -254,4 +268,24 @@ td {
 
 .input-box {
   padding: 0.5rem 4rem 0.5rem 1rem;
+}
+
+.control h2 {
+  margin: 1rem;
+}
+
+
+footer {
+  display: inline-block;
+  padding: 1.5rem 0 1.5rem 2rem;
+  margin: 0 auto;
+}
+
+.copy {
+  font-size: 0.6rem;
+}
+
+.contact {
+  display: block;
+  font-size: 0.6rem;
 }
