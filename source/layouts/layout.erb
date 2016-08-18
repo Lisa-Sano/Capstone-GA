@@ -31,22 +31,43 @@
     <div class="control">
       <h2>Simulation Settings</h2>
       <form id="myForm">
-        <span class="population">Population:</span>
-          <input class="radio" id="uniform" type="radio" name="starting-pop" value="uniform" checked>
-          <label class="radio-label" for="uniform">Uniform
-          <div class="tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
-            <span class="tooltiptext">A uniform population emphasizes the importance of <em>mutation</em> as the driver for achieving an optimal solution</span>
-          </div></label>
-          <input class="radio" id="random" type="radio" name="starting-pop" value="random">
-          <label class="radio-label" for="random">Diverse
-          <div class="tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
-            <span class="tooltiptext">A diverse population is inherently better at overcoming adversity&mdash;good solutions already exist in the population and simply need to be selected for using their increased <em>fitness advantage</em></span>
-          </div></label>
+      <table class="radio-table">
+        <tr>
+          <td>
+            <span class="population">Population:</span>
+          </td>
+          <td>
+            <input class="radio" id="uniform" type="radio" name="starting-pop" value="uniform" checked>
+            <label class="radio-label" for="uniform">Uniform
+            <div class="tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
+              <span class="tooltiptext">A uniform population emphasizes the importance of <em>mutation</em> as the driver for achieving an optimal solution</span>
+            </div></label>
+          </td>
+          <td>
+            <input class="radio" id="random" type="radio" name="starting-pop" value="random">
+            <label class="radio-label" for="random">Diverse
+            <div class="tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
+              <span class="tooltiptext">A diverse population is inherently better at overcoming adversity&mdash;good solutions already exist in the population and simply need to be selected for using their increased <em>fitness advantage</em></span>
+            </div></label>
+          </td>
+        </tr>
 
+        <tr class="radio-table-2">
+        <td>
+        <!-- <div class="color-radios"> -->
+          <span class="color-category">Color mode:</span>
+        </td>
+        <td>
           <input class="radio" id="black-white" type="radio" name="pop-color" value="black-white" checked>
-          <label class="radio-label" for="black-white">Black&White</label>
+          <label class="radio-label" for="black-white">Black & White</label>
+        </td>
+        <td>
           <input class="radio" id="color" type="radio" name="pop-color" value="color">
-          <label class="radio-label" for="color">Color</label>
+          <label class="radio-label" for="color">Multi-color</label>
+        </td>
+        </tr>
+      </table>
+        <!-- </div> -->
 
         <table>
         <tr>

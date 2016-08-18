@@ -113,7 +113,7 @@ $(document).ready(function() {
   function drawD3(starting, pop, config) {
     let chrom_vals = getChromVals(mySim.population);
     if (config.moth_type[0] === "grey") {
-    chart.drawChart(starting, frequency(chrom_vals), Math.round(config.env["grey"]/12.75)*5);
+      chart.drawChart(starting, frequency(chrom_vals), Math.round(config.env["grey"]/12.75)*5);
       graphic.drawGraphic(chrom_vals, [config.env["grey"],config.env["grey"],config.env["grey"]]);
     } else {
       graphic.drawGraphic(chrom_vals, [config.env["red"],config.env["green"],config.env["blue"]]);
