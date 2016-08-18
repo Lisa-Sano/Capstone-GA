@@ -6,10 +6,14 @@ var Simulate = function(config) {
 Simulate.prototype = {
   initializePopulation: function() {
     var population = [];
-    var moth_properties = {};
+    var moth_properties = {
+      chromosome_types: this.config.moth_type
+    };
 
-    if (this.config.uniform) {
-      moth_properties.chrom = '11111111';
+    if (this.config.uniform && moth_properties.chromosome_types === 'blackAndWhite') {
+      moth_properties.chromosome = {grey: '11111111'}
+    } else if (this.config.uniform && moth_properties.chromosome_types === 'color') {
+      moth_properties.chromosome = {red: '10101010', green: '10101010', blue: '10101010'}
     }
 
     for (let i = 0; i < this.config.population_size; i++) {
@@ -19,8 +23,6 @@ Simulate.prototype = {
     return population;
   },
   runSimulation: function (numberOfGenerations) {
-    var matchmaker = new this.config.matchmaker(this.config);
-
     // run the simulation (numberOfGenerations) number of times
     for (let i = 0; i < numberOfGenerations; i++) {
       // get array of all the numerical chromosome values
@@ -31,14 +33,27 @@ Simulate.prototype = {
       var new_pop = [];
       // pop.same = 0;
       for (let i = 0; i < this.config.population_size; i++) {
-        let pair = getPair(this.population, probs);
-        let moth = new this.config.moth({chrom: matchmaker.mate(pair)});
+        let pair_chromosomes = getPair(this.population, probs);
+        let types = this.config.moth_type;
+        let full_chromosome = buildChromosome(pair_chromosomes, types, this.config);
+        let moth = new this.config.moth({chromosome: full_chromosome, chromosome_types: types});
         new_pop.push(moth);
       }
 
       this.population = new_pop;
     }
   }
+}
+
+function buildChromosome(pair_chromosomes, types, config) {
+  var matchmaker = new config.matchmaker(config);
+  var new_chrom = {};
+
+  for (let type of types) {
+    new_chrom[type] = matchmaker.mate([pair_chromosomes[0][type], pair_chromosomes[1][type]]);
+  }
+
+  return new_chrom;
 }
 
 // returns a Moth, sampled using the weighted probabilities
@@ -62,7 +77,7 @@ function getPair(population, probabilities) {
     moth2 = getMoth(population, probabilities);
   }
 
-  return [moth1, moth2];
+  return [moth1.chromosome, moth2.chromosome];
 }
 
 // calculate the fitness (closer value of chromosome compared to environment value = higher score)

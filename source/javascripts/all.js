@@ -72,12 +72,17 @@ $(document).ready(function() {
   }
 
   function makeConfig(obj={}) {
+    var blackAndWhite = ["grey"];
+
+    var color = ["red", "green", "blue"];
+
     var config = {
       max_env: MAX_ENV,
       population_size: $('#pop-size').val(),
       mutation_rate: $('#mut-rate').val(),
       fitness_advantage: $('#fitness').val(),
       moth: obj.moth || Moth,
+      moth_type: ($('input[id=color]:checked').length > 0) ? color : blackAndWhite,
       matchmaker: obj.matchmaker || Matchmaker
     }
 
@@ -94,7 +99,8 @@ $(document).ready(function() {
 
   function drawD3(starting, pop, config) {
     let chrom_vals = getChromVals(mySim.population);
-    chart.drawChart(starting, frequency(chrom_vals), Math.round(config.env/12.75)*5);
+
+    // chart.drawChart(starting, frequency(chrom_vals), Math.round(config.env/12.75)*5);
     graphic.drawGraphic(chrom_vals, config.env);
   }
 
@@ -104,10 +110,17 @@ $(document).ready(function() {
     starting = frequency(getChromVals(mySim.population));
   }
 
-
   function getChromVals(population) {
     return population.map(function(m) {
-      return m.value;
+      let a = [];
+      if (Object.keys(m.value).length === 1) {
+        a = [m.value["grey"], m.value["grey"], m.value["grey"]];
+      } else {
+        for (let type in m.value) {
+          a.push(m.value[type]);
+        }
+      }
+      return a;
     });
   }
 });
