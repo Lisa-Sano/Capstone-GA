@@ -1,19 +1,23 @@
 ---
 title: Genetic Alg
 ---
+<div id="all-visualizations">
 
-<svg class="chart">
-<g class="legend">
-  <rect class="grp1" x="0" y="0" width="15" height="15"></rect>
-  <text class="grp1-txt" fill="#000" x="66" y="13">Starting</text>
-  <rect class="grp2" x="125" y="0" width="15" height="15"></rect>
-  <text class="grp1-txt" fill="#000" x="188" y="13">Ending</text>
-</g>
-  <defs>
-    <filter id="f1">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="3" />
-    </filter>
-  </defs>
-</svg>
+  <div id="container3d"></div>
 
-<svg class="main-graphic"></svg>
+  <svg class="chart" id="chart">
+  <g class="legend">
+    <rect class="grp1" x="0" y="0" width="15" height="15"></rect>
+    <text class="grp1-txt" fill="#000" x="66" y="13">Starting</text>
+    <rect class="grp2" x="125" y="0" width="15" height="15"></rect>
+    <text class="grp1-txt" fill="#000" x="188" y="13">Ending</text>
+  </g>
+    <defs>
+      <filter id="f1">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="3" />
+      </filter>
+    </defs>
+  </svg>
+  
+  <svg class="main-graphic"></svg>
+</div>

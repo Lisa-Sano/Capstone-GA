@@ -5,6 +5,7 @@ var frequency = require('./frequency');
 var Moth = require('./moth');
 var Matchmaker = require('./matchmaker');
 var drawChromosomes = require('./chromosome');
+var ScatterPlot = require('./scatter3D');
 
 const MAX_ENV = 255;
 
@@ -16,6 +17,7 @@ $(document).ready(function() {
   var starting;
   var graphic = new Graphic();
   var chart = new Chart();
+  var scatter = new ScatterPlot();
   drawChromosomes();
 
   initializeSim();
@@ -113,10 +115,14 @@ $(document).ready(function() {
   function drawD3(starting, pop, config) {
     let chrom_vals = getChromVals(mySim.population);
     if (config.moth_type[0] === "grey") {
+      document.getElementById("container3d").style.display = "none";
+      document.getElementById("chart").style.display = "initial";
       chart.drawChart(starting, frequency(chrom_vals), Math.round(config.env["grey"]/12.75)*5);
       graphic.drawGraphic(chrom_vals, [config.env["grey"],config.env["grey"],config.env["grey"]]);
     } else {
       $('.legend').remove();
+      document.getElementById("container3d").style.display = "initial";
+      document.getElementById("chart").style.display = "none";
       graphic.drawGraphic(chrom_vals, [config.env["red"],config.env["green"],config.env["blue"]]);
     }
   }

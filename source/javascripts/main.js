@@ -1,8 +1,8 @@
 var Graphic = function() {
   this.drawGraphic = function(pop_data, environ) {
-    var margin = {top: 30, right: 30, bottom: 30, left: 30},
+    var margin = {top: 20, right: 30, bottom: 5, left: 30},
         width = 450 - margin.left - margin.right,
-        height = 450 - margin.top - margin.bottom;
+        height = 420 - margin.top - margin.bottom;
 
     var rgb = "rgb(" + environ[0] + "," + environ[1] + "," + environ[2] + ")";
 

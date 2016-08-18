@@ -1,5 +1,5 @@
 var Chart = function() {
-  this.margin = {top: 50, right: 40, bottom: 50, left: 60};
+  this.margin = {top: 20, right: 40, bottom: 45, left: 60};
   this.width = 500 - this.margin.left - this.margin.right;
   this.height = 400 - this.margin.top - this.margin.bottom;
 }
@@ -76,7 +76,7 @@ Chart.prototype.drawChart = function(starting_data, ending_data, environ) {
       .call(xAxis)
     .append("text")
       .style("font-size","1rem")
-      .attr("y", 45)
+      .attr("y", 43)
       .attr("x", (width - this.margin.left)/2)
       .style("text-anchor", "start")
       .text("Moth Color");
