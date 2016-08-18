@@ -17,7 +17,10 @@ $(document).ready(function() {
   var starting;
   var graphic = new Graphic();
   var chart = new Chart();
-  var scatter = new ScatterPlot();
+  var scatter;
+  var renderer = new THREE.WebGLRenderer({ antialias: true });
+  var camera = new THREE.PerspectiveCamera(45, 500 / 400, 1, 10000);
+
   drawChromosomes();
 
   initializeSim();
@@ -121,6 +124,8 @@ $(document).ready(function() {
       graphic.drawGraphic(chrom_vals, [config.env["grey"],config.env["grey"],config.env["grey"]]);
     } else {
       $('.legend').remove();
+      $('canvas').remove();
+      scatter = new ScatterPlot(renderer, camera, getChromVals(pop));
       document.getElementById("container3d").style.display = "initial";
       document.getElementById("chart").style.display = "none";
       graphic.drawGraphic(chrom_vals, [config.env["red"],config.env["green"],config.env["blue"]]);

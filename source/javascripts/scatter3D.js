@@ -1,4 +1,6 @@
-var ScatterPlot = function() {  
+var ScatterPlot = function(renderer, camera, data) {
+  var data = data;
+
   function createTextCanvas(text, color, font, size) {
     var size = size || 16;
     var canvas = document.createElement('canvas');
@@ -45,10 +47,6 @@ var ScatterPlot = function() {
     } : null;
   }
 
-  var renderer = new THREE.WebGLRenderer({
-      antialias: true
-  });
-
   var w = 500;
   var h = 400;
   renderer.setSize(w, h);
@@ -57,11 +55,11 @@ var ScatterPlot = function() {
     my_container.appendChild(renderer.domElement);
   }
 
-  renderer.setClearColor(0xEEEEEE, 1.0);
+  renderer.setClearColor(0xFFFFFF, 1.0);
 
-  var camera = new THREE.PerspectiveCamera(45, w / h, 1, 10000);
+  // var camera = new THREE.PerspectiveCamera(45, w / h, 1, 10000);
   camera.position.z = 200;
-  camera.position.x = -100;
+  camera.position.x = 100;
   camera.position.y = 100;
 
   var scene = new THREE.Scene();
@@ -81,7 +79,7 @@ var ScatterPlot = function() {
 
   // ******************************
 
-  var data = [[30,200,14], [19,12,1], [146, 27, 180], [14, 216, 18], [112, 90, 117]];
+  // var data = [[30,200,14], [19,12,1], [146, 27, 180], [14, 216, 18], [112, 90, 117]];
 
   var vpts = {
       xMax: 255,
@@ -167,6 +165,9 @@ var ScatterPlot = function() {
   valueZ.position.z = zScale(vpts.zMax) + 7;
   scatterPlot.add(valueZ);
 
+  // var data = [[30,200,14], [19,12,1], [146, 27, 180], [14, 216, 18], [112, 90, 117]];
+
+
   var mat = new THREE.PointsMaterial({
       vertexColors: true,
       size: 4
@@ -228,7 +229,6 @@ var ScatterPlot = function() {
               var v = pointGeo.vertices;
               for (var i = 0; i < v.length; i++) {
                   var u = v[i];
-                  console.log(u)
                   u.angle += u.speed * 0.01;
                   u.x = Math.cos(u.angle) * u.radius;
                   u.z = Math.sin(u.angle) * u.radius;

@@ -1,6 +1,6 @@
 var Graphic = function() {
   this.drawGraphic = function(pop_data, environ) {
-    var margin = {top: 20, right: 30, bottom: 5, left: 30},
+    var margin = {top: 20, right: 15, bottom: 5, left: 5},
         width = 450 - margin.left - margin.right,
         height = 420 - margin.top - margin.bottom;
 
