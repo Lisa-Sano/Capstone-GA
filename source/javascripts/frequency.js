@@ -6,7 +6,7 @@ module.exports = function (population) {
   }
 
   // bars represent 5% increase in white
-  population.forEach( function(n) { buckets[Math.round(n / 12.75)]++ });
+  population.forEach( function(n) { buckets[Math.round(n[0] / 12.75)]++ });
 
   result = [];
 
