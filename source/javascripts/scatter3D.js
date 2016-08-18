@@ -27,24 +27,14 @@ var ScatterPlot = function(renderer, camera, data) {
     tex.minFilter = THREE.LinearFilter;
     tex.needsUpdate = true;
     var planeMat = new THREE.MeshBasicMaterial({
-        map: tex,
-        color: 0xffffff,
-        transparent: true
+      map: tex,
+      color: 0xffffff,
+      transparent: true
     });
     var mesh = new THREE.Mesh(plane, planeMat);
     mesh.scale.set(0.5, 0.5, 0.5);
     mesh.doubleSided = true;
     return mesh;
-  }
-
-  // from http://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
-  function hexToRgb(hex) { //TODO rewrite with vector output
-    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16)
-    } : null;
   }
 
   var w = 500;
@@ -57,7 +47,6 @@ var ScatterPlot = function(renderer, camera, data) {
 
   renderer.setClearColor(0xFFFFFF, 1.0);
 
-  // var camera = new THREE.PerspectiveCamera(45, w / h, 1, 10000);
   camera.position.z = 200;
   camera.position.x = 100;
   camera.position.y = 100;
@@ -70,16 +59,8 @@ var ScatterPlot = function(renderer, camera, data) {
   scatterPlot.rotation.y = 0;
 
   function v(x, y, z) {
-      return new THREE.Vector3(x, y, z);
+    return new THREE.Vector3(x, y, z);
   }
-
-  var unfiltered = [];
-
-  var format = d3.format("+.3f");
-
-  // ******************************
-
-  // var data = [[30,200,14], [19,12,1], [146, 27, 180], [14, 216, 18], [112, 90, 117]];
 
   var vpts = {
       xMax: 255,
@@ -89,8 +70,6 @@ var ScatterPlot = function(renderer, camera, data) {
       zMax: 255,
       zMin: 0
   };
-
-  var color = d3.scaleOrdinal(d3.schemeCategory10);
 
   var xScale = d3.scaleLinear()
                  .domain([0,255])
@@ -104,19 +83,19 @@ var ScatterPlot = function(renderer, camera, data) {
 
   var lineGeo = new THREE.Geometry();
   lineGeo.vertices.push(
-      v(xScale(vpts.xMin), yScale(vpts.yMin), zScale(vpts.zMin)), v(xScale(vpts.xMax), yScale(vpts.yMin), zScale(vpts.zMin)),
-      v(xScale(vpts.xMax), yScale(vpts.yMax), zScale(vpts.zMin)), v(xScale(vpts.xMin), yScale(vpts.yMax), zScale(vpts.zMin)),
-      v(xScale(vpts.xMin), yScale(vpts.yMax), zScale(vpts.zMax)), v(xScale(vpts.xMin), yScale(vpts.yMin), zScale(vpts.zMax)),
+    v(xScale(vpts.xMin), yScale(vpts.yMin), zScale(vpts.zMin)), v(xScale(vpts.xMax), yScale(vpts.yMin), zScale(vpts.zMin)),
+    v(xScale(vpts.xMax), yScale(vpts.yMax), zScale(vpts.zMin)), v(xScale(vpts.xMin), yScale(vpts.yMax), zScale(vpts.zMin)),
+    v(xScale(vpts.xMin), yScale(vpts.yMax), zScale(vpts.zMax)), v(xScale(vpts.xMin), yScale(vpts.yMin), zScale(vpts.zMax)),
 
-      v(xScale(vpts.xMin), yScale(vpts.yMin), zScale(vpts.zMin)), v(xScale(vpts.xMin), yScale(vpts.yMax), zScale(vpts.zMin)),
-      v(xScale(vpts.xMin), yScale(vpts.yMin), zScale(vpts.zMin)), v(xScale(vpts.xMin), yScale(vpts.yMin), zScale(vpts.zMax)),
-      v(xScale(vpts.xMax), yScale(vpts.yMin), zScale(vpts.zMax)), v(xScale(vpts.xMax), yScale(vpts.yMin), zScale(vpts.zMax)),
-      v(xScale(vpts.xMax), yScale(vpts.yMin), zScale(vpts.zMin))
+    v(xScale(vpts.xMin), yScale(vpts.yMin), zScale(vpts.zMin)), v(xScale(vpts.xMin), yScale(vpts.yMax), zScale(vpts.zMin)),
+    v(xScale(vpts.xMin), yScale(vpts.yMin), zScale(vpts.zMin)), v(xScale(vpts.xMin), yScale(vpts.yMin), zScale(vpts.zMax)),
+    v(xScale(vpts.xMax), yScale(vpts.yMin), zScale(vpts.zMax)), v(xScale(vpts.xMax), yScale(vpts.yMin), zScale(vpts.zMax)),
+    v(xScale(vpts.xMax), yScale(vpts.yMin), zScale(vpts.zMin))
   );
 
   var lineMat = new THREE.LineBasicMaterial({
-      color: 0x000000,
-      linewidth: 2
+    color: 0x000000,
+    linewidth: 2
   });
 
   var line = new THREE.Line(lineGeo, lineMat);
@@ -165,25 +144,21 @@ var ScatterPlot = function(renderer, camera, data) {
   valueZ.position.z = zScale(vpts.zMax) + 7;
   scatterPlot.add(valueZ);
 
-  // var data = [[30,200,14], [19,12,1], [146, 27, 180], [14, 216, 18], [112, 90, 117]];
-
-
   var mat = new THREE.PointsMaterial({
-      vertexColors: true,
-      size: 4
+    vertexColors: true,
+    size: 4
   });
 
   var pointCount = data.length;
   var pointGeo = new THREE.Geometry();
 
   for (var i = 0; i < pointCount; i ++) {
-      var x = xScale(data[i][0]);
-      var y = yScale(data[i][1]);
-      var z = zScale(data[i][2]);
+    var x = xScale(data[i][0]);
+    var y = yScale(data[i][1]);
+    var z = zScale(data[i][2]);
 
-      pointGeo.vertices.push(new THREE.Vector3(x, y, z));
-      pointGeo.colors.push(new THREE.Color().setRGB(100,0,100));
-
+    pointGeo.vertices.push(new THREE.Vector3(x, y, z));
+    pointGeo.colors.push(new THREE.Color("rgb(" + data[i][0] + "," + data[i][1] + "," + data[i][2] + ")"));
   }
 
   var points = new THREE.Points(pointGeo, mat);
@@ -197,54 +172,39 @@ var ScatterPlot = function(renderer, camera, data) {
       sy = 0;
       
   window.onmousedown = function(ev) {
-      down = true;
-      sx = ev.clientX;
-      sy = ev.clientY;
+    down = true;
+    sx = ev.clientX;
+    sy = ev.clientY;
   };
 
   window.onmouseup = function() {
-      down = false;
+    down = false;
   };
 
   window.onmousemove = function(ev) {
-      if (down) {
-          var dx = ev.clientX - sx;
-          var dy = ev.clientY - sy;
-          scatterPlot.rotation.y += dx * 0.01;
-          camera.position.y += dy;
-          sx += dx;
-          sy += dy;
-      }
-  };
-
-  var animating = false;
-  window.ondblclick = function() {
-      animating = !animating;
+    if (down) {
+      var dx = ev.clientX - sx;
+      var dy = ev.clientY - sy;
+      scatterPlot.rotation.y += dx * 0.01;
+      camera.position.y += dy;
+      sx += dx;
+      sy += dy;
+    }
   };
 
   function animate(t) {
-      if (!paused) {
-          last = t;
-          if (animating) {
-              var v = pointGeo.vertices;
-              for (var i = 0; i < v.length; i++) {
-                  var u = v[i];
-                  u.angle += u.speed * 0.01;
-                  u.x = Math.cos(u.angle) * u.radius;
-                  u.z = Math.sin(u.angle) * u.radius;
-              }
-              pointGeo.__dirtyVertices = true;
-          }
-          renderer.clear();
-          camera.lookAt(scene.position);
-          renderer.render(scene, camera);
-      }
-      window.requestAnimationFrame(animate, renderer.domElement);
+    if (!paused) {
+        last = t;
+        renderer.clear();
+        camera.lookAt(scene.position);
+        renderer.render(scene, camera);
+    }
+    window.requestAnimationFrame(animate);
   };
 
   animate(new Date().getTime());
   onmessage = function(ev) {
-      paused = (ev.data == 'pause');
+    paused = (ev.data == 'pause');
   };
 }
 
