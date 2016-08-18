@@ -10,10 +10,10 @@ Simulate.prototype = {
       chromosome_types: this.config.moth_type
     };
 
-    if (this.config.uniform && moth_properties.chromosome_types === 'blackAndWhite') {
-      moth_properties.chromosome = {grey: '11111111'}
-    } else if (this.config.uniform && moth_properties.chromosome_types === 'color') {
-      moth_properties.chromosome = {red: '10101010', green: '10101010', blue: '10101010'}
+    if (this.config.uniform && moth_properties.chromosome_types[0] === "grey") {
+      moth_properties.chromosome = {grey: '11111111'};
+    } else if (this.config.uniform && moth_properties.chromosome_types[0] !== "grey") {
+      moth_properties.chromosome = {red: '10101010', green: '00000000', blue: '11111111'};
     }
 
     for (let i = 0; i < this.config.population_size; i++) {
@@ -26,12 +26,11 @@ Simulate.prototype = {
     // run the simulation (numberOfGenerations) number of times
     for (let i = 0; i < numberOfGenerations; i++) {
       // get array of all the numerical chromosome values
-      let fitness = evalFitness(this.population, this.config);
+      let fitness = sumFitness(this.population, this.config);
       let probs = probabilities(fitness);
 
       // create the same number of children as the starting pop by mating
       var new_pop = [];
-      // pop.same = 0;
       for (let i = 0; i < this.config.population_size; i++) {
         let pair_chromosomes = getPair(this.population, probs);
         let types = this.config.moth_type;
@@ -80,10 +79,26 @@ function getPair(population, probabilities) {
   return [moth1.chromosome, moth2.chromosome];
 }
 
+function sumFitness(pop, config) {
+  var arr = evalFitness(pop, config);
+
+  return arr.map(function(inner) {
+    return inner.reduce(function(a, b) {
+      return a + b;
+    }, 0);
+  })
+}
+
 // calculate the fitness (closer value of chromosome compared to environment value = higher score)
 function evalFitness(pop, config) {
   return pop.map(function(m) {
-    return (config.max_env - (Math.abs(config.env - m.value)) * config.fitness_advantage) / config.max_env;
+    let a = [];
+
+    for (let type of config.moth_type) {
+      a.push((config.max_env - (Math.abs(config.env[type] - m.value[type])) * config.fitness_advantage) / config.max_env);
+    }
+
+    return a;
   });
 }
 

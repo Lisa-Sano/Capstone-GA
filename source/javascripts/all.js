@@ -88,10 +88,23 @@ $(document).ready(function() {
 
     if ($('input[id=uniform]:checked').length > 0) {
       config.uniform = true;
-      config.env = 20;
+      if (config.moth_type[0] === "red") {
+        config.env = { red: 20,
+                       green: 70,
+                       blue: 200 };
+      } else {
+        config.env = { grey: 20 };
+      }
     } else {
       config.uniform = false;
-      config.env = Math.floor(Math.random() * (255 + 1));
+      if (config.moth_type[0] === "red") {
+        config.env = { red: Math.floor(Math.random() * (255 + 1)),
+                       green: Math.floor(Math.random() * (255 + 1)),
+                       blue: Math.floor(Math.random() * (255 + 1))
+                     };
+      } else {
+        config.env = { grey: Math.floor(Math.random() * (255 + 1)) };
+      }
     }
 
     return config;
@@ -99,9 +112,8 @@ $(document).ready(function() {
 
   function drawD3(starting, pop, config) {
     let chrom_vals = getChromVals(mySim.population);
-
     // chart.drawChart(starting, frequency(chrom_vals), Math.round(config.env/12.75)*5);
-    graphic.drawGraphic(chrom_vals, config.env);
+    graphic.drawGraphic(chrom_vals, [config.env,config.env,config.env]);
   }
 
   function initializeSim() {
