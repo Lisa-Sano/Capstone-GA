@@ -93,14 +93,14 @@ $(document).ready(function() {
 
     if ($('input[id=uniform]:checked').length > 0) {
       config.uniform = true;
-      config.env = config.moth_type === color ?
-                    { red: 165, green: 222, blue: 230 } :
-                    { grey: 20 };
+      config.env = (config.moth_type === color
+                  ? { red: 165, green: 222, blue: 230 }
+                  : { grey: 20 });
     } else {
       config.uniform = false;
-      config.env = config.moth_type === color ?
-                    { red: randomNum(), green: randomNum(), blue: randomNum()} :
-                    { grey: randomNum() };
+      config.env = (config.moth_type === color
+                  ? { red: randomNum(), green: randomNum(), blue: randomNum()}
+                  : { grey: randomNum() });
     }
 
     return config;

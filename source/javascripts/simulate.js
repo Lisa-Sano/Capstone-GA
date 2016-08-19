@@ -10,10 +10,10 @@ Simulate.prototype = {
       chromosome_types: this.config.moth_type
     };
 
-    if (this.config.uniform && moth_properties.chromosome_types[0] === "grey") {
-      moth_properties.chromosome = {grey: '11111111'};
-    } else if (this.config.uniform && moth_properties.chromosome_types[0] !== "grey") {
-      moth_properties.chromosome = {red: '10000111', green: '00010000', blue: '01101011'};
+    if (this.config.uniform) { 
+      moth_properties.chromosome = (moth_properties.chromosome_types[0] === "grey"
+        ? {grey: '11111111'}
+        : {red: '10000111', green: '00010000', blue: '01101011'});
     }
 
     for (let i = 0; i < this.config.population_size; i++) {
@@ -23,9 +23,8 @@ Simulate.prototype = {
     return population;
   },
   runSimulation: function (numberOfGenerations) {
-    // run the simulation (numberOfGenerations) number of times
+    // run the simulation (numberOfGenerations) times
     for (let i = 0; i < numberOfGenerations; i++) {
-      // get array of all the numerical chromosome values
       let fitness = sumFitness(this.population, this.config);
       let probs = probabilities(fitness);
 
@@ -91,9 +90,11 @@ function sumFitness(pop, config) {
 
 // calculate the fitness (closer value of chromosome compared to environment value = higher score)
 function evalFitness(pop, config) {
+  // return an array of arrays. inner array represents fitnesses for each individuals chromosome(s)
   return pop.map(function(m) {
     let a = [];
 
+    // iterate through all chromosomes (either grey, or red, green, and blue)
     for (let type of config.moth_type) {
       a.push((config.max_env - (Math.abs(config.env[type] - m.value[type])) * config.fitness_advantage) / config.max_env);
     }
