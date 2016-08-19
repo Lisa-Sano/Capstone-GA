@@ -19,12 +19,12 @@ $(document).ready(function() {
   var chart = new Chart();
   var scatter = new ScatterPlot();
 
-  scatter.initPlot();
-
   drawChromosomes();
+  scatter.initPlot();
 
   initializeSim();
 
+  // render starting population in the SVG/canvas
   drawD3(starting, mySim.population, config);
 
   $("#start").click(function() {
@@ -47,14 +47,16 @@ $(document).ready(function() {
   });
 
   $('#reset, #myForm :input, .radio').on('click', function() {
-    // get all the inputs into an array.
+    // get all the inputs into an array
     var $inputs = $('#myForm :input');
-
     var values = {};
+
+    // adjust settings according to the form data
     $inputs.each(function() {
         $(this.name).val($(this).val());
     });
 
+    // set the number of generations to form input value
     num_gens = $('#num-gens').val();
 
     resetSim();
@@ -62,7 +64,7 @@ $(document).ready(function() {
 
   $('#myForm').keypress(function(e){
     if (e.which == 13) { //Enter key pressed
-        $('#reset').click(); //Trigger search button click event
+        $('#reset').click(); //Trigger reset button click event
     }
   });
 
@@ -78,9 +80,7 @@ $(document).ready(function() {
 
   function makeConfig(obj={}) {
     var blackAndWhite = ["grey"];
-
     var color = ["red", "green", "blue"];
-
     var config = {
       max_env: MAX_ENV,
       population_size: $('#pop-size').val(),
@@ -93,12 +93,12 @@ $(document).ready(function() {
 
     if ($('input[id=uniform]:checked').length > 0) {
       config.uniform = true;
-      config.env = config.moth_type[0] === "red" ?
+      config.env = config.moth_type === color ?
                     { red: 165, green: 222, blue: 230 } :
                     { grey: 20 };
     } else {
       config.uniform = false;
-      config.env = config.moth_type[0] === "red" ?
+      config.env = config.moth_type === color ?
                     { red: randomNum(), green: randomNum(), blue: randomNum()} :
                     { grey: randomNum() };
     }
@@ -112,21 +112,20 @@ $(document).ready(function() {
 
   function drawD3(starting, pop, config) {
     let chrom_vals = getChromVals(mySim.population);
+
     if (config.moth_type[0] === "grey") {
+      // show only the bar chart or the 3D scatter plot, depending on color mode
       document.getElementById("container3d").style.display = "none";
-      //$("#container3d canvas").remove();
       document.getElementById("chart").style.display = "initial";
+
       chart.drawChart(starting, frequency(chrom_vals), Math.round(config.env["grey"]/12.75)*5);
       graphic.drawGraphic(chrom_vals, [config.env["grey"],config.env["grey"],config.env["grey"]]);
     } else {
       $('.legend').remove();
-      //$('canvas').remove();
+      document.getElementById("container3d").style.display = "initial";
+      document.getElementById("chart").style.display = "none";
 
       scatter.drawPlot(getChromVals(pop));
-
-      document.getElementById("container3d").style.display = "initial";
-      // $('#container3d').append('<canvas>');
-      document.getElementById("chart").style.display = "none";
       graphic.drawGraphic(chrom_vals, [config.env["red"],config.env["green"],config.env["blue"]]);
     }
   }
@@ -138,6 +137,8 @@ $(document).ready(function() {
   }
 
   function getChromVals(population) {
+    // return array of arrays. inner array contains numerical chromosome values
+    // for either a single grey chromosome, or for red, green, blue chromosomes
     return population.map(function(m) {
       let a = [];
       if (Object.keys(m.value).length === 1) {
