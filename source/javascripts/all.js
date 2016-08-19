@@ -17,9 +17,12 @@ $(document).ready(function() {
   var starting;
   var graphic = new Graphic();
   var chart = new Chart();
-  var scatter;
-  var renderer = new THREE.WebGLRenderer({ antialias: true });
-  var camera = new THREE.PerspectiveCamera(45, 500 / 400, 1, 10000);
+  // var renderer = new THREE.WebGLRenderer({ antialias: true });
+  // var camera = new THREE.PerspectiveCamera(45, 500 / 400, 1, 10000);
+  // var scene = new THREE.Scene();
+  var scatter = new ScatterPlot();
+
+  scatter.initPlot();
 
   drawChromosomes();
 
@@ -119,14 +122,18 @@ $(document).ready(function() {
     let chrom_vals = getChromVals(mySim.population);
     if (config.moth_type[0] === "grey") {
       document.getElementById("container3d").style.display = "none";
+      //$("#container3d canvas").remove();
       document.getElementById("chart").style.display = "initial";
       chart.drawChart(starting, frequency(chrom_vals), Math.round(config.env["grey"]/12.75)*5);
       graphic.drawGraphic(chrom_vals, [config.env["grey"],config.env["grey"],config.env["grey"]]);
     } else {
       $('.legend').remove();
-      $('canvas').remove();
-      scatter = new ScatterPlot(renderer, camera, getChromVals(pop));
+      //$('canvas').remove();
+
+      scatter.drawPlot(getChromVals(pop));
+
       document.getElementById("container3d").style.display = "initial";
+      // $('#container3d').append('<canvas>');
       document.getElementById("chart").style.display = "none";
       graphic.drawGraphic(chrom_vals, [config.env["red"],config.env["green"],config.env["blue"]]);
     }
