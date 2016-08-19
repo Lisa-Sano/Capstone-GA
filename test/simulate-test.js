@@ -17,11 +17,12 @@ var config = {
   env: 20,
   moth: function(properties) {
     return {
-      chromosome: properties.chrom || '00000000',
+      chromosome: properties.chromosome || {grey: '00000000'},
       value: properties.value || 0,
       chrom_length: 8
     };
   },
+  moth_type: ["grey"],
   matchmaker: function(properties) {
     return {
       mate: function(pair_arr) { return '00000000'; }
@@ -50,13 +51,13 @@ describe('Simulate', function() {
     });
 
     it('should create moths with default chromosomes if not given specific chromosome values', function() {
-      assert.equal('00000000', sim.population[0].chromosome);
+      assert.equal('00000000', sim.population[0].chromosome.grey);
     });
 
     it('should initialize a population of moths with chromosomes "11111111" if uniform = true', function() {
       config.uniform = true;
       var sim2 = new Simulation(config);
-      assert.equal('11111111', sim2.population[0].chromosome);
+      assert.equal('11111111', sim2.population[0].chromosome.grey);
       config.uniform = false;
     });
   });
