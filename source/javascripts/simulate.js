@@ -13,7 +13,7 @@ Simulate.prototype = {
     if (this.config.uniform && moth_properties.chromosome_types[0] === "grey") {
       moth_properties.chromosome = {grey: '11111111'};
     } else if (this.config.uniform && moth_properties.chromosome_types[0] !== "grey") {
-      moth_properties.chromosome = {red: '11111111', green: '11111111', blue: '10011001'};
+      moth_properties.chromosome = {red: '10000111', green: '00010000', blue: '01101011'};
     }
 
     for (let i = 0; i < this.config.population_size; i++) {
