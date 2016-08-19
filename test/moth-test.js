@@ -11,18 +11,21 @@ var m2;
 
 describe('Moth', function() {
   before(function(){
-    m = new Moth();
-    m2 = new Moth({chrom: '00001111'});
+    m = new Moth({chromosome_types: ["grey"]});
+    m2 = new Moth({chromosome_types: ["grey"], chromosome: { grey: '00001111' }});
   });
 
   describe('chromosome property', function() {
-    it('should return a string of 8 elements', function() {
-      assert.equal("string", typeof(m.chromosome));
-      assert.equal(8, m.chromosome.length);
+    it('should return an object', function() {
+      assert.equal("object", typeof(m.chromosome));
     });
 
-    it('should only contain binary numbers 0 or 1 by default', function() {
-      assert.equal(true, /^[01]+$/.test(m.chromosome));
+    it('should return an object with the key grey when initialized with a grey type moth', function() {
+      assert.notEqual(null, m.chromosome.grey);
+    })
+
+    it('chromosome object values should only contain binary numbers 0 or 1 by default', function() {
+      assert.equal(true, /^[01]+$/.test(m.chromosome.grey));
     });
   });
 
@@ -32,20 +35,20 @@ describe('Moth', function() {
     });
 
     it('should be the same as the length of the chromosome', function() {
-      assert.equal(m.chrom_length, m.chromosome.length);
+      assert.equal(m.chrom_length, m.chromosome.grey.length);
     });
   });
 
   describe('value property', function() {
     it('should equal the number equivalent of the binary chromosome', function() {
-      assert.equal(15, parseInt(m2.chromosome, 2));
+      assert.equal(15, parseInt(m2.chromosome.grey, 2));
     });
   });
 
   describe('initializing a new moth', function() {
     it('can be initialized with a specific chromosome binary number', function() {
-      assert.equal('00001111', m2.chromosome);
-      assert.equal(15, parseInt(m2.chromosome, 2));
+      assert.equal('00001111', m2.chromosome.grey);
+      assert.equal(15, parseInt(m2.chromosome.grey, 2));
       assert.equal(8, m.chrom_length);
     });
   });
