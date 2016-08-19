@@ -15,6 +15,8 @@ var ScatterPlot = function() {
 }
 
 ScatterPlot.prototype.initPlot = function() {
+  var that = this;
+  
   function createTextCanvas(text, color, font, size) {
     var size = size || 16;
     var canvas = document.createElement('canvas');
