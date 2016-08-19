@@ -16,7 +16,7 @@ var ScatterPlot = function() {
 
 ScatterPlot.prototype.initPlot = function() {
   var that = this;
-  
+
   function createTextCanvas(text, color, font, size) {
     var size = size || 16;
     var canvas = document.createElement('canvas');
@@ -142,16 +142,17 @@ ScatterPlot.prototype.initPlot = function() {
   valueZ.position.z = this.zScale(vpts.zMax) + 7;
   this.scatterPlot.add(valueZ);
 
-  function animate(renderer, camera, scene) {
+  function animate(renderer, camera, scene, scatterPlot) {
     renderer.clear();
     camera.lookAt(scene.position);
+    scatterPlot.rotation.y += 0.001;
     renderer.render(scene, camera);
     window.requestAnimationFrame(function () {
-      animate(renderer, camera, scene);
+      animate(renderer, camera, scene, scatterPlot);
     });
   };
 
-  animate(this.renderer, this.camera, this.scene);
+  animate(this.renderer, this.camera, this.scene, this.scatterPlot);
 
   var down = false;
   var sx = 0,
