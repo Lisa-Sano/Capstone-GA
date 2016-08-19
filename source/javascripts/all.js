@@ -17,9 +17,6 @@ $(document).ready(function() {
   var starting;
   var graphic = new Graphic();
   var chart = new Chart();
-  // var renderer = new THREE.WebGLRenderer({ antialias: true });
-  // var camera = new THREE.PerspectiveCamera(45, 500 / 400, 1, 10000);
-  // var scene = new THREE.Scene();
   var scatter = new ScatterPlot();
 
   scatter.initPlot();
@@ -64,8 +61,8 @@ $(document).ready(function() {
   });
 
   $('#myForm').keypress(function(e){
-    if(e.which == 13){//Enter key pressed
-        $('#reset').click();//Trigger search button click event
+    if (e.which == 13) { //Enter key pressed
+        $('#reset').click(); //Trigger search button click event
     }
   });
 
@@ -96,26 +93,21 @@ $(document).ready(function() {
 
     if ($('input[id=uniform]:checked').length > 0) {
       config.uniform = true;
-      if (config.moth_type[0] === "red") {
-        config.env = { red: 0,
-                       green: 0,
-                       blue: 153 };
-      } else {
-        config.env = { grey: 20 };
-      }
+      config.env = config.moth_type[0] === "red" ?
+                    { red: 165, green: 222, blue: 230 } :
+                    { grey: 20 };
     } else {
       config.uniform = false;
-      if (config.moth_type[0] === "red") {
-        config.env = { red: Math.floor(Math.random() * (255 + 1)),
-                       green: Math.floor(Math.random() * (255 + 1)),
-                       blue: Math.floor(Math.random() * (255 + 1))
-                     };
-      } else {
-        config.env = { grey: Math.floor(Math.random() * (255 + 1)) };
-      }
+      config.env = config.moth_type[0] === "red" ?
+                    { red: randomNum(), green: randomNum(), blue: randomNum()} :
+                    { grey: randomNum() };
     }
 
     return config;
+  }
+
+  function randomNum() {
+    return Math.floor(Math.random() * (255 + 1));
   }
 
   function drawD3(starting, pop, config) {
