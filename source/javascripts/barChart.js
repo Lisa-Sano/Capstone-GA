@@ -11,7 +11,7 @@ Chart.prototype.drawChart = function(starting_data, ending_data, environ) {
     .attr("height", this.height + this.margin.top + this.margin.bottom);
     
   d3.select(".legend")
-    .attr("transform", "translate(" + ((this.width - this.margin.left) / 2) + ",0)");
+    .attr("transform", "translate(" + ((this.width - this.margin.left) / 4) + ",0)");
 
   d3.select(".legend").selectAll("text")
     .style("font-size","0.8rem");

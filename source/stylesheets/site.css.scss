@@ -6,67 +6,27 @@ body {
   text-align: center;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
+  line-height: 150%;
 }
 
 
 h1 {
-  color: rgba(0,0,0,0.5);
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 1.8em;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 2.2em;
   font-weight: 400;
-  margin: 0;
 }
-
-.doc {
-  margin: 3em 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 1.1em;
-  font-weight: 300;
-
-  a {
-    border: 1px solid white;
-    border-radius: 3px;
-    padding: 0.75em 0.7em;
-    color: white;
-    text-decoration: none;
-    transition: color 0.1s linear;
-    &:hover {
-      background: rgba(0,0,0,0.2);
-      color: white;
-      transition: all 0.15s linear;
-    }
-  }
-}
-
-.welcome {
-  -webkit-animation-name: welcome;
-  -webkit-animation-duration: .9s;
-}
-
-@-webkit-keyframes welcome {
-  from {
-    -webkit-transform: scale(0);
-    opacity: 0;
-  }
-  50% {
-   -webkit-transform: scale(0);
-   opacity: 0;
-  }
-  82.5% {
-    -webkit-transform: scale(1.03);
-    -webkit-animation-timing-function: ease-out;
-    opacity: 1;
-  }
-  to {
-    -webkit-transform: scale(1);
-  }
-}
-
-/*___________________________________________________*/
 
 h2 {
   font-size: 1.5rem;
   margin-top: 3rem;
+  margin-bottom: 2rem;
+}
+
+h2.explanation {
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1.2rem;
+  color: rgba(0,0,0,0.5);
+  margin-top: 0;
 }
 
 h3 {
@@ -154,24 +114,34 @@ h3 {
   fill: #990099;
 }
 
+.grp-env {
+  fill: rgb(215,215,215);
+  filter: url(#f1);
+}
+
 .start-stop {
   margin: 2rem 0;
   display: block;
 }
 
 .start-stop button {
-  width: 10%;
+  width: 15%;
   font-size: 1.6rem;
 }
 
 .control {
   border: 1px solid black;
+  background-color: #eee;
   margin: 3rem auto;
   width: 70%;
 }
 
+p {
+  text-align: justify;
+}
+
 .moth {
-  transition: stroke 0.25s ease;
+  transition: stroke 0.20s ease;
 }
 
 .env:hover .moth {
@@ -213,6 +183,7 @@ h3 {
 
 .generation {
   font-size: 1.2rem;
+  text-align: center;
   margin-bottom: 0.7rem;
 }
 
@@ -230,7 +201,6 @@ h3 {
 
 .how-it-works {
   margin: 0 auto 2rem auto;
-  /*border: 1px solid black;*/
   width: 70%;
 }
 
@@ -279,6 +249,7 @@ footer {
   display: inline-block;
   padding: 1.5rem 0 1.5rem 2rem;
   margin: 0 auto;
+  line-height: 100%;
 }
 
 .copy {
@@ -322,20 +293,20 @@ footer {
 
 /* Tooltip arrow */
 .tooltip .tooltiptext::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #555 transparent transparent transparent;
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
 }
 
 /* Show the tooltip text when you mouse over the tooltip container */
 .tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
+  visibility: visible;
+  opacity: 1;
 }
 
 .fa {
@@ -344,15 +315,17 @@ footer {
 }
 
 .radio-table {
-  /*display: block;*/
   padding-top: 0rem;
 }
 
 .radio-table-2 td {
-  /*border: 1px solid black;*/
   padding-top: 1.5rem;
 }
 
 #container3d {
   padding-bottom: 100px;
+}
+
+.explanation {
+  font-style: italic;
 }

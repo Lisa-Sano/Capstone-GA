@@ -9,10 +9,8 @@
     <title><%= current_page.data.title || "Middleman" %></title>
     <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
     <link href='//fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
     <script   src="https://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
     <script type="text/javascript" src="/d3/d3.min.js"></script>
-    <!-- <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script> -->
     <script type="text/javascript" src="/d3/d3-tip.js"></script>
     <script type="text/javascript" src="/three/three.js"></script>
 
@@ -20,6 +18,8 @@
   </head>
 
   <body class="<%= page_classes %>">
+    <h1>PUT A TITLE HERE!</h1>
+    <h2 class="explanation">Modeling color changes of peppered moths, a classic example of evolution, using a genetic algorithm</h2>
     
     <div class="start-stop">
       <button id="start">Start</button>
@@ -38,14 +38,14 @@
             <span class="population">Population:</span>
           </td>
           <td>
-            <input class="radio" id="uniform" type="radio" name="starting-pop" value="uniform">
+            <input class="radio" id="uniform" type="radio" name="starting-pop" value="uniform" checked>
             <label class="radio-label" for="uniform">Uniform
             <div class="tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
               <span class="tooltiptext">A uniform population emphasizes the importance of <em>mutation</em> as the driver for achieving an optimal solution</span>
             </div></label>
           </td>
           <td>
-            <input class="radio" id="random" type="radio" name="starting-pop" value="random" checked>
+            <input class="radio" id="random" type="radio" name="starting-pop" value="random">
             <label class="radio-label" for="random">Random
             <div class="tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
               <span class="tooltiptext">A diverse population is inherently better at overcoming adversity&mdash;good solutions may already exist in the population and will be selected for due to their increased <em>fitness advantage</em></span>
@@ -76,13 +76,13 @@
           <label for="pop-size">Population size <span class="range">(100-1000)</span>:</label>
           </td>
           <td class="input-box">
-          <input id="pop-size" type="number" name="pop-size" min="100" max="1000" value="300" step="100">
+          <input id="pop-size" type="number" name="pop-size" min="100" max="1000" value="500" step="100">
           </td>
           <td>
           <label for="num-gens"># of Generations <span class="range">(100-1000)</span>:</label>
           </td>
           <td class="input-box">
-          <input id="num-gens" type="number" name="num-gens" min="100" max="1000" value="200" step="100">
+          <input id="num-gens" type="number" name="num-gens" min="100" max="1000" value="300" step="100">
           </td>
           </tr>
 
@@ -112,8 +112,17 @@
     </div>
 
   <div class="how-it-works">
-    <h2>How does it work?</h2>
-    <h3>Genetic Algorithms (GAs) find solutions to optimization problems by utilizing techniques inspired by evolutionary genetics, where stronger individuals outcompete weaker ones.</h3>
+    <h2>Peppered moth evolution</h2>
+    <p>In the early-1800's, peppered moths lived on lichen-covered birch trees and were white with black speckles, making them blend in with their environment. An all-black variant of the peppered moth was virtually unknown.</p>
+
+    <p>After the industrial revolution, soot was pumped out into the atmosphere, changing the moths' habitat by making the trees dark and bare. Moths that were previously well camouflaged became easy prey, and the black variant of the moth began to thrive. Within a century, most of the moths in the region were black.</p>
+
+    <p>As environmental regulations became more strict and the air was cleaned up, the trees became light again&mdash;and the moth population once again changed. Within decades, white peppered moths were abundant, and black ones were rare.</p>
+
+    <p class="explanation">This simulation demonstrates the effects of mutation and fitness advantage in achieving such rapid changes toward a highly camouflaged population.</p>
+    
+    <h2>How does the simulation work?</h2>
+    <h3>Genetic algorithms (GAs) find solutions to optimization problems by utilizing techniques inspired by evolutionary genetics, where stronger individuals outcompete weaker ones.</h3>
 
     <div class="list">
       <ul>
