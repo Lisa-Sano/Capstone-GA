@@ -24,12 +24,12 @@ A [Genetic Algorithm](https://en.wikipedia.org/wiki/Genetic_algorithm) (GA) is m
   Its output will be more visual than the competition, showing SVGs displaying the actual colors of the moths compared to their environment (allowing users to determine at a glance how well camouflaged the moths are throughout the simulation). It will also include graphical data representing color frequencies and clustering of the starting and ending populations once the run is complete.
 
 ### User Personas
-* ##### The main user will probably be me
-  ...because I think GA's are rad and I want to explore how they can model natural selection in a visual way
-* ##### Students learning about evolutionary genetics
-  In my genetics class at UW, we used a simulator created by the professor that was similar to the competition listed above. It had several input fields, and its output was a single graph showing the population's gene frequency over time. It made its point, but it wasn't pretty or fun to use. This product will be both!
-* ##### Programmers interested in GA's
-  I didn't know GA's were a thing until recently, and there are probably a lot of programmers who have never encountered them before. Maybe this simple example will inspire them to explore what GA's can do too!
+##### The main user will probably be me
+...because I think GA's are rad and I want to explore how they can model natural selection in a visual way
+##### Students learning about evolutionary genetics
+In my genetics class at UW, we used a simulator created by the professor that was similar to the competition listed above. It had several input fields, and its output was a single graph showing the population's gene frequency over time. It made its point, but it wasn't pretty or fun to use. This product will be both!
+##### Programmers interested in GA's
+I didn't know GA's were a thing until recently, and there are probably a lot of programmers who have never encountered them before. Maybe this simple example will inspire them to explore what GA's can do too!
 
 ### Tech features
 * Front-end Framework: Angular or React
