@@ -1,5 +1,5 @@
-# Capstone-GA
-Explore genetic algorithms and D3
+# Evolution in Color
+Exploring genetic algorithms and data visualization (using D3 and three.js)
 
 ### What is the product?
 An educational tool for anyone interested in learning about genetics and evolution, and how they can be modeled using programming. It will familiarize users with the concept of natural selection (a process where individuals that are better suited to a particular environment tend to survive better and produce more offspring).
@@ -32,6 +32,7 @@ In my genetics class at UW, we used a simulator created by the professor that wa
 I didn't know GA's were a thing until recently, and there are probably a lot of programmers who have never encountered them before. Maybe this simple example will inspire them to explore what GA's can do too!
 
 ### Tech features
-* Front-end Framework: Angular or React
-* Visualization tools: D3, SVG
+* Visualization tools: Three.js (using WebGL), D3
+* Static-site framework: Middleman
+* Deployment: PubStorm
 * Genetic Algorithm (my main motivation for doing this project is to explore this algorithm, which I think is SO DAMN COOL!)
