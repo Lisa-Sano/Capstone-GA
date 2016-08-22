@@ -38,6 +38,7 @@ var config_grey = {
     }
   }
 };
+
 var config_multi = {
   max_env: 255,
   population_size: 1,
@@ -77,29 +78,29 @@ describe('Simulate', function() {
 
   describe('config property', function() {
     it('should have a config property', function() {
-      assert.isNotNull(sim.config);
-      assert.notEqual(null, sim_multi.config);
+      assert.isDefined(sim.config);
+      assert.isDefined(sim_multi.config);
     });
   });
 
   describe('population property', function() {
     it('should have a population property', function() {
-      assert.notEqual(null, sim.population);
-      assert.notEqual(null, sim_multi.population);
+      assert.isDefined(sim.population);
+      assert.isDefined(sim_multi.population);
     });
 
     it('should be an array', function() {
-      assert(Array.isArray(sim.population));
-      assert(Array.isArray(sim_multi.population));
+      assert.isArray(sim.population);
+      assert.isArray(sim_multi.population);
     });
   });
 
   describe('initializePopulation', function() {
     it('should create moths even if not given specific chromosome values for starting moths', function() {
-      assert.equal('00000000', sim.population[0].chromosome.grey);
-      assert.equal('00000000', sim_multi.population[0].chromosome.red);
-      assert.equal('11111111', sim_multi.population[0].chromosome.green);
-      assert.equal('11111111', sim_multi.population[0].chromosome.blue);
+      assert.equal(sim.population[0].chromosome.grey, '00000000');
+      assert.equal(sim_multi.population[0].chromosome.red, '00000000');
+      assert.equal(sim_multi.population[0].chromosome.green, '11111111');
+      assert.equal(sim_multi.population[0].chromosome.blue, '11111111');
     });
 
     it('should initialize a population of moths with specific chromosomes if uniform = true', function() {
@@ -108,10 +109,10 @@ describe('Simulate', function() {
       var sim2 = new Simulation(config_grey);
       var sim2_multi = new Simulation(config_multi);
 
-      assert.equal('11111111', sim2.population[0].chromosome.grey);
-      assert.equal('10000111', sim2_multi.population[0].chromosome.red);
-      assert.equal('00010000', sim2_multi.population[0].chromosome.green);
-      assert.equal('01101011', sim2_multi.population[0].chromosome.blue);
+      assert.equal(sim2.population[0].chromosome.grey, '11111111');
+      assert.equal(sim2_multi.population[0].chromosome.red, '10000111');
+      assert.equal(sim2_multi.population[0].chromosome.green, '00010000');
+      assert.equal(sim2_multi.population[0].chromosome.blue, '01101011');
 
       config_grey.uniform = false;
       config_multi.uniform = false;
@@ -123,8 +124,13 @@ describe('Simulate', function() {
       var new_grey_chrom = buildChromosome([moth_grey.chromosome, moth_grey_2.chromosome], ["grey"], config_grey);
       var new_multi_chrom = buildChromosome([moth_multi.chromosome, moth_multi_2.chromosome], ["red", "green", "blue"], config_multi);
 
-      assert.deepEqual({grey: '00000000'}, new_grey_chrom);
-      assert.deepEqual({red: '00000000', green: '00000000', blue: '00000000'}, new_multi_chrom);
+      assert.property(new_grey_chrom, "grey");
+      assert.deepEqual(new_grey_chrom, {grey: '00000000'});
+
+      assert.property(new_multi_chrom, "red");
+      assert.property(new_multi_chrom, "green");
+      assert.property(new_multi_chrom, "blue");
+      assert.deepEqual(new_multi_chrom, {red: '00000000', green: '00000000', blue: '00000000'});
     });
   });
 
@@ -132,8 +138,9 @@ describe('Simulate', function() {
     it('should return a moth object', function() {
       let chosen = getMoth(sim.population, [1]);
       let chosen_multi = getMoth(sim_multi.population, [1]);
-      assert.deepEqual(moth_grey, chosen);
-      assert.deepEqual(moth_multi, chosen_multi);
+
+      assert.deepEqual(chosen, moth_grey);
+      assert.deepEqual(chosen_multi, moth_multi);
     });
   });
 
@@ -143,20 +150,20 @@ describe('Simulate', function() {
       let pair_grey = getPair([moth_grey, moth_grey_2], [0.5, 1]);
       let pair_multi = getPair([moth_multi, moth_multi_2], [0.5, 1]);
 
-      assert(Array.isArray(pair_grey));
-      assert(pair_grey.includes(moth_grey.chromosome));
-      assert(pair_grey.includes(moth_grey_2.chromosome));
+      assert.isArray(pair_grey);
+      assert.include(pair_grey, moth_grey.chromosome);
+      assert.include(pair_grey, moth_grey_2.chromosome);
 
-      assert(Array.isArray(pair_multi));
-      assert(pair_multi.includes(moth_multi.chromosome));
-      assert(pair_multi.includes(moth_multi_2.chromosome));
+      assert.isArray(pair_multi);
+      assert.include(pair_multi, moth_multi.chromosome);
+      assert.include(pair_multi, moth_multi_2.chromosome);
     });
 
     it('should never return chromosomes from the same two moths', function() {
       let pair_grey = getPair([moth_grey_2, moth_grey, moth_grey, moth_grey, moth_grey, moth_grey], [0.1, 0.2, 0.3, 0.4, 0.5, 1])
     
-      assert(pair_grey.includes(moth_grey.chromosome));
-      assert(pair_grey.includes(moth_grey_2.chromosome));
+      assert.include(pair_grey, moth_grey.chromosome);
+      assert.include(pair_grey, moth_grey_2.chromosome);
     });
 
     it('can pick the same chromosome values as long as they are from diff moths', function() {
@@ -165,8 +172,8 @@ describe('Simulate', function() {
 
       let pair_grey = getPair([moth_1, moth_2], [0.5, 1]);
 
-      assert(pair_grey.includes(moth_1.chromosome));
-      assert(pair_grey.includes(moth_2.chromosome));
+      assert.include(pair_grey, moth_1.chromosome);
+      assert.include(pair_grey, moth_2.chromosome);
     });
   });
 
@@ -180,27 +187,27 @@ describe('Simulate', function() {
     });
 
     it('returns an array of arrays', function() {
-      assert(Array.isArray(fitness_grey));
-      assert(Array.isArray(fitness_grey[0]));
-      assert(Array.isArray(fitness_multi));
-      assert(Array.isArray(fitness_multi[0]));
+      assert.isArray(fitness_grey);
+      assert.isArray(fitness_grey[0]);
+      assert.isArray(fitness_multi);
+      assert.isArray(fitness_multi[0]);
     });
 
     it('should have an inner array representing an individual moth\'s fitness for each of its chromosome colors', function() {
-      assert.equal(2, fitness_grey.length);
-      assert.equal(1, fitness_grey[0].length);
-      assert.equal(1, fitness_grey[0][0]);
-      assert.equal(0, fitness_grey[1][0]);
+      assert.lengthOf(fitness_grey, 2);
+      assert.lengthOf(fitness_grey[0], 1);
+      assert.equal(fitness_grey[0][0], 1);
+      assert.equal(fitness_grey[1][0], 0);
 
       // for multi colored moths, inner array should represent r, g, b values (length == 3);
-      assert.equal(2, fitness_multi.length);
-      assert.equal(3, fitness_multi[0].length);
-      assert.equal(0, fitness_multi[0][0]);
-      assert.equal(1, fitness_multi[0][1]);
-      assert.equal(1, fitness_multi[0][2]);
-      assert.equal(1, fitness_multi[1][0]);
-      assert.equal(1, fitness_multi[1][1]);
-      assert.equal(1, fitness_multi[1][2]);
+      assert.lengthOf(fitness_multi, 2);
+      assert.lengthOf(fitness_multi[0], 3);
+      assert.equal(fitness_multi[0][0], 0);
+      assert.equal(fitness_multi[0][1], 1);
+      assert.equal(fitness_multi[0][2], 1);
+      assert.equal(fitness_multi[1][0], 1);
+      assert.equal(fitness_multi[1][1], 1);
+      assert.equal(fitness_multi[1][2], 1);
     });
   });
 
@@ -209,11 +216,11 @@ describe('Simulate', function() {
       let sum_grey = sumFitness([moth_grey, moth_grey_2], config_grey);
       let sum_multi = sumFitness([moth_multi, moth_multi_2], config_multi);
 
-      assert(Array.isArray(sum_grey));
-      assert(Array.isArray(sum_multi));
+      assert.isArray(sum_grey);
+      assert.isArray(sum_multi);
 
-      assert.deepEqual([1, 0], sum_grey);
-      assert.deepEqual([2, 3], sum_multi);
+      assert.deepEqual(sum_grey, [1, 0]);
+      assert.deepEqual(sum_multi, [2, 3]);
     });
   });
 
@@ -225,19 +232,19 @@ describe('Simulate', function() {
     });
 
     it('should return an array', function() {
-      assert(Array.isArray(probs));
+      assert.isArray(probs);
     });
 
     it('should have a last value of 1', function() {
-      assert.equal(1, probs[probs.length-1]);
+      assert.equal(probs[probs.length-1], 1);
     });
 
     it('should assign probability weights based on fitness (fitness of 0 should not add anything to previous value)', function() {
-      assert.equal(probs[0], probs[1]);
+      assert.equal(probs[1], probs[0]);
     });
 
     it('should assign probability weights based on fitness (higher fitness should add more to prev value than lower fitness)', function() {
-      assert((probs[4] - probs[3]) > (probs[3] - probs[2]));
+      assert.isTrue((probs[4] - probs[3]) > (probs[3] - probs[2]));
     });
   });
 });
