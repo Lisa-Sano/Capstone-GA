@@ -11,8 +11,8 @@ var mutate_1;
 var mutate_0;
 var child_chromosome;
 var config = { mutation_rate: 0 };
-var moth1 = { chromosome: '00000000', value: 0 };
-var moth2 = { chromosome: '11111111', value: 255 };
+var moth1 = { chromosome: {grey: '00000000'}, chromosome_types: ["grey"], value: 0 };
+var moth2 = { chromosome: {grey: '11111111'}, chromosome_types: ["grey"], value: 255 };
 
 describe('Matchmaker', function() {
   before(function(){
@@ -25,7 +25,7 @@ describe('Matchmaker', function() {
 
   describe('mate function', function() {
     before(function(){
-      child_chromosome = m.mate([moth1, moth2]);
+      child_chromosome = m.mate([moth1.chromosome.grey, moth2.chromosome.grey]);
     });
 
     it('should return a string of 8 elements', function() {
@@ -45,24 +45,22 @@ describe('Matchmaker', function() {
   });
 
   describe('mutateChromosome function', function() {
-    it('should return a string of 8 elements', function() {
-      var mutated = mutateChromosome(moth1.chromosome, 1);
+    it('should return a string of 8 binary numbers', function() {
+      var mutated = mutateChromosome(moth1.chromosome.grey, 1);
       assert.equal("string", typeof(mutated));
       assert.equal(8, mutated.length);
-    });
-
-    it('should return a string only containing binary numbers', function() {
-      assert.equal(true, /^[01]+$/.test(child_chromosome));
+      assert.equal(true, /^[01]+$/.test(mutated));
     });
 
     it('should flip all values of string if the mutation rate is 1', function() {
-      var mutated1 = mutateChromosome(moth1.chromosome, 1);
+      var mutated1 = mutateChromosome(moth1.chromosome.grey, 1);
+      console.log("mutated1", mutated1);
       assert.equal('11111111', mutated1);
     });
 
     it('should flip none of the values of string if the mutation rate is 0', function() {
-      var mutated2 = mutateChromosome(moth1.chromosome, 0);
-      assert.equal(moth1.chromosome, mutated2);
+      var mutated2 = mutateChromosome(moth1.chromosome.grey, 0);
+      assert.equal(moth1.chromosome.grey, mutated2);
     });
   });
 
