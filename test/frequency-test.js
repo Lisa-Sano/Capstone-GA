@@ -8,10 +8,10 @@ var freq = frequency(chrom_vals);
 
 describe('frequency', function() {
   it('should return an array of objects with the keys percent and frequency', function() {
-    assert.equal(true, Array.isArray(freq));
-    assert.equal('object', typeof(freq[0]));
-    assert.notEqual(null, freq[0].percent);
-    assert.notEqual(null, freq[0].frequency);
+    assert.isArray(freq);
+    assert.isObject(freq[0]);
+    assert.isDefined(freq[0].percent);
+    assert.isDefined(freq[0].frequency);
   });
 
   it('should have a frequency of 0.5 for objects with percent === 0 and percent === 100 and others should be 0', function() {
