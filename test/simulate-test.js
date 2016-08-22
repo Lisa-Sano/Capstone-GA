@@ -215,4 +215,28 @@ describe('Simulate', function() {
       assert.deepEqual([2, 3], sum_multi);
     });
   });
+
+  describe('probabilities', function() {
+    var probs;
+
+    before(function() {
+      probs = probabilities([1, 0, 1, 1, 2]);
+    });
+
+    it('should return an array', function() {
+      assert(Array.isArray(probs));
+    });
+
+    it('should have a last value of 1', function() {
+      assert.equal(1, probs[probs.length-1]);
+    });
+
+    it('should assign probability weights based on fitness (fitness of 0 should not add anything to previous value)', function() {
+      assert.equal(probs[0], probs[1]);
+    });
+
+    it('should assign probability weights based on fitness (higher fitness should add more to prev value than lower fitness)', function() {
+      assert((probs[4] - probs[3]) > (probs[3] - probs[2]));
+    });
+  });
 });
