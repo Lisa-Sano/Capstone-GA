@@ -6,19 +6,23 @@ var simulate = rewire('../source/javascripts/simulate.js');
 buildChromosome = simulate.__get__('buildChromosome');
 getMoth = simulate.__get__('getMoth');
 getPair = simulate.__get__('getPair');
+sumFitness = simulate.__get__('sumFitness');
 evalFitness = simulate.__get__('evalFitness');
 probabilities = simulate.__get__('probabilities');
 
 var sim;
 var moth_grey;
+var moth_grey_2;
 var moth_multi;
+var moth_multi_2;
 
 var config_grey = {
   max_env: 255,
   population_size: 1,
   mutation_rate: 0,
   uniform: false,
-  env: 20,
+  fitness_advantage: 1,
+  env: {grey: 0},
   moth: function(properties) {
     return {
       chromosome: properties.chromosome || {grey: '00000000'},
@@ -38,7 +42,8 @@ var config_multi = {
   population_size: 1,
   mutation_rate: 0,
   uniform: false,
-  env: 20,
+  fitness_advantage: 1,
+  env: {red: 0, green: 0, blue: 0},
   moth: function(properties) {
     return {
       chromosome: properties.chromosome || {red: '00000000', green: '11111111', blue: '11111111'},
@@ -58,9 +63,15 @@ describe('Simulate', function() {
   before(function(){
     sim = new Simulation(config_grey);
     moth_grey = sim.population[0];
+    moth_grey_2 = {chromosome: {grey: '11111111'}, value: {grey: 255}, chrom_length: 8}
 
     sim_multi = new Simulation(config_multi);
     moth_multi = sim_multi.population[0];
+    moth_multi_2 = {
+      chromosome: {red: '11111111', green: '11111111', blue: '11111111'},
+      value: {red: 255, green: 255, blue: 255},
+      chrom_length: 8
+    };
   });
 
   describe('config property', function() {
@@ -108,8 +119,8 @@ describe('Simulate', function() {
 
   describe('buildChromosome', function() {
     it('should return a chromosome object', function() {
-      var new_grey_chrom = buildChromosome([moth_grey.chromosome, moth_grey.chromosome], ["grey"], config_grey);
-      var new_multi_chrom = buildChromosome([moth_multi.chromosome, moth_multi.chromosome], ["red", "green", "blue"], config_multi);
+      var new_grey_chrom = buildChromosome([moth_grey.chromosome, moth_grey_2.chromosome], ["grey"], config_grey);
+      var new_multi_chrom = buildChromosome([moth_multi.chromosome, moth_multi_2.chromosome], ["red", "green", "blue"], config_multi);
 
       assert.deepEqual({grey: '00000000'}, new_grey_chrom);
       assert.deepEqual({red: '00000000', green: '00000000', blue: '00000000'}, new_multi_chrom);
@@ -128,14 +139,7 @@ describe('Simulate', function() {
   describe('getPair', function() {
 
     it('should return an array of two moth chromosomes', function() {
-      let moth_grey_2 = {chromosome: {grey: '11111111'}, value: {grey: 255}, chrom_length: 8};
       let pair_grey = getPair([moth_grey, moth_grey_2], [0.5, 1]);
-
-      let moth_multi_2 = {
-        chromosome: {red: '11111111', green: '11111111', blue: '11111111'},
-        value: {red: 255, green: 255, blue: 255},
-        chrom_length: 8
-      };
       let pair_multi = getPair([moth_multi, moth_multi_2], [0.5, 1]);
 
       assert(Array.isArray(pair_grey));
@@ -148,7 +152,6 @@ describe('Simulate', function() {
     });
 
     it('should never return chromosomes from the same two moths', function() {
-      let moth_grey_2 = {chromosome: {grey: '11111111'}, value: {grey: 255}, chrom_length: 8};
       let pair_grey = getPair([moth_grey_2, moth_grey, moth_grey, moth_grey, moth_grey, moth_grey], [0.1, 0.2, 0.3, 0.4, 0.5, 1])
     
       assert(pair_grey.includes(moth_grey.chromosome));
@@ -163,6 +166,40 @@ describe('Simulate', function() {
 
       assert(pair_grey.includes(moth_1.chromosome));
       assert(pair_grey.includes(moth_2.chromosome));
+    });
+  });
+
+  describe('evalFitness', function() {
+    var fitness_grey;
+    var fitness_multi;
+
+    before(function() {
+      fitness_grey = evalFitness([moth_grey, moth_grey_2], config_grey);
+      fitness_multi = evalFitness([moth_multi, moth_multi_2], config_multi);
+    });
+
+    it('returns an array of arrays', function() {
+      assert(Array.isArray(fitness_grey));
+      assert(Array.isArray(fitness_grey[0]));
+      assert(Array.isArray(fitness_multi));
+      assert(Array.isArray(fitness_multi[0]));
+    });
+
+    it('should have an inner array representing an individual moth\'s fitness for each of its chromosome colors', function() {
+      assert.equal(2, fitness_grey.length);
+      assert.equal(1, fitness_grey[0].length);
+      assert.equal(1, fitness_grey[0][0]);
+      assert.equal(0, fitness_grey[1][0]);
+
+      // for multi colored moths, inner array should represent r, g, b values (length == 3);
+      assert.equal(2, fitness_multi.length);
+      assert.equal(3, fitness_multi[0].length);
+      assert.equal(1, fitness_multi[0][0]);
+      assert.equal(0, fitness_multi[0][1]);
+      assert.equal(0, fitness_multi[0][2]);
+      assert.equal(0, fitness_multi[1][0]);
+      assert.equal(0, fitness_multi[1][1]);
+      assert.equal(0, fitness_multi[1][2]);
     });
   });
 });
