@@ -1,4 +1,5 @@
-var assert = require('assert');
+var chai = require('chai');
+var assert = chai.assert;
 var rewire = require('rewire');
 var Matchmaker = require('../source/javascripts/matchmaker');
 var matchmaker = rewire('../source/javascripts/matchmaker.js');

@@ -1,4 +1,5 @@
-var assert = require('assert');
+var chai = require('chai');
+var assert = chai.assert;
 var rewire = require('rewire');
 var frequency = require('../source/javascripts/frequency');
 

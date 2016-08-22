@@ -1,4 +1,5 @@
-var assert = require('assert');
+var chai = require('chai');
+var assert = chai.assert;
 var rewire = require('rewire');
 var Simulation = require('../source/javascripts/simulate');
 var simulate = rewire('../source/javascripts/simulate.js');
@@ -76,7 +77,7 @@ describe('Simulate', function() {
 
   describe('config property', function() {
     it('should have a config property', function() {
-      assert.notEqual(null, sim.config);
+      assert.isNotNull(sim.config);
       assert.notEqual(null, sim_multi.config);
     });
   });
