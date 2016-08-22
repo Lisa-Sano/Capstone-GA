@@ -43,7 +43,7 @@ var config_multi = {
   mutation_rate: 0,
   uniform: false,
   fitness_advantage: 1,
-  env: {red: 0, green: 0, blue: 0},
+  env: {red: 255, green: 255, blue: 255},
   moth: function(properties) {
     return {
       chromosome: properties.chromosome || {red: '00000000', green: '11111111', blue: '11111111'},
@@ -194,12 +194,25 @@ describe('Simulate', function() {
       // for multi colored moths, inner array should represent r, g, b values (length == 3);
       assert.equal(2, fitness_multi.length);
       assert.equal(3, fitness_multi[0].length);
-      assert.equal(1, fitness_multi[0][0]);
-      assert.equal(0, fitness_multi[0][1]);
-      assert.equal(0, fitness_multi[0][2]);
-      assert.equal(0, fitness_multi[1][0]);
-      assert.equal(0, fitness_multi[1][1]);
-      assert.equal(0, fitness_multi[1][2]);
+      assert.equal(0, fitness_multi[0][0]);
+      assert.equal(1, fitness_multi[0][1]);
+      assert.equal(1, fitness_multi[0][2]);
+      assert.equal(1, fitness_multi[1][0]);
+      assert.equal(1, fitness_multi[1][1]);
+      assert.equal(1, fitness_multi[1][2]);
+    });
+  });
+
+  describe('sumFitness', function() {
+    it('should return an array of the sum of the individual chromosome colors\'s fitnesses for each moth', function() {
+      let sum_grey = sumFitness([moth_grey, moth_grey_2], config_grey);
+      let sum_multi = sumFitness([moth_multi, moth_multi_2], config_multi);
+
+      assert(Array.isArray(sum_grey));
+      assert(Array.isArray(sum_multi));
+
+      assert.deepEqual([1, 0], sum_grey);
+      assert.deepEqual([2, 3], sum_multi);
     });
   });
 });
