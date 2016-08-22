@@ -21,7 +21,7 @@ describe('Matchmaker', function() {
   });
 
   it('should have a config property', function() {
-    assert.notEqual(null, m.config);
+    assert.isNotNull(m.config);
   });
 
   describe('mate function', function() {
@@ -30,38 +30,37 @@ describe('Matchmaker', function() {
     });
 
     it('should return a string of 8 elements', function() {
-      assert.equal("string", typeof(child_chromosome));
-      assert.equal(8, child_chromosome.length);
+      assert.isString(child_chromosome);
+      assert.lengthOf(child_chromosome, 8);
     });
 
     it('should return a string only containing binary numbers', function() {
-      assert.equal(true, /^[01]+$/.test(child_chromosome));
+      assert.match(child_chromosome, /^[01]+$/);
     });
 
     // crossover index cannot be first or last index - there must be both parents represented
     it('should return a combination of the two parent chromosomes', function() {
-      assert.equal(true, child_chromosome.includes('1'));
-      assert.equal(true, child_chromosome.includes('0'));
+      assert.include(child_chromosome, '1');
+      assert.include(child_chromosome, '0');
     });
   });
 
   describe('mutateChromosome function', function() {
     it('should return a string of 8 binary numbers', function() {
       var mutated = mutateChromosome(moth1.chromosome.grey, 1);
-      assert.equal("string", typeof(mutated));
-      assert.equal(8, mutated.length);
-      assert.equal(true, /^[01]+$/.test(mutated));
+      assert.isString(mutated);
+      assert.lengthOf(mutated, 8);
+      assert.match(mutated, /^[01]+$/);
     });
 
     it('should flip all values of string if the mutation rate is 1', function() {
       var mutated1 = mutateChromosome(moth1.chromosome.grey, 1);
-      console.log("mutated1", mutated1);
-      assert.equal('11111111', mutated1);
+      assert.equal(mutated1, '11111111');
     });
 
     it('should flip none of the values of string if the mutation rate is 0', function() {
       var mutated2 = mutateChromosome(moth1.chromosome.grey, 0);
-      assert.equal(moth1.chromosome.grey, mutated2);
+      assert.equal(mutated2, moth1.chromosome.grey);
     });
   });
 
@@ -72,16 +71,16 @@ describe('Matchmaker', function() {
     });
 
     it('should return a boolean value', function() {
-      assert.equal('boolean', typeof(mutate_1));
-      assert.equal('boolean', typeof(mutate_0));
+      assert.isBoolean(mutate_1);
+      assert.isBoolean(mutate_0);
     });
 
     it('should return true if the mutation rate is 1', function() {
-      assert.equal(true, mutate_1);
+      assert.isTrue(mutate_1);
     });
 
     it('should return false if the mutation rate is 0', function() {
-      assert.equal(false, mutate_0);
+      assert.isFalse(mutate_0);
     });
   });
 });
