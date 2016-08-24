@@ -26,4 +26,11 @@ module.exports = {
     path: __dirname + '/.tmp/dist',
     filename: 'javascripts/[name].js',
   },
+  module: {
+    loaders: [{
+      test: /\.js$/,
+      exclude: /node_modules/,
+      loader: 'babel-loader',
+    }]
+  }
 };
