@@ -106,7 +106,7 @@ ScatterPlot.prototype.initPlot = function() {
   valueX.position.z = this.zScale(vpts.zMin);
   this.scatterPlot.add(valueX);
 
-  var titleX = createText2D('R');
+  var titleX = createText2D('Red');
   titleX.position.x = this.xScale(vpts.xMax) + 12;
   titleX.position.y = this.yScale(vpts.yMin) + 10,
   titleX.position.z = this.zScale(vpts.zMin);
@@ -118,7 +118,7 @@ ScatterPlot.prototype.initPlot = function() {
   valueX.position.z = this.zScale(vpts.zMin);
   this.scatterPlot.add(valueX);
 
-  var titleY = createText2D('G');
+  var titleY = createText2D('Green');
   titleY.position.x = this.xScale(vpts.xMin),
   titleY.position.y = this.yScale(vpts.yMax) + 15,
   titleY.position.z = this.zScale(vpts.zMin);
@@ -130,7 +130,7 @@ ScatterPlot.prototype.initPlot = function() {
   valueY.position.z = this.zScale(vpts.zMin);
   this.scatterPlot.add(valueY);
 
-  var titleZ = createText2D('B');
+  var titleZ = createText2D('Blue');
   titleZ.position.x = this.xScale(vpts.xMin),
   titleZ.position.y = this.yScale(vpts.yMin) + 10,
   titleZ.position.z = this.zScale(vpts.zMax) + 7;
