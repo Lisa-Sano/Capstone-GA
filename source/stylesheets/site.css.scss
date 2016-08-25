@@ -40,6 +40,10 @@ input {
   max-width: 100%;
 }
 
+label {
+  /*font-size: 24px;*/
+}
+
 .y.axisLeft text {
   fill: #000;
 }
@@ -131,6 +135,7 @@ input {
 }
 
 .start-stop button {
+  min-width: 100px;
   width: 15%;
   font-size: 1.2rem;
 }
@@ -373,7 +378,6 @@ footer {
 }
 
 .how-to-explanation {
-  padding-left: 0.5rem;
   margin: 0;
 }
 
@@ -453,6 +457,7 @@ label.expand::before {
 
 nav > ul {
   list-style: none;
+  margin: 0.5rem 0;
 }
 
 nav {
@@ -461,7 +466,7 @@ nav {
   left: 0;
   z-index: 9999;
   width: 100%;
-  height: 75px;
+  height: 60px;
   background: #a3a3c2; /* For browsers that do not support gradients */
   background: -webkit-linear-gradient(#a3a3c2, #fff); /* For Safari 5.1 to 6.0 */
   background: -o-linear-gradient(#a3a3c2, #fff); /* For Opera 11.1 to 12.0 */
@@ -471,7 +476,7 @@ nav {
 
 nav li {
   font-size: 0.8rem;
-  margin: 0 1.5rem;
+  margin: 0 0.5rem;
   display: inline-block;
 }
 
