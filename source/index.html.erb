@@ -3,39 +3,37 @@ title: Genetic Alg
 ---
 <div id="all-visualizations">
 
-<div class="container-for-3d">
-  <div id="container3d">
-    
+  <div class="container-for-3d" id="container-for-3d">
+    <div id="container3d"></div>
+    <span class="caption" id="caption-3d">Each axis represents one chromosome of a colored moth. As the simulation progresses, the population will cluster in a specific area, which is close to the red, green, blue values of the environment color.</span>
   </div>
-  <!-- <p class="caption" id="caption-3d">BLAHBLAH</p> -->
-</div>
 
-<div class="chart-container">
-  <svg class="chart" id="chart">
-  <g class="legend">
-    <defs>
-      <filter id="f1">
-        <feGaussianBlur in="SourceGraphic" stdDeviation="3" />
-      </filter>
-    </defs>
-    <rect class="grp1" x="0" y="0" width="15" height="15"></rect>
-    <text class="grp1-txt" fill="#000" x="90" y="13">Starting pop.</text>
-    <rect class="grp2" x="120" y="0" width="15" height="15"></rect>
-    <text class="grp1-txt" fill="#000" x="208" y="13">Ending pop.</text>
-    <rect class="grp-env" x="230" y="0" width="15" height="15"></rect>
-    <text class="grp-env-txt" fill="#000" x="354" y="13">Environment color</text>
-  </g>
-    <defs>
-      <filter id="f1">
-        <feGaussianBlur in="SourceGraphic" stdDeviation="3" />
-      </filter>
-    </defs>
-  </svg>
-  <!-- <p class="caption" id="caption-chart">BLAHBLAH</p> -->
-</div>
+  <div class="chart-container" id="chart-container">
+    <svg class="chart" id="chart">
+    <g class="legend">
+      <defs>
+        <filter id="f1">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="3" />
+        </filter>
+      </defs>
+      <rect class="grp1" x="0" y="0" width="15" height="15"></rect>
+      <text class="grp1-txt" fill="#000" x="90" y="13">Starting pop.</text>
+      <rect class="grp2" x="120" y="0" width="15" height="15"></rect>
+      <text class="grp1-txt" fill="#000" x="208" y="13">Ending pop.</text>
+      <rect class="grp-env" x="230" y="0" width="15" height="15"></rect>
+      <text class="grp-env-txt" fill="#000" x="354" y="13">Environment color</text>
+    </g>
+      <defs>
+        <filter id="f1">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="3" />
+        </filter>
+      </defs>
+    </svg>
+    <span class="caption" id="caption-chart">Frequency of moths colored each shade of grey over time.</span>
+  </div>
   
-  <div class="main-graphic-container">
+  <div class="main-graphic-container" id="main-graphic-container">
     <svg class="main-graphic"></svg>
-    <!-- <p class="caption">BLAH</p> -->
+    <span class="caption">Individual moths in their environment. Over time, they will become more camouflaged.</span>
   </div>
 </div>

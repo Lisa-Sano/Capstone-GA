@@ -115,15 +115,15 @@ $(document).ready(function() {
 
     if (config.moth_type[0] === "grey") {
       // show only the bar chart or the 3D scatter plot, depending on color mode
-      document.getElementById("container3d").style.display = "none";
-      document.getElementById("chart").style.display = "initial";
+      document.getElementById("container-for-3d").style.display = "none";
+      document.getElementById("chart-container").style.display = "";
 
       chart.drawChart(starting, frequency(chrom_vals), Math.round(config.env["grey"]/12.75)*5);
       graphic.drawGraphic(chrom_vals, [config.env["grey"],config.env["grey"],config.env["grey"]]);
     } else {
       $('.legend').remove();
-      document.getElementById("container3d").style.display = "initial";
-      document.getElementById("chart").style.display = "none";
+      document.getElementById("container-for-3d").style.display = "";
+      document.getElementById("chart-container").style.display = "none";
 
       scatter.drawPlot(getChromVals(pop));
       graphic.drawGraphic(chrom_vals, [config.env["red"],config.env["green"],config.env["blue"]]);

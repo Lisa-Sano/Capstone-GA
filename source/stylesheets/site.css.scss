@@ -323,10 +323,10 @@ footer {
   padding-top: 1rem;
 }
 
-#container3d {
+/*#container3d {
   padding-bottom: 100px;
 }
-
+*/
 .explanation {
   font-style: italic;
 }
@@ -439,10 +439,16 @@ label.expand::before {
 
 .main-graphic-container, .container-for-3d, .chart-container {
   display: inline-block;
+  margin: 0 auto;
+  width: 500px;
 }
 
 .caption {
   font-size: 0.9rem;
   color: #666;
   text-align: center;
+}
+
+#caption-chart {
+  margin-left: 2.5rem;
 }
