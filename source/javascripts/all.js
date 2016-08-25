@@ -71,28 +71,28 @@ $(document).ready(function() {
   $("#back-to-top").click(function (event){
       event.preventDefault();
       $('html, body').animate({
-          scrollTop: $("h1").offset().top - 100
+          scrollTop: $("h1").offset().top - 120
       }, 300);
   });
 
   $("#nav-sim").click(function (event){
       event.preventDefault();
       $('html, body').animate({
-          scrollTop: $("#simulation").offset().top - 70
+          scrollTop: $("#simulation").offset().top - 90
       }, 300);
   });
 
   $("#nav-history").click(function (event){
       event.preventDefault();
       $('html, body').animate({
-          scrollTop: $("#moth-history").offset().top - 70
+          scrollTop: $("#moth-history").offset().top - 90
       }, 300);
   });
 
   $("#nav-how").click(function (event){
       event.preventDefault();
       $('html, body').animate({
-          scrollTop: $("#how-it-works").offset().top - 70
+          scrollTop: $("#how-it-works").offset().top - 90
       }, 300);
   });
 

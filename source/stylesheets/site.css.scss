@@ -36,6 +36,10 @@ h3 {
   margin-bottom: 3rem;
 }
 
+input {
+  max-width: 100%;
+}
+
 .y.axisLeft text {
   fill: #000;
 }
@@ -128,7 +132,7 @@ h3 {
 
 .start-stop button {
   width: 15%;
-  font-size: 1.6rem;
+  font-size: 1.2rem;
 }
 
 .control {
@@ -466,12 +470,17 @@ nav {
   left: 0;
   z-index: 9999;
   width: 100%;
-  height: 50px;
-  background-color: #e1e1ea;
+  height: 75px;
+  background: #a3a3c2; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(#a3a3c2, #fff); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#a3a3c2, #fff); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#a3a3c2, #fff); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#a3a3c2, #fff); /* Standard syntax */
 }
 
 nav li {
-  margin: 0 2rem;
+  font-size: 0.8rem;
+  margin: 0 1.5rem;
   display: inline-block;
 }
 
