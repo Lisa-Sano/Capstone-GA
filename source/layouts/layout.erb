@@ -61,14 +61,14 @@
                   <input class="radio" id="uniform" type="radio" name="starting-pop" value="uniform" checked>
                   <label class="radio-label" for="uniform">Uniform
                   <div class="tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
-                    <span class="tooltiptext">A uniform population emphasizes the importance of <em>mutation</em> as the driver for achieving an optimal solution</span>
+                    <span class="tooltiptext">Emphasizes the importance of <em>mutation</em> as the driver for achieving an optimal solution. Without it, the population will remain unchanged</span>
                   </div></label>
                 </td>
                 <td>
                   <input class="radio" id="random" type="radio" name="starting-pop" value="random">
                   <label class="radio-label" for="random">Random
                   <div class="tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
-                    <span class="tooltiptext">Good solutions may already exist in the population and will be selected for due to their increased <em>fitness advantage</em></span>
+                    <span class="tooltiptext">Emphasizes the importance of <em>fitness advantage</em>. Good solutions already exist and will be selected for (if fitness advantage > 0)</span>
                   </div></label>
                 </td>
               </tr>
@@ -117,7 +117,7 @@
                 <td>
                   <label for="fitness">Fitness advantage <span class="range">(0-1)</span>:</label>
                   <div class="tooltip"><i class="fa fa-question-circle" aria-hidden="true"></i>
-                    <span class="tooltiptext">Relative advantage given to individuals with higher fitness scores. At 0: any individual can mate. At 1: only fit individuals can mate.</span>
+                    <span class="tooltiptext">Relative advantage given to individuals with higher fitness scores.<br>At 0: any individual can mate, fit or unfit<br>At 1: high likelihood that only very fit will mate</span>
                   </div>
                 </td>
                 <td class="input-box">
@@ -140,7 +140,7 @@
 
     <p class="generation">
       <div class="tooltip gen-tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
-        <span class="tooltiptext">A new population of children, each created by 2 "fit" parents. The sim shows a snapshot of what the population looks like every 10 generations.</span>
+        <span class="tooltiptext">Generation: a new population of children, each created by 2 parents.<br>The simulation shows a snapshot of what the population looks like every 10 generations.</span>
       </div>
       Generation: <span class="gen">0</span>
     </p>
@@ -166,8 +166,8 @@
 
     <div class="list">
       <ul>
-        <li>Each <strong>individual</strong> in a population represents a <strong>candidate solution</strong> to a problem.<p>For example, if the problem is being able to camouflage with the environment, and the environment color has a value anywhere from 0 to 255, an individual may represent a <em>candidate solution</em> of any value within that range.</p></li>
-        <li>Individuals contain properties (called <strong>chromosomes</strong>) which are evaluated for their <strong>fitness</strong> (how well they solve the problem).<p>If the environment color value is 255, and an individual has a binary chromosome '11111111' (which evaluates to 255), it has a very high fitness score because it solves the problem of matching its environment very well. On the other hand, an individual with a chromosome '00001111' (which evaluates to 15) would have a very low fitness score.</p></li>
+        <li>Each <strong>individual</strong> in a population represents a <strong>candidate solution</strong> to a problem.<p class="little">For example, if the problem to be solved is "how can a moth camouflage with the environment?", and the environment color has a value from 0 to 255, an individual may represent a <em>candidate solution</em> of any value within that range.</p></li>
+        <li>Individuals contain properties (called <strong>chromosomes</strong>) which are evaluated for their <strong>fitness</strong> (how well they solve the problem).<p class="little">If the environment color value is 255, and an individual has a binary chromosome '11111111' (which evaluates to 255), it has a very high <em>fitness score</em> because it solves the problem (of matching its environment) very well. On the other hand, an individual with a chromosome '00001111' (which evaluates to 15) would be very visible in its environment and would have a low fitness score.</p></li>
         <li>A weighted sampling of two individuals is taken for reproduction based on their relative fitness scores, with more fit individuals more likely to be chosen.</li>
 
         <li><strong>Crossing over</strong> occurs between the binary chromosomes of the two individuals, producing a <strong>child</strong>.</li>
