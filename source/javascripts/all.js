@@ -46,7 +46,7 @@ $(document).ready(function() {
     }
   });
 
-  $('#reset, #myForm :input, .radio').on('click', function() {
+  $('#myForm :input, .radio').on('click change', function() {
     // get all the inputs into an array
     var $inputs = $('#myForm :input');
     var values = {};
@@ -62,10 +62,8 @@ $(document).ready(function() {
     resetSim();
   });
 
-  $('#myForm').keypress(function(e){
-    if (e.which == 13) { //Enter key pressed
-        $('#reset').click(); //Trigger reset button click event
-    }
+  $('#reset').on('click', function() {
+    resetSim();
   });
 
   $("#back-to-top").click(function (event){
