@@ -18,6 +18,16 @@
   </head>
 
   <body class="<%= page_classes %>">
+
+  <nav>
+    <ul>
+      <li><a href="#top" id="back-to-top">Back to Top</a></li>
+      <li><a href="#simulation" id="nav-sim">Simulation</a></li>
+      <li><a href="#moth-history" id="nav-history">Peppered Moth History</a></li>
+      <li><a href="#how-it-works" id="nav-how">How it works</a></li>
+    </ul>
+  </nav>
+
     <h1>Evolution in Color</h1>
     <h2 class="explanation">Modeling color changes of peppered moths, a classic example of evolution, using a genetic algorithm</h2>
 
@@ -123,7 +133,7 @@
       </div>
 
     
-    <div class="start-stop">
+    <div class="start-stop" id="simulation">
       <button id="start">Start</button>
       <button id="reset">Reset</button>
     </div>
@@ -137,17 +147,19 @@
 
 
   <div class="how-it-works">
-    <h2>Peppered moth evolution</h2>
-    <p>In the early-1800's, peppered moths lived on lichen-covered birch trees and were white with black speckles, making them blend in with their environment. An all-black variant of the peppered moth was virtually unknown.</p>
+    <div id="moth-history">
+      <h2>Peppered moth evolution</h2>
+      <p>In the early-1800's, peppered moths lived on lichen-covered birch trees and were white with black speckles, making them blend in with their environment. An all-black variant of the peppered moth was virtually unknown.</p>
 
-    <p>After the industrial revolution, soot was pumped out into the atmosphere, changing the moths' habitat by making the trees dark and bare. Moths that were previously well camouflaged became easy prey, and the black variant of the moth began to thrive. Within a century, most of the moths in the region were black.</p>
+      <p>After the industrial revolution, soot was pumped out into the atmosphere, changing the moths' habitat by making the trees dark and bare. Moths that were previously well camouflaged became easy prey, and the black variant of the moth began to thrive. Within a century, most of the moths in the region were black.</p>
 
-    <p>As environmental regulations became more strict and the air was cleaned up, the trees became light again&mdash;and the moth population once again changed. Within decades, white peppered moths were abundant, and black ones were rare.</p>
+      <p>As environmental regulations became more strict and the air was cleaned up, the trees became light again&mdash;and the moth population once again changed. Within decades, white peppered moths were abundant, and black ones were rare.</p>
 
-    <p class="explanation">This simulation demonstrates the effects of mutation and fitness advantage in achieving such rapid changes toward a highly camouflaged population.</p>
-    
-    <h2>How does the simulation work?</h2>
-    <h3>Genetic algorithms (GAs) find solutions to optimization problems by utilizing techniques inspired by evolutionary genetics, where stronger individuals outcompete weaker ones.</h3>
+      <p class="explanation">This simulation demonstrates the effects of mutation and fitness advantage in achieving such rapid changes toward a highly camouflaged population.</p>
+      
+      <h2 id="how-it-works">How does the simulation work?</h2>
+      <h3>Genetic algorithms (GAs) find solutions to optimization problems by utilizing techniques inspired by evolutionary genetics, where stronger individuals outcompete weaker ones.</h3>
+    </div>
 
     <div class="list">
       <ul>
