@@ -1,7 +1,7 @@
 var Chart = function() {
   this.margin = {top: 30, right: 40, bottom: 45, left: 60};
   this.width = 500 - this.margin.left - this.margin.right;
-  this.height = 400 - this.margin.top - this.margin.bottom;
+  this.height = 420 - this.margin.top - this.margin.bottom;
 }
 
 Chart.prototype.drawChart = function(starting_data, ending_data, environ) {

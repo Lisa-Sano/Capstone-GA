@@ -184,9 +184,11 @@ p {
 }
 
 .generation {
-  font-size: 1.2rem;
-  text-align: center;
-  margin-bottom: 0.7rem;
+  padding-bottom: 0.2rem;
+}
+
+.below-gen {
+  padding-bottom: 0.1rem;
 }
 
 .population {
@@ -471,4 +473,8 @@ nav {
 nav li {
   margin: 0 2rem;
   display: inline-block;
+}
+
+.main-graphic-container {
+  vertical-align: top;
 }

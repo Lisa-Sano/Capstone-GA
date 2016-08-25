@@ -50,87 +50,87 @@
       <div id="expand">
         <section>
 
-    <div class="control">
-      <form id="myForm">
-      <table class="radio-table">
-        <tr>
-          <td>
-            <span class="population">Population:</span>
-          </td>
-          <td>
-            <input class="radio" id="uniform" type="radio" name="starting-pop" value="uniform" checked>
-            <label class="radio-label" for="uniform">Uniform
-            <div class="tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
-              <span class="tooltiptext">A uniform population emphasizes the importance of <em>mutation</em> as the driver for achieving an optimal solution</span>
-            </div></label>
-          </td>
-          <td>
-            <input class="radio" id="random" type="radio" name="starting-pop" value="random">
-            <label class="radio-label" for="random">Random
-            <div class="tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
-              <span class="tooltiptext">Good solutions may already exist in the population and will be selected for due to their increased <em>fitness advantage</em></span>
-            </div></label>
-          </td>
-        </tr>
+          <div class="control">
+            <form id="myForm">
+            <table class="radio-table">
+              <tr>
+                <td>
+                  <span class="population">Population:</span>
+                </td>
+                <td>
+                  <input class="radio" id="uniform" type="radio" name="starting-pop" value="uniform" checked>
+                  <label class="radio-label" for="uniform">Uniform
+                  <div class="tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
+                    <span class="tooltiptext">A uniform population emphasizes the importance of <em>mutation</em> as the driver for achieving an optimal solution</span>
+                  </div></label>
+                </td>
+                <td>
+                  <input class="radio" id="random" type="radio" name="starting-pop" value="random">
+                  <label class="radio-label" for="random">Random
+                  <div class="tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
+                    <span class="tooltiptext">Good solutions may already exist in the population and will be selected for due to their increased <em>fitness advantage</em></span>
+                  </div></label>
+                </td>
+              </tr>
 
-        <tr class="radio-table-2">
-          <td>
-            <span class="color-category">Color mode:</span>
-          </td>
-          <td>
-            <input class="radio" id="black-white" type="radio" name="pop-color" value="black-white" checked>
-            <label class="radio-label" for="black-white">Black & White</label>
-          </td>
-          <td>
-            <input class="radio" id="color" type="radio" name="pop-color" value="color">
-            <label class="radio-label" for="color">Multi-color</label>
-          </td>
-        </tr>
-      </table>
+              <tr class="radio-table-2">
+                <td>
+                  <span class="color-category">Color mode:</span>
+                </td>
+                <td>
+                  <input class="radio" id="black-white" type="radio" name="pop-color" value="black-white" checked>
+                  <label class="radio-label" for="black-white">Black & White</label>
+                </td>
+                <td>
+                  <input class="radio" id="color" type="radio" name="pop-color" value="color">
+                  <label class="radio-label" for="color">Multi-color</label>
+                </td>
+              </tr>
+            </table>
 
-      <table>
-        <tr>
-          <td>
-            <label for="pop-size">Population size <span class="range">(100-1000)</span>:</label>
-          </td>
-          <td class="input-box">
-            <input id="pop-size" type="number" name="pop-size" min="100" max="1000" value="500" step="100">
-          </td>
-          <td>
-            <label for="num-gens"># of Generations <span class="range">(100-1000)</span>:</label>
-          </td>
-          <td class="input-box">
-            <input id="num-gens" type="number" name="num-gens" min="100" max="1000" value="300" step="100">
-          </td>
-        </tr>
+            <table>
+              <tr>
+                <td>
+                  <label for="pop-size">Population size <span class="range">(100-1000)</span>:</label>
+                </td>
+                <td class="input-box">
+                  <input id="pop-size" type="number" name="pop-size" min="100" max="1000" value="500" step="100">
+                </td>
+                <td>
+                  <label for="num-gens"># of Generations <span class="range">(100-1000)</span>:</label>
+                </td>
+                <td class="input-box">
+                  <input id="num-gens" type="number" name="num-gens" min="100" max="1000" value="300" step="100">
+                </td>
+              </tr>
 
-        <tr>
-          <td>
-            <label for="mut-rate">Mutation rate <span class="range">(0-0.5)</span>:</label>
-            <div class="tooltip"><i class="fa fa-question-circle" aria-hidden="true"></i>
-              <span class="tooltiptext">A rate of 0.0001 means that there's a 1 in 10,000 chance that a mutation will occur</span>
-            </div>
-          </td>
-          <td class="input-box">
-            <input id="mut-rate" type="number" name="mut-rate" min="0" max="0.5" value="0.0001" step="0.0001">
-          </td>
-          <td>
-            <label for="fitness">Fitness advantage <span class="range">(0-1)</span>:</label>
-            <div class="tooltip"><i class="fa fa-question-circle" aria-hidden="true"></i>
-              <span class="tooltiptext">Relative advantage given to individuals with higher fitness scores. At 0: any individual can mate. At 1: only fit individuals can mate.</span>
-            </div>
-          </td>
-          <td class="input-box">
-            <input id="fitness" type="number" name="fitness" min="0" max="1" value="0.5" step="0.1">
-          </td>
-        </tr>
+              <tr>
+                <td>
+                  <label for="mut-rate">Mutation rate <span class="range">(0-0.5)</span>:</label>
+                  <div class="tooltip"><i class="fa fa-question-circle" aria-hidden="true"></i>
+                    <span class="tooltiptext">A rate of 0.0001 means that there's a 1 in 10,000 chance that a mutation will occur</span>
+                  </div>
+                </td>
+                <td class="input-box">
+                  <input id="mut-rate" type="number" name="mut-rate" min="0" max="0.5" value="0.0001" step="0.0001">
+                </td>
+                <td>
+                  <label for="fitness">Fitness advantage <span class="range">(0-1)</span>:</label>
+                  <div class="tooltip"><i class="fa fa-question-circle" aria-hidden="true"></i>
+                    <span class="tooltiptext">Relative advantage given to individuals with higher fitness scores. At 0: any individual can mate. At 1: only fit individuals can mate.</span>
+                  </div>
+                </td>
+                <td class="input-box">
+                  <input id="fitness" type="number" name="fitness" min="0" max="1" value="0.5" step="0.1">
+                </td>
+              </tr>
 
-      </table>
-    </form>
+            </table>
+          </form>
+        </div>
+
+    </section>
   </div>
-
-          </section>
-      </div>
 
     
     <div class="start-stop" id="simulation">
@@ -142,7 +142,10 @@
       <div class="tooltip gen-tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
         <span class="tooltiptext">A new population of children, each created by 2 "fit" parents. The sim shows a snapshot of what the population looks like every 10 generations.</span>
       </div>
-      Generation: <span class="gen">0</span></p>
+      Generation: <span class="gen">0</span>
+    </p>
+    <p class="below-gen"></p>
+
     <%= yield %>
 
 
