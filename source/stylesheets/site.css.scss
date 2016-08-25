@@ -40,8 +40,8 @@ input {
   max-width: 100%;
 }
 
-label {
-  /*font-size: 24px;*/
+.num-inputs input {
+  margin-left: 0.5rem;
 }
 
 .y.axisLeft text {
@@ -447,6 +447,7 @@ label.expand::before {
   display: inline-block;
   margin: 0 auto;
   width: 400px;
+  padding: 1rem;
 }
 
 .caption {
@@ -493,4 +494,8 @@ nav li {
   margin: 1.2rem 1rem;
   display: inline-block;
   text-align: left;
+}
+
+.population, .color-category, .input-label {
+  font-size: 1.1rem;
 }

@@ -89,23 +89,23 @@
             </table>
 
         <div class="num-inputs">
-          <label for="pop-size">Population size <span class="range">(100-1000)</span>:</label>
+          <label class="input-label" for="pop-size">Population size <span class="range">(100-1000)</span>:</label>
           <input id="pop-size" type="number" name="pop-size" min="100" max="1000" value="500" step="100">
         </div>
         <div class="num-inputs">
-          <label for="num-gens"># of Generations <span class="range">(100-1000)</span>:</label>
+          <label class="input-label" for="num-gens"># of Generations <span class="range">(100-1000)</span>:</label>
           <input id="num-gens" type="number" name="num-gens" min="100" max="1000" value="300" step="100">
         </div>
         <br>
         <div class="num-inputs">
-          <label for="mut-rate">Mutation rate <span class="range">(0-0.5)</span>:</label>
+          <label class="input-label" for="mut-rate">Mutation rate <span class="range">(0-0.5)</span>:</label>
           <div class="tooltip"><i class="fa fa-question-circle" aria-hidden="true"></i>
             <span class="tooltiptext">A rate of 0.0001 means that there's a 1 in 10,000 chance that a mutation will occur</span>
           </div>
           <input id="mut-rate" type="number" name="mut-rate" min="0" max="0.5" value="0.0001" step="0.0001">
         </div>
         <div class="num-inputs">
-          <label for="fitness">Fitness advantage <span class="range">(0-1)</span>:</label>
+          <label class="input-label" for="fitness">Fitness advantage <span class="range">(0-1)</span>:</label>
           <div class="tooltip"><i class="fa fa-question-circle" aria-hidden="true"></i>
             <span class="tooltiptext">Relative advantage given to individuals with higher fitness scores.<br>At 0: any individual can mate, fit or unfit<br>At 1: high likelihood that only very fit will mate</span>
           </div>
