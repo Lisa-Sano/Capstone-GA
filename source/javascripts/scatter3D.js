@@ -145,7 +145,7 @@ ScatterPlot.prototype.initPlot = function() {
   function animate(renderer, camera, scene, scatterPlot) {
     renderer.clear();
     camera.lookAt(scene.position);
-    scatterPlot.rotation.y += 0.0005;
+    // scatterPlot.rotation.y += 0.00025;
     renderer.render(scene, camera);
     window.requestAnimationFrame(function () {
       animate(renderer, camera, scene, scatterPlot);
