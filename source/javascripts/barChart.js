@@ -1,13 +1,13 @@
 var Chart = function() {
   this.margin = {top: 30, right: 40, bottom: 45, left: 60};
-  this.width = 500 - this.margin.left - this.margin.right;
-  this.height = 420 - this.margin.top - this.margin.bottom;
+  this.width = 420 - this.margin.left - this.margin.right;
+  this.height = 400 - this.margin.top - this.margin.bottom;
 }
 
 Chart.prototype.drawChart = function(starting_data, ending_data, environ) {
   // INITIALIZE CHART and LEGEND 
   d3.select(".chart")
-    .attr("width", this.width + this.margin.left + this.margin.right)
+    .attr("width", '100%')
     .attr("height", this.height + this.margin.top + this.margin.bottom);
     
   d3.select(".legend")
@@ -50,7 +50,7 @@ Chart.prototype.drawChart = function(starting_data, ending_data, environ) {
   x.domain(starting_data.map(function(d) { return d.percent; }));
 
   // SET BAR WIDTH BASED ON DATA SET
-  var barWidth = (width - 100) / starting_data.length;
+  var barWidth = ((width - 100) / starting_data.length);
 
   var axisL = d3.select(".gchart").selectAll(".axisLeft").data([starting_data]);
   
@@ -62,7 +62,7 @@ Chart.prototype.drawChart = function(starting_data, ending_data, environ) {
     .append("text")
       .style("font-size","0.9rem")
       .attr("transform", "rotate(-90)")
-      .attr("y", -width/9)
+      .attr("y", -width/7)
       .attr("x", -height/3)
       .style("text-anchor", "end")
       .text("Frequency");
@@ -88,8 +88,8 @@ Chart.prototype.drawChart = function(starting_data, ending_data, environ) {
       .attr("class", function(d) { return "gradient percent" + d.percent})
       .attr("x", function(d) { return x(d.percent); })
       .attr("y", height)
-      .attr("height", "20")
-      .attr("width", "20");
+      .attr("height", "4.5%")
+      .attr("width", "3.75%");
 
   // SHOW ENVIRONMENT COLOR
   var envL = d3.select(".gchart").selectAll(".envLine").data([ending_data]);
@@ -100,7 +100,7 @@ Chart.prototype.drawChart = function(starting_data, ending_data, environ) {
       .attr("x", x(environ))
       .attr("y", "0")
       .attr("height", height - 2)
-      .attr("width", "20");
+      .attr("width", "3.7%");
 
   var t = d3.transition()
       .duration(250)
@@ -111,7 +111,7 @@ Chart.prototype.drawChart = function(starting_data, ending_data, environ) {
 
   bar1.enter().append("rect")
       .attr("class", "bar bar1")
-      .attr("width", barWidth/2)
+      .attr("width", '1.45%')
       .attr("x", function(d) { return x(d.percent) + 2; })
       .on('mouseover', tip.show)
       .on('mouseout', tip.hide)
@@ -123,7 +123,7 @@ Chart.prototype.drawChart = function(starting_data, ending_data, environ) {
 
   bar2.enter().append("rect")
       .attr("class", "bar bar2")
-      .attr("width", barWidth/2)
+      .attr("width", '1.45%')
       .attr("x", function(d) { return x(d.percent) + (barWidth/2) + 3; })
       .on('mouseover', tip.show)
       .on('mouseout', tip.hide)

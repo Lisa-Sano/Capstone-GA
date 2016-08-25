@@ -1,14 +1,14 @@
 var Graphic = function() {
   this.drawGraphic = function(pop_data, environ) {
     var margin = {top: 0, right: 15, bottom: 5, left: 5},
-        width = 450 - margin.left - margin.right,
-        height = 420 - margin.top - margin.bottom;
+        width = 400 - margin.left - margin.right,
+        height = 375 - margin.top - margin.bottom;
 
     var rgb = "rgb(" + environ[0] + "," + environ[1] + "," + environ[2] + ")";
 
 
     d3.select(".main-graphic")
-        .attr("width", width + margin.left + margin.right)
+        .attr("width", width + margin.top + margin.bottom)
         .attr("height", height + margin.top + margin.bottom);
       
     var mainGraphic = d3.select(".main-graphic").selectAll(".env").data([pop_data]);
@@ -42,6 +42,14 @@ var Graphic = function() {
         .attr("cx", function() { return Math.random() * (width - 5) + 5 } )
         .attr("cy", function() { return Math.random() * (height - 5) + 5 } )
         .attr("fill", function(d) { return "rgb(" + d[0] + "," + d[1] + "," + d[2] + ")"; });
+
+      // moths.enter().append("polygon")
+      //   .attr("class", "moth")
+      //   .attr("stroke", rgb)
+      // .merge(moths)
+      //   .attr("points", function(d) {
+          
+      //   });
 
   }
 }

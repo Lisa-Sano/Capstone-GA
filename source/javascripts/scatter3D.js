@@ -10,7 +10,7 @@ var ScatterPlot = function() {
                  .range([-50,50]);
   this.scatterPlot = new THREE.Object3D();
   this.renderer = new THREE.WebGLRenderer({ antialias: true });
-  this.camera = new THREE.PerspectiveCamera(45, 500 / 400, 1, 10000);
+  this.camera = new THREE.PerspectiveCamera(45, 400 / 375, 1, 10000);
   this.scene = new THREE.Scene();
 }
 
@@ -50,8 +50,8 @@ ScatterPlot.prototype.initPlot = function() {
     return mesh;
   }
 
-  var w = 500;
-  var h = 400;
+  var w = 400;
+  var h = 375;
   this.renderer.setSize(w, h);
   var my_container = document.getElementById('container3d');
   my_container.appendChild(this.renderer.domElement);
