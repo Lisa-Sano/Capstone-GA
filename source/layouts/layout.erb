@@ -20,21 +20,27 @@
   <body class="<%= page_classes %>">
     <h1>Evolution in Color</h1>
     <h2 class="explanation">Modeling color changes of peppered moths, a classic example of evolution, using a genetic algorithm</h2>
-    
-    <div class="start-stop">
-      <button id="start">Start</button>
-      <button id="reset">Reset</button>
+
+    <div class="how-to">
+      <p>Open the <span class="settings">Settings</span> panel below and choose:</p>
+      <div class="how-to-inner">
+      <ul>
+        <li><strong>Population type</strong><p class="how-to-explanation"><em>Uniform</em> emphasizes the effects of mutation, while <em>Random</em> emphasizes the effects of fitness advantage</p></li>
+        <li><strong>Color mode</strong><p class="how-to-explanation">Black & White is a simple case which optimizes only one trait (saturation), while multi-color is more complex and requires optimization of multiple traits</p></li>
+        <li><strong>Population size</strong> (100-1000) and <strong># of generations</strong> (100-1000)<p class="how-to-explanation">Smaller populations may take more generations to reach an optimal result.</p></li>
+        <li class="mut"><strong>Mutation rate</strong> (0-0.5)<p class="how-to-explanation">At 0, a Uniform population will always remain the same color, since no mutation will occur.</p><p class="how-to-explanation">At 0.5, a mutation will occur at every other index of the chromosome on average.</p></li>
+        <li><strong>Fitness advantage</strong> (0-1)<p class="how-to-explanation">At 0, there is no advantage to individuals being camouflaged (any can mate).</p><p class="how-to-explanation">At 1, the most "unfit" individuals (white in a black environment, for instance), will have no chance of mating.</p></li>
+      </ul>
+      </div>
+      <p>Then, <strong>start</strong> the simulation.</p>
     </div>
 
-    <p class="generation">
-      <div class="tooltip gen-tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
-        <span class="tooltiptext">A new population of children, each created by 2 "fit" parents. The sim shows a snapshot of what the population looks like every 10 generations.</span>
-      </div>
-      Generation: <span class="gen">0</span></p>
-    <%= yield %>
+    <input id="toggle" type="checkbox">
+      <label class="expand" for="toggle">Settings</label>
+      <div id="expand">
+        <section>
 
     <div class="control">
-      <h2>Simulation Settings</h2>
       <form id="myForm">
       <table class="radio-table">
         <tr>
@@ -52,7 +58,7 @@
             <input class="radio" id="random" type="radio" name="starting-pop" value="random">
             <label class="radio-label" for="random">Random
             <div class="tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
-              <span class="tooltiptext">A diverse population is inherently better at overcoming adversity&mdash;good solutions may already exist in the population and will be selected for due to their increased <em>fitness advantage</em></span>
+              <span class="tooltiptext">Good solutions may already exist in the population and will be selected for due to their increased <em>fitness advantage</em></span>
             </div></label>
           </td>
         </tr>
@@ -90,18 +96,18 @@
 
         <tr>
           <td>
-            <label for="mut-rate">Mutation rate <span class="range">(0-1)</span>:</label>
+            <label for="mut-rate">Mutation rate <span class="range">(0-0.5)</span>:</label>
             <div class="tooltip"><i class="fa fa-question-circle" aria-hidden="true"></i>
               <span class="tooltiptext">A rate of 0.0001 means that there's a 1 in 10,000 chance that a mutation will occur</span>
             </div>
           </td>
           <td class="input-box">
-            <input id="mut-rate" type="number" name="mut-rate" min="0" max="1" value="0.0001" step="0.0001">
+            <input id="mut-rate" type="number" name="mut-rate" min="0" max="0.5" value="0.0001" step="0.0001">
           </td>
           <td>
             <label for="fitness">Fitness advantage <span class="range">(0-1)</span>:</label>
             <div class="tooltip"><i class="fa fa-question-circle" aria-hidden="true"></i>
-              <span class="tooltiptext">Relative advantage given to individuals with higher fitness scores. Higher numbers correspond with an increased likelihood that fit individuals will be chosen for mating</span>
+              <span class="tooltiptext">Relative advantage given to individuals with higher fitness scores. At 0: any individual can mate. At 1: only fit individuals can mate.</span>
             </div>
           </td>
           <td class="input-box">
@@ -112,6 +118,23 @@
       </table>
     </form>
   </div>
+
+          </section>
+      </div>
+
+    
+    <div class="start-stop">
+      <button id="start">Start</button>
+      <button id="reset">Reset</button>
+    </div>
+
+    <p class="generation">
+      <div class="tooltip gen-tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
+        <span class="tooltiptext">A new population of children, each created by 2 "fit" parents. The sim shows a snapshot of what the population looks like every 10 generations.</span>
+      </div>
+      Generation: <span class="gen">0</span></p>
+    <%= yield %>
+
 
   <div class="how-it-works">
     <h2>Peppered moth evolution</h2>

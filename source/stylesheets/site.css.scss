@@ -7,6 +7,7 @@ body {
   font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 18px;
   line-height: 150%;
+  box-sizing: border-box;
 }
 
 h1 {
@@ -120,7 +121,7 @@ h3 {
 }
 
 .start-stop {
-  margin: 2rem 0;
+  margin: 2.5rem 0 2rem 0;
   display: block;
 }
 
@@ -271,20 +272,20 @@ footer {
 /* Tooltip text */
 .tooltip .tooltiptext {
     visibility: hidden;
-    font-size: 0.9rem;
-    width: 300px;
+    font-size: 0.8rem;
+    width: 400px;
     background-color: #555;
     color: #fff;
     text-align: center;
-    padding: 15px 10px;
+    padding: 7px 5px;
     border-radius: 6px;
 
     /* Position the tooltip text */
     position: absolute;
     z-index: 1;
-    bottom: 125%;
+    bottom: 85%;
     left: 50%;
-    margin-left: -158px;
+    margin-left: -205px;
 
     /* Fade in tooltip */
     opacity: 0;
@@ -319,7 +320,7 @@ footer {
 }
 
 .radio-table-2 td {
-  padding-top: 1.5rem;
+  padding-top: 1rem;
 }
 
 #container3d {
@@ -336,4 +337,112 @@ footer {
 
 .gen-tooltip {
   padding-right: 0.4rem;
+}
+
+.how-to {
+  margin: 0 auto;
+  width: 75%;
+  border: 0.5px solid #eee;
+  background-color: #eee;
+  font-size: 0.8rem;
+  text-align: left;
+}
+
+.how-to-inner {
+  -webkit-column-count: 2; /* Chrome, Safari, Opera */
+  -moz-column-count: 2; /* Firefox */
+  column-count: 2;
+
+  -webkit-column-gap: 30px; /* Chrome, Safari, Opera */
+  -moz-column-gap: 30px; /* Firefox */
+  column-gap: 30px;
+
+  margin-right: 2rem;
+}
+
+.how-to-inner li.mut {
+  padding-top: 2rem;
+}
+
+.how-to > p {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.how-to-explanation {
+  padding-left: 1rem;
+  margin: 0;
+}
+
+input#toggle {
+  display: none;
+  visibility: hidden;
+}
+
+label.expand {
+  display: block;
+  padding: 0.5em;
+  text-align: center;
+  margin-top: 2rem;
+  font-variant: small-caps;
+  border-bottom: 1px solid #CCC;
+  font-size: 1.8rem;
+  color: #002699;
+}
+
+label.expand:hover {
+  color: #000;
+}
+
+label.expand::before {
+  background-color: #4F5150;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  color: #FFFFFF;
+  content: "+";
+  display: inline-block;
+  font-weight: bold;
+  height: 20px;
+  line-height: 20px;
+  margin-right: 5px;
+  text-align: center;
+  width: 20px;
+}
+
+#expand {
+  height: 0px;
+  overflow: hidden;
+  transition: height 0.5s;
+}
+
+#toggle:checked ~ #expand {
+  height: 325px;
+}
+
+#toggle:checked ~ label::before {
+  content: "-";
+}
+
+.settings {
+  font-size: 20px;
+  font-variant: small-caps;
+  font-weight: bold;
+  margin: 0 0.2rem;
+}
+
+.how-it-works {
+  margin-top: 2rem;
+  border-top: 1px solid #CCC;
+}
+
+.main-graphic-container, .container-for-3d, .chart-container {
+  display: inline-block;
+}
+
+.caption {
+  font-size: 0.9rem;
+  color: #666;
+  text-align: center;
 }
