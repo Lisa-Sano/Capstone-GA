@@ -40,6 +40,10 @@ input {
   max-width: 100%;
 }
 
+input:invalid {
+  border: 1px solid red;
+}
+
 .num-inputs input {
   margin-left: 0.5rem;
 }
