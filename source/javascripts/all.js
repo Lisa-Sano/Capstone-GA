@@ -29,7 +29,7 @@ $(document).ready(function() {
   drawD3(starting, mySim.population, config);
 
   $("#start").click(function() {
-    running();
+    showStop();
 
     var n = 10;
     var i = 0;
@@ -44,13 +44,15 @@ $(document).ready(function() {
       } else {
         clearInterval(interval);
         canRun = true;
+        showStart();
       }
       i += 10;
     }, 250);
   });
 
   $('#stop').on('click', function() {
-    stopRunning();
+    canRun = false;
+    showStart();
   });
 
   $('#myForm :input, .radio').on('click change', function() {
@@ -185,14 +187,12 @@ $(document).ready(function() {
     });
   }
 
-  function running() {
-    canRun = true;
+  function showStop() {
     document.getElementById('start').style.display = "none";
     document.getElementById('stop').style.display = "inline-block";
   }
 
-  function stopRunning() {
-    canRun = false;
+  function showStart() {
     document.getElementById('start').style.display = "";
     document.getElementById('stop').style.display = "none";
   }
