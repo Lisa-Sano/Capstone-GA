@@ -32,25 +32,24 @@ var Graphic = function() {
     var moths = d3.select(".env").selectAll(".moth")
         .data(pop_data);
 
-      moths.enter().append("circle")
+      moths.enter().append("polygon")
         .attr("class", "moth")
-        .attr("r", "4")
         .attr("stroke", rgb)
-        // .attr("stroke", "#33ff33")
-        // .attr("stroke-width", "0.15")
       .merge(moths)
-        .attr("cx", function() { return Math.random() * (width - 5) + 5 } )
-        .attr("cy", function() { return Math.random() * (height - 5) + 5 } )
-        .attr("fill", function(d) { return "rgb(" + d[0] + "," + d[1] + "," + d[2] + ")"; });
-
-      // moths.enter().append("polygon")
-      //   .attr("class", "moth")
-      //   .attr("stroke", rgb)
-      // .merge(moths)
-      //   .attr("points", function(d) {
-          
-      //   });
-
+        .attr("fill", function(d) { return "rgb(" + d[0] + "," + d[1] + "," + d[2] + ")"; })
+        .attr("points", function() {
+            var new_x = Math.random() * ((width-10) - 10) + 10;
+            var new_y = Math.random() * ((width-10) - 10) + 10;
+            d3.select(this).attr("transform", function() { return "rotate(" + (Math.random() * (width - 5) + 5) + "," + new_x + "," + new_y + ")"});
+            return [
+              [new_x, new_y].join(','),
+              [new_x+6, new_y+9].join(','),
+              [new_x+0.5, new_y+9].join(','),
+              [new_x, new_y+6].join(','),
+              [new_x-0.5, new_y+9].join(','),
+              [new_x-6, new_y+9].join(',')
+            ].join(" ");
+        });
   }
 }
 
