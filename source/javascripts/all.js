@@ -29,6 +29,7 @@ $(document).ready(function() {
   drawD3(starting, mySim.population, config);
 
   $("#start").click(function() {
+    canRun = true;
     showStop();
 
     var n = 10;
@@ -72,8 +73,9 @@ $(document).ready(function() {
   });
 
   $('#reset').on('click', function() {
-    $('#stop').click();
+    canRun = false;
     resetSim();
+    showStart();
   });
 
   $("#back-to-top").click(function (event){
