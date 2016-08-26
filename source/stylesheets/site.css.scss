@@ -136,7 +136,7 @@ input {
 
 .start-stop button {
   min-width: 100px;
-  width: 15%;
+  width: 10%;
   font-size: 1.2rem;
 }
 
@@ -379,6 +379,7 @@ footer {
 
 .how-to-explanation {
   margin: 0;
+  color: #555;
 }
 
 input#toggle {
@@ -498,4 +499,8 @@ nav li {
 
 .population, .color-category, .input-label {
   font-size: 1.1rem;
+}
+
+#stop {
+  display: none;
 }

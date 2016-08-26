@@ -18,6 +18,7 @@ $(document).ready(function() {
   var graphic = new Graphic();
   var chart = new Chart();
   var scatter = new ScatterPlot();
+  var canRun = true;
 
   drawChromosomes();
   scatter.initPlot();
@@ -28,22 +29,28 @@ $(document).ready(function() {
   drawD3(starting, mySim.population, config);
 
   $("#start").click(function() {
+    running();
+
     var n = 10;
+    var i = 0;
     var text = $('.gen').text();
 
-
-    for (let i = 0; i < num_gens; i += n) {
-
-      // simulate 10 gens every 250ms
-      (function (n, i) {
-        setTimeout(function() {
+    // simulate 10 gens every 250ms
+    var interval = setInterval(function() {
+      if (i < num_gens && canRun) {
           mySim.runSimulation(n);
           drawD3(starting, mySim.population, config);
           $(".gen").html(parseInt(text) + i+10);
-        }, (i * 25));
-      }) (n, i);
+      } else {
+        clearInterval(interval);
+        canRun = true;
+      }
+      i += 10;
+    }, 250);
+  });
 
-    }
+  $('#stop').on('click', function() {
+    stopRunning();
   });
 
   $('#myForm :input, .radio').on('click change', function() {
@@ -176,6 +183,18 @@ $(document).ready(function() {
       }
       return a;
     });
+  }
+
+  function running() {
+    canRun = true;
+    document.getElementById('start').style.display = "none";
+    document.getElementById('stop').style.display = "inline-block";
+  }
+
+  function stopRunning() {
+    canRun = false;
+    document.getElementById('start').style.display = "";
+    document.getElementById('stop').style.display = "none";
   }
 });
 
