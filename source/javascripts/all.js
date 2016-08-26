@@ -29,26 +29,54 @@ $(document).ready(function() {
   drawD3(starting, mySim.population, config);
 
   $("#start").click(function() {
-    canRun = true;
-    showStop();
+    var formNumGens = $('#num-gens').val();
+    var formPopSize = $('#pop-size').val();
+    var FormMutRate = $('#mut-rate').val();
+    var formFitness = $('#fitness').val();
 
-    var n = 10;
-    var i = 0;
-    var text = $('.gen').text();
+    var form_valid = true;
 
-    // simulate 10 gens every 250ms
-    var interval = setInterval(function() {
-      if (i < num_gens && canRun) {
-          mySim.runSimulation(n);
-          drawD3(starting, mySim.population, config);
-          $(".gen").html(parseInt(text) + i+10);
-      } else {
-        clearInterval(interval);
-        canRun = true;
-        showStart();
-      }
-      i += 10;
-    }, 250);
+    if (formNumGens < 100 || formNumGens > 1000) {
+      form_valid = false;
+    }
+
+    if (formPopSize < 100 || formPopSize > 1000) {
+      form_valid = false;
+    }
+
+    if (FormMutRate < 0 || FormMutRate > 0.5) {
+      form_valid = false;
+    }
+
+    if (formFitness < 0 || formFitness > 1) {
+      form_valid = false;
+    }
+
+    if (form_valid) {
+      $('.above-gen').html('&nbsp;');
+      canRun = true;
+      showStop();
+
+      var n = 10;
+      var i = 0;
+      var text = $('.gen').text();
+
+      // simulate 10 gens every 250ms
+      var interval = setInterval(function() {
+        if (i < num_gens && canRun) {
+            mySim.runSimulation(n);
+            drawD3(starting, mySim.population, config);
+            $(".gen").html(parseInt(text) + i+10);
+        } else {
+          clearInterval(interval);
+          canRun = true;
+          showStart();
+        }
+        i += 10;
+      }, 250);
+    } else {
+      $('.above-gen').html("Invalid settings");
+    }
   });
 
   $('#stop').on('click', function() {
