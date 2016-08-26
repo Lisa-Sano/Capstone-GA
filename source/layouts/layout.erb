@@ -38,8 +38,8 @@
         <li><strong>Population type</strong><p class="how-to-explanation"><em>Uniform</em> emphasizes the effects of mutation, while <em>Random</em> emphasizes the effects of fitness advantage</p></li>
         <li><strong>Color mode</strong><p class="how-to-explanation">Black & White is a simple case which optimizes only one trait (saturation), while multi-color is more complex and requires optimization of multiple traits</p></li>
         <li><strong>Population size</strong> (100-1000) and <strong># of generations</strong> (100-1000)<p class="how-to-explanation">Smaller populations may take more generations to reach an optimal result.</p></li>
-        <li class="mut"><strong>Mutation rate</strong> (0-0.5)<p class="how-to-explanation">At 0, a Uniform population will always remain the same color, since no mutation will occur.</p><p class="how-to-explanation">At 0.5, a mutation will occur at every other index of the chromosome on average.</p></li>
-        <li><strong>Fitness advantage</strong> (0-1)<p class="how-to-explanation">At 0, there is no advantage to individuals being camouflaged (any can mate).</p><p class="how-to-explanation">At 1, the most "unfit" individuals (white in a black environment, for instance), will have no chance of mating.</p></li>
+        <li class="mut"><strong>Mutation rate</strong> (0-0.5)<p class="how-to-explanation">At 0, a Uniform population will always remain the same color, since no mutation will occur</p><p class="how-to-explanation">At 0.5, a mutation will occur at every other index of the chromosome on average</p></li>
+        <li><strong>Fitness advantage</strong> (0-1)<p class="how-to-explanation">At 0, there is no advantage to individuals being camouflaged (any can mate)</p><p class="how-to-explanation">At 1, the most "unfit" individuals (white in a black environment, for instance), will have no chance of mating</p></li>
       </ul>
       </div>
       <p>Then, <strong>start</strong> the simulation.</p>
@@ -109,7 +109,7 @@
           <div class="tooltip"><i class="fa fa-question-circle" aria-hidden="true"></i>
             <span class="tooltiptext">Relative advantage given to individuals with higher fitness scores.<br>At 0: any individual can mate, fit or unfit<br>At 1: high likelihood that only very fit will mate</span>
           </div>
-          <input id="fitness" type="number" name="fitness" min="0" max="1" value="0.2" step="0.1">
+          <input id="fitness" type="number" name="fitness" min="0" max="1" value="0.25" step="0.1">
         </div>
           </form>
         </div>
