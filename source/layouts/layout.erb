@@ -61,7 +61,7 @@
     </div>
 
     <div class="control">
-    <h2>Settings</h2>
+    <h2>Simulation Settings</h2>
     <form id="myForm">
     <table class="radio-table">
       <tr>
@@ -70,7 +70,7 @@
         </td>
         <td>
           <input class="radio" id="uniform" type="radio" name="starting-pop" value="uniform" checked>
-          <label class="radio-label" for="uniform">Uniform
+          <label class="radio-label radio-middle" for="uniform">Uniform
           <div class="tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
             <span class="tooltiptext">Emphasizes the importance of <em>mutation</em> as the driver for achieving an optimal solution, since no good solutions already exist in the population</span>
           </div></label>
@@ -90,7 +90,7 @@
         </td>
         <td>
           <input class="radio" id="black-white" type="radio" name="pop-color" value="black-white" checked>
-          <label class="radio-label" for="black-white">Black & White
+          <label class="radio-label radio-middle" for="black-white">Black & White
           <div class="tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
             <span class="tooltiptext">A simple case which optimizes only one trait (saturation)</span>
           </div></label>
@@ -114,14 +114,14 @@
       <input id="num-gens" type="number" name="num-gens" min="100" max="1000" value="300" step="100">
     </div>
     <br>
-    <div class="num-inputs">
+    <div class="num-inputs num-inputs-2">
       <label class="input-label" for="mut-rate">Mutation rate <span class="range">(0-0.5)</span>:</label>
       <div class="tooltip"><i class="fa fa-question-circle" aria-hidden="true"></i>
         <span class="tooltiptext">A rate of 0.0001 means that there's a 1 in 10,000 chance that a mutation will occur. At a rate of 0, a Uniform population will never change color</span>
       </div>
       <input id="mut-rate" type="number" name="mut-rate" min="0" max="0.5" value="0.0002" step="0.0001">
     </div>
-    <div class="num-inputs">
+    <div class="num-inputs num-inputs-2">
       <label class="input-label" for="fitness">Fitness advantage <span class="range">(0-1)</span>:</label>
       <div class="tooltip"><i class="fa fa-question-circle" aria-hidden="true"></i>
         <span class="tooltiptext">Relative advantage given to individuals with higher fitness scores.<br>At 0, no advantage to being camouflaged (anyone can mate)<br>At 1, the most unfit individuals (white in a black environment, for instance) will have no chance of mating</span>

@@ -144,8 +144,9 @@ input:invalid {
 }
 
 .control {
-  border: 1px solid black;
+  /*border: 1px solid black;*/
   background-color: #eee;
+  padding-top: 1rem;
   margin: 3rem auto;
   width: 80%;
 }
@@ -208,8 +209,8 @@ p {
   padding-right: 2rem;
 }
 
-.radio-label {
-  padding-right: 1.5rem;
+.radio-middle {
+  padding-right: 2rem;
 }
 
 .how-it-works, #moth-history {
@@ -366,8 +367,6 @@ footer {
   -webkit-column-gap: 30px; /* Chrome, Safari, Opera */
   -moz-column-gap: 30px; /* Firefox */
   column-gap: 30px;
-
-  /*margin-right: 2rem;*/
 }
 
 .how-to-inner li.mut {
@@ -452,6 +451,11 @@ nav li {
   margin: 1.2rem 1rem;
   display: inline-block;
   text-align: left;
+}
+
+.num-inputs-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
 }
 
 .population, .color-category, .input-label {
