@@ -63,12 +63,6 @@ test.describe('Evolution in Color', function() {
 
   test.describe('Chart displays', function() {
     it('bar chart should be hidden when the color radio button is active', function(done) {
-      driver.findElement(webdriver.By.id("settings-toggle")).click();
-
-      driver.wait(function() {
-        return driver.findElement(webdriver.By.id("color")).isDisplayed();
-      }, 1000);
-
       driver.findElement(webdriver.By.id("color")).click();
 
       driver.wait(function() {
@@ -83,12 +77,6 @@ test.describe('Evolution in Color', function() {
     });
 
     it('3D scatter plot should be visible when the color radio button is active', function(done) {
-      driver.findElement(webdriver.By.id("settings-toggle")).click();
-
-      driver.wait(function() {
-        return driver.findElement(webdriver.By.id("color")).isDisplayed();
-      }, 1000);
-
       driver.findElement(webdriver.By.id("color")).click();
 
       driver.wait(function() {
@@ -102,12 +90,6 @@ test.describe('Evolution in Color', function() {
     });
 
     it('bar chart should be visible when the black-white radio button is active', function(done) {
-      driver.findElement(webdriver.By.id("settings-toggle")).click();
-
-      driver.wait(function() {
-        return driver.findElement(webdriver.By.id("black-white")).isDisplayed();
-      }, 1000);
-
       driver.findElement(webdriver.By.id("black-white")).click();
 
       driver.wait(function() {
@@ -119,12 +101,6 @@ test.describe('Evolution in Color', function() {
     });
 
     it('3D scatter plot should be hidden when the black-white radio button is active', function(done) {
-      driver.findElement(webdriver.By.id("settings-toggle")).click();
-
-      driver.wait(function() {
-        return driver.findElement(webdriver.By.id("black-white")).isDisplayed();
-      }, 1000);
-
       driver.findElement(webdriver.By.id("black-white")).click();
 
       driver.wait(function() {
@@ -149,13 +125,6 @@ test.describe('Evolution in Color', function() {
     });
 
     it('should increase when a simulation is started', function(done) {
-      driver.findElement(webdriver.By.id("settings-toggle")).click();
-
-      driver.wait(function() {
-        return driver.findElement(webdriver.By.id("num-gens")).isDisplayed();
-      }, 1000);
-
-      driver.findElement(webdriver.By.id('num-gens')).sendKeys('10');
       driver.findElement(webdriver.By.id('start')).click();
 
       driver.wait(function() {
