@@ -1,6 +1,6 @@
 var Graphic = function() {
   this.drawGraphic = function(pop_data, environ) {
-    var margin = {top: 0, right: 15, bottom: 5, left: 5},
+    var margin = {top: 0, right: 5, bottom: 5, left: 5},
         width = 400 - margin.left - margin.right,
         height = 375 - margin.top - margin.bottom;
 
@@ -8,7 +8,7 @@ var Graphic = function() {
 
 
     d3.select(".main-graphic")
-        .attr("width", width + margin.top + margin.bottom)
+        .attr("width", width + margin.right + margin.left)
         .attr("height", height + margin.top + margin.bottom);
       
     var mainGraphic = d3.select(".main-graphic").selectAll(".env").data([pop_data]);
@@ -39,7 +39,7 @@ var Graphic = function() {
         .attr("fill", function(d) { return "rgb(" + d[0] + "," + d[1] + "," + d[2] + ")"; })
         .attr("points", function() {
             var new_x = Math.random() * ((width-10) - 10) + 10;
-            var new_y = Math.random() * ((width-10) - 10) + 10;
+            var new_y = Math.random() * ((height-10) - 10) + 10;
             d3.select(this).attr("transform", function() { return "rotate(" + (Math.random() * (width - 5) + 5) + "," + new_x + "," + new_y + ")"});
             return [
               [new_x, new_y].join(','),
