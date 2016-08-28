@@ -134,7 +134,6 @@ input:invalid {
 }
 
 .start-stop {
-  margin-top: 2.5rem;
   display: block;
 }
 
@@ -213,7 +212,7 @@ p {
   padding-right: 1.5rem;
 }
 
-.how-it-works {
+.how-it-works, #moth-history {
   margin: 0 auto 2rem auto;
   width: 70%;
 }
@@ -336,7 +335,10 @@ footer {
 }
 
 .explanation {
+  margin-top: 2rem;
   font-style: italic;
+  text-align: center;
+  color: #5c5c8a;
 }
 
 .divider {
@@ -365,7 +367,7 @@ footer {
   -moz-column-gap: 30px; /* Firefox */
   column-gap: 30px;
 
-  margin-right: 2rem;
+  /*margin-right: 2rem;*/
 }
 
 .how-to-inner li.mut {
@@ -378,60 +380,13 @@ footer {
   margin-bottom: 0.5rem;
 }
 
+.how-to li {
+  list-style: none;
+}
+
 .how-to-explanation {
   margin: 0;
   color: #555;
-}
-
-input#toggle {
-  display: none;
-  visibility: hidden;
-}
-
-label.expand {
-  display: block;
-  padding: 0.5em;
-  text-align: center;
-  margin-top: 2rem;
-  font-variant: small-caps;
-  border-bottom: 1px solid #CCC;
-  font-size: 1.8rem;
-  color: #002699;
-}
-
-label.expand:hover {
-  color: #000;
-  cursor: pointer;
-}
-
-label.expand::before {
-  background-color: #4F5150;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
-  color: #FFFFFF;
-  content: "+";
-  display: inline-block;
-  font-weight: bold;
-  height: 20px;
-  line-height: 20px;
-  margin-right: 5px;
-  text-align: center;
-  width: 20px;
-}
-
-#expand {
-  max-height: 0px;
-  overflow: hidden;
-  transition: max-height 0.5s;
-}
-
-#toggle:checked ~ #expand {
-  max-height: 750px;
-}
-
-#toggle:checked ~ label::before {
-  content: "-";
 }
 
 .settings {
@@ -441,15 +396,14 @@ label.expand::before {
   margin: 0 0.2rem;
 }
 
-.how-it-works {
+.how-it-works, #moth-history {
   margin-top: 2rem;
-  border-top: 1px solid #CCC;
 }
 
 .main-graphic-container, .container-for-3d, .chart-container {
   display: inline-block;
   margin: 0 auto;
-  width: 400px;
+  width: 410px;
   padding: 1rem;
 }
 
@@ -513,4 +467,21 @@ nav li {
   color: red;
   text-align: center;
   margin: 0;
+}
+
+#moth-history {
+  margin-bottom: 4rem;
+}
+
+#moth-h2 {
+  margin-bottom: 0;
+}
+
+#take-me-there {
+  font-size: 0.7rem;
+}
+
+.extending {
+  padding-top: 3rem;
+  border-top: 0.5px solid #ccc;
 }

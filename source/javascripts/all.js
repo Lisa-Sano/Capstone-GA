@@ -113,10 +113,10 @@ $(document).ready(function() {
       }, 300);
   });
 
-  $("#nav-sim").click(function (event){
+  $("#nav-sim, #take-me-there").click(function (event){
       event.preventDefault();
       $('html, body').animate({
-          scrollTop: $("#simulation").offset().top - 90
+          scrollTop: $("#all-visualizations").offset().top - 90
       }, 300);
   });
 
@@ -138,6 +138,7 @@ $(document).ready(function() {
     $(".gchart").remove();
     $(".env").remove();
     $(".gen").html('0');
+    $('.above-gen').html('&nbsp;');
 
     initializeSim();
 

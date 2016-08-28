@@ -21,9 +21,9 @@
 
   <nav>
     <ul>
-      <li><a href="#top" id="back-to-top">Back to Top</a></li>
-      <li><a href="#simulation" id="nav-sim">Simulation</a></li>
+      <!-- <li><a href="#top" id="back-to-top">Back to Top</a></li> -->
       <li><a href="#moth-history" id="nav-history">Peppered Moth History</a></li>
+      <li><a href="#all-visualizations" id="nav-sim">Simulation</a></li>
       <li><a href="#how-it-works" id="nav-how">How it works</a></li>
     </ul>
   </nav>
@@ -31,8 +31,107 @@
     <h1>Evolution in Color</h1>
     <h2 class="explanation">Modeling color changes of peppered moths, a classic example of evolution, using a genetic algorithm</h2>
 
-    <div class="how-to">
-      <p>Open the <span class="settings">Settings</span> panel below and choose:</p>
+    <div id="moth-history">
+      <!-- <h2 id="moth-h2">A brief history...</h2> -->
+      <!-- <a href="#all-visualizations" id="take-me-there">(Skip)</a> -->
+      <p>In the early-1800's, peppered moths lived on lichen-covered birch trees and were white with black speckles, making them blend in with their environment. An all-black variant of the peppered moth was virtually unknown.</p>
+
+      <p>After the industrial revolution, soot was pumped out into the atmosphere, changing the moths' habitat by making the trees dark and bare. Moths that were previously well camouflaged became easy prey, and the black variant of the moth began to thrive. Within a century, most of the moths in the region were black.</p>
+
+      <p>As environmental regulations became more strict and the air was cleaned up, the trees became light again&mdash;and the moth population once again changed. Within decades, white peppered moths were abundant, and black ones were rare.</p>
+
+      <p class="explanation">This simulation demonstrates the effects of mutation and fitness advantage in achieving such rapid changes toward a highly camouflaged population.</p>
+    </div>
+
+    <%= yield %>
+
+
+    <p class="generation">
+      <div class="tooltip gen-tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
+        <span class="tooltiptext">Generation: a new population of children, each created by 2 parents.<br>The simulation shows a snapshot of what the population looks like every 10 generations.</span>
+      </div>
+      Generation: <span class="gen">0</span>
+    </p>
+    <p class="above-gen">&nbsp;</p>
+    
+    <div class="start-stop" id="simulation">
+      <button id="start">Start</button>
+      <button id="stop">Stop</button>
+      <button id="reset">Reset</button>
+    </div>
+
+    <div class="control">
+    <h2>Settings</h2>
+    <form id="myForm">
+    <table class="radio-table">
+      <tr>
+        <td>
+          <span class="population">Population:</span>
+        </td>
+        <td>
+          <input class="radio" id="uniform" type="radio" name="starting-pop" value="uniform" checked>
+          <label class="radio-label" for="uniform">Uniform
+          <div class="tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
+            <span class="tooltiptext">Emphasizes the importance of <em>mutation</em> as the driver for achieving an optimal solution, since no good solutions already exist in the population</span>
+          </div></label>
+        </td>
+        <td>
+          <input class="radio" id="random" type="radio" name="starting-pop" value="random">
+          <label class="radio-label" for="random">Random
+          <div class="tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
+            <span class="tooltiptext">Emphasizes the importance of <em>fitness advantage</em>. Good solutions already exist and will be selected for (if fitness advantage > 0)</span>
+          </div></label>
+        </td>
+      </tr>
+
+      <tr class="radio-table-2">
+        <td>
+          <span class="color-category">Color mode:</span>
+        </td>
+        <td>
+          <input class="radio" id="black-white" type="radio" name="pop-color" value="black-white" checked>
+          <label class="radio-label" for="black-white">Black & White
+          <div class="tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
+            <span class="tooltiptext">A simple case which optimizes only one trait (saturation)</span>
+          </div></label>
+        </td>
+        <td>
+          <input class="radio" id="color" type="radio" name="pop-color" value="color">
+          <label class="radio-label" for="color">Multi-color
+          <div class="tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
+            <span class="tooltiptext">A more complex case; requires optimization of multiple traits (red, green, and blue values)</span>
+          </div></label>
+        </td>
+      </tr>
+    </table>
+
+    <div class="num-inputs">
+      <label class="input-label" for="pop-size">Population size <span class="range">(100-1000)</span>:</label>
+      <input id="pop-size" type="number" name="pop-size" min="100" max="1000" value="500" step="100">
+    </div>
+    <div class="num-inputs">
+      <label class="input-label" for="num-gens"># of Generations <span class="range">(100-1000)</span>:</label>
+      <input id="num-gens" type="number" name="num-gens" min="100" max="1000" value="300" step="100">
+    </div>
+    <br>
+    <div class="num-inputs">
+      <label class="input-label" for="mut-rate">Mutation rate <span class="range">(0-0.5)</span>:</label>
+      <div class="tooltip"><i class="fa fa-question-circle" aria-hidden="true"></i>
+        <span class="tooltiptext">A rate of 0.0001 means that there's a 1 in 10,000 chance that a mutation will occur. At a rate of 0, a Uniform population will never change color</span>
+      </div>
+      <input id="mut-rate" type="number" name="mut-rate" min="0" max="0.5" value="0.0002" step="0.0001">
+    </div>
+    <div class="num-inputs">
+      <label class="input-label" for="fitness">Fitness advantage <span class="range">(0-1)</span>:</label>
+      <div class="tooltip"><i class="fa fa-question-circle" aria-hidden="true"></i>
+        <span class="tooltiptext">Relative advantage given to individuals with higher fitness scores.<br>At 0, no advantage to being camouflaged (anyone can mate)<br>At 1, the most unfit individuals (white in a black environment, for instance) will have no chance of mating</span>
+      </div>
+      <input id="fitness" type="number" name="fitness" min="0" max="1" value="0.25" step="0.05">
+    </div>
+  </form>
+
+
+<!--     <div class="how-to">
       <div class="how-to-inner">
       <ul>
         <li><strong>Population type</strong><p class="how-to-explanation"><em>Uniform</em> emphasizes the effects of mutation, while <em>Random</em> emphasizes the effects of fitness advantage</p></li>
@@ -42,115 +141,14 @@
         <li><strong>Fitness advantage</strong> (0-1)<p class="how-to-explanation">At 0, there is no advantage to individuals being camouflaged (any can mate)</p><p class="how-to-explanation">At 1, the most "unfit" individuals (white in a black environment, for instance), will have no chance of mating</p></li>
       </ul>
       </div>
-      <p>Then, <strong>start</strong> the simulation.</p>
-    </div>
-
-    <input id="toggle" type="checkbox">
-      <label class="expand" for="toggle" id="settings-toggle">Settings</label>
-      <div id="expand">
-        <section>
-
-          <div class="control">
-            <form id="myForm">
-            <table class="radio-table">
-              <tr>
-                <td>
-                  <span class="population">Population:</span>
-                </td>
-                <td>
-                  <input class="radio" id="uniform" type="radio" name="starting-pop" value="uniform" checked>
-                  <label class="radio-label" for="uniform">Uniform
-                  <div class="tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
-                    <span class="tooltiptext">Emphasizes the importance of <em>mutation</em> as the driver for achieving an optimal solution. Without it, the population will remain unchanged</span>
-                  </div></label>
-                </td>
-                <td>
-                  <input class="radio" id="random" type="radio" name="starting-pop" value="random">
-                  <label class="radio-label" for="random">Random
-                  <div class="tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
-                    <span class="tooltiptext">Emphasizes the importance of <em>fitness advantage</em>. Good solutions already exist and will be selected for (if fitness advantage > 0)</span>
-                  </div></label>
-                </td>
-              </tr>
-
-              <tr class="radio-table-2">
-                <td>
-                  <span class="color-category">Color mode:</span>
-                </td>
-                <td>
-                  <input class="radio" id="black-white" type="radio" name="pop-color" value="black-white" checked>
-                  <label class="radio-label" for="black-white">Black & White</label>
-                </td>
-                <td>
-                  <input class="radio" id="color" type="radio" name="pop-color" value="color">
-                  <label class="radio-label" for="color">Multi-color</label>
-                </td>
-              </tr>
-            </table>
-
-        <div class="num-inputs">
-          <label class="input-label" for="pop-size">Population size <span class="range">(100-1000)</span>:</label>
-          <input id="pop-size" type="number" name="pop-size" min="100" max="1000" value="500" step="100">
-        </div>
-        <div class="num-inputs">
-          <label class="input-label" for="num-gens"># of Generations <span class="range">(100-1000)</span>:</label>
-          <input id="num-gens" type="number" name="num-gens" min="100" max="1000" value="300" step="100">
-        </div>
-        <br>
-        <div class="num-inputs">
-          <label class="input-label" for="mut-rate">Mutation rate <span class="range">(0-0.5)</span>:</label>
-          <div class="tooltip"><i class="fa fa-question-circle" aria-hidden="true"></i>
-            <span class="tooltiptext">A rate of 0.0001 means that there's a 1 in 10,000 chance that a mutation will occur</span>
-          </div>
-          <input id="mut-rate" type="number" name="mut-rate" min="0" max="0.5" value="0.0002" step="0.0001">
-        </div>
-        <div class="num-inputs">
-          <label class="input-label" for="fitness">Fitness advantage <span class="range">(0-1)</span>:</label>
-          <div class="tooltip"><i class="fa fa-question-circle" aria-hidden="true"></i>
-            <span class="tooltiptext">Relative advantage given to individuals with higher fitness scores.<br>At 0: any individual can mate, fit or unfit<br>At 1: high likelihood that only very fit will mate</span>
-          </div>
-          <input id="fitness" type="number" name="fitness" min="0" max="1" value="0.25" step="0.05">
-        </div>
-          </form>
-        </div>
-
-        </section>
-      </div>
-
-    
-    <div class="start-stop" id="simulation">
-      <button id="start">Start</button>
-      <button id="stop">Stop</button>
-      <button id="reset">Reset</button>
-    </div>
-
-    <p class="above-gen">&nbsp;</p>
-
-    <p class="generation">
-      <div class="tooltip gen-tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
-        <span class="tooltiptext">Generation: a new population of children, each created by 2 parents.<br>The simulation shows a snapshot of what the population looks like every 10 generations.</span>
-      </div>
-      Generation: <span class="gen">0</span>
-    </p>
-    <p class="below-gen"></p>
-
-    <%= yield %>
-
+    </div> -->
+  </div>
 
   <div class="how-it-works">
-    <div id="moth-history">
-      <h2>Peppered moth evolution</h2>
-      <p>In the early-1800's, peppered moths lived on lichen-covered birch trees and were white with black speckles, making them blend in with their environment. An all-black variant of the peppered moth was virtually unknown.</p>
 
-      <p>After the industrial revolution, soot was pumped out into the atmosphere, changing the moths' habitat by making the trees dark and bare. Moths that were previously well camouflaged became easy prey, and the black variant of the moth began to thrive. Within a century, most of the moths in the region were black.</p>
-
-      <p>As environmental regulations became more strict and the air was cleaned up, the trees became light again&mdash;and the moth population once again changed. Within decades, white peppered moths were abundant, and black ones were rare.</p>
-
-      <p class="explanation">This simulation demonstrates the effects of mutation and fitness advantage in achieving such rapid changes toward a highly camouflaged population.</p>
       
       <h2 id="how-it-works">How does the simulation work?</h2>
       <h3>Genetic algorithms (GAs) find solutions to optimization problems by utilizing techniques inspired by evolutionary genetics, where stronger individuals outcompete weaker ones.</h3>
-    </div>
 
     <div class="list">
       <ul>
@@ -170,7 +168,7 @@
       </ul>
     </div>
 
-    <h2>Extending the model&mdash;adding color!</h2>
+    <h2 class="extending">Extending the model&mdash;adding color!</h2>
     <p>The GA is able to camouflage black and white moths easily under the right conditions&mdash;but what about a more complex system, such as individuals with multiple chromosomes, all of which must be optimized?</p>
 
     <p>If we introduce color into the model, we have individuals with 3 chromosomes representing red, green, and blue (and an environment which also has red, green, and blue values).  Combinations of these three colors can produce a wide spectrum of results.</p>
