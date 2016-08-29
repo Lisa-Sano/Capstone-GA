@@ -135,6 +135,7 @@ input:invalid {
 
 .start-stop {
   display: block;
+  margin-bottom: 3rem;
 }
 
 .start-stop button {
@@ -350,13 +351,42 @@ footer {
   padding-right: 0.4rem;
 }
 
-.how-to {
+.scenarios h2 {
+  text-align: center;
+  font-size: 1.3rem;
+  margin-top: 1.2rem;
+}
+
+.scenarios {
   margin: 0 auto;
-  width: 75%;
-  border: 0.5px solid #eee;
-  background-color: #eee;
+  width: 80%;
+  /*border: 0.5px solid #eee;*/
+  /*background-color: #eee;*/
   font-size: 0.8rem;
-  text-align: left;
+}
+
+.scenarios button {
+  margin: 1rem auto;
+  display: block;
+  width: 40%;
+}
+
+.scenarios li {
+  list-style: none;
+}
+
+.scenarios ul {
+  padding-left: 0;
+  margin: 0 auto;
+}
+
+.scenario-button .tooltip .tooltiptext {
+  padding: 0.7rem;
+  text-align: justify;
+}
+
+.scenario-description {
+  margin-top: 0;
 }
 
 .how-to-inner {
@@ -377,10 +407,6 @@ footer {
   text-align: center;
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
-}
-
-.how-to li {
-  list-style: none;
 }
 
 .how-to-explanation {

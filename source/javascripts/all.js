@@ -19,6 +19,12 @@ $(document).ready(function() {
   var chart = new Chart();
   var scatter = new ScatterPlot();
   var canRun = true;
+  var formNumGens;
+  var formPopSize;
+  var formMutRate;
+  var formFitness;
+
+  selectButton($('#scenario-a'));
 
   drawChromosomes();
   scatter.initPlot();
@@ -28,11 +34,71 @@ $(document).ready(function() {
   // render starting population in the SVG/canvas
   drawD3(starting, mySim.population, config);
 
+  $('#scenario-a').click(function() {
+    unselectButtons();
+    selectButton(this);
+    $('#uniform').prop("checked", true)
+    $('#black-white').prop("checked", true)
+    formNumGens = $('#num-gens').val(300);
+    formPopSize = $('#pop-size').val(500);
+    formMutRate = $('#mut-rate').val(0.0002);
+    formFitness = $('#fitness').val(0.2);
+    $('#reset').click();
+  });
+
+  $('#scenario-b').click(function() {
+    unselectButtons();
+    selectButton(this);
+    $('#uniform').prop("checked", true)
+    $('#black-white').prop("checked", true)
+    formNumGens = $('#num-gens').val(200);
+    formPopSize = $('#pop-size').val(500);
+    formMutRate = $('#mut-rate').val(0);
+    formFitness = $('#fitness').val(0.2);
+    $('#reset').click();
+  });
+
+  $('#scenario-c').click(function() {
+    unselectButtons();
+    selectButton(this);
+    $('#random').prop("checked", true)
+    $('#black-white').prop("checked", true)
+    formNumGens = $('#num-gens').val(300);
+    formPopSize = $('#pop-size').val(500);
+    formMutRate = $('#mut-rate').val(0.0001);
+    formFitness = $('#fitness').val(0.35);
+    $('#reset').click();
+  });
+
+  $('#scenario-d').click(function() {
+    unselectButtons();
+    selectButton(this);
+    $('#random').prop("checked", true)
+    $('#color').prop("checked", true)
+    formNumGens = $('#num-gens').val(400);
+    formPopSize = $('#pop-size').val(500);
+    formMutRate = $('#mut-rate').val(0.0001);
+    formFitness = $('#fitness').val(0.25);
+    $('#reset').click();
+  });
+
+  $('#scenario-e').click(function() {
+    unselectButtons();
+    selectButton(this);
+    $('#random').prop("checked", true)
+    $('#color').prop("checked", true)
+    formNumGens = $('#num-gens').val(300);
+    formPopSize = $('#pop-size').val(500);
+    formMutRate = $('#mut-rate').val(0.0001);
+    formFitness = $('#fitness').val(0);
+    $('#reset').click();
+  });
+
   $("#start").click(function() {
-    var formNumGens = $('#num-gens').val();
-    var formPopSize = $('#pop-size').val();
-    var FormMutRate = $('#mut-rate').val();
-    var formFitness = $('#fitness').val();
+    formNumGens = $('#num-gens').val();
+    formPopSize = $('#pop-size').val();
+    formMutRate = $('#mut-rate').val();
+    formFitness = $('#fitness').val();
 
     var form_valid = true;
 
@@ -44,7 +110,7 @@ $(document).ready(function() {
       form_valid = false;
     }
 
-    if (FormMutRate < 0 || FormMutRate > 0.5) {
+    if (formMutRate < 0 || formMutRate > 0.5) {
       form_valid = false;
     }
 
@@ -85,23 +151,13 @@ $(document).ready(function() {
   });
 
   $('#myForm :input, .radio').on('click change', function() {
-    // get all the inputs into an array
-    var $inputs = $('#myForm :input');
-    var values = {};
-
-    // adjust settings according to the form data
-    $inputs.each(function() {
-        $(this.name).val($(this).val());
-    });
-
-    // set the number of generations to form input value
-    num_gens = $('#num-gens').val();
-
+    getInputs();
     resetSim();
   });
 
   $('#reset').on('click', function() {
     canRun = false;
+    getInputs();
     resetSim();
     showStart();
   });
@@ -219,6 +275,20 @@ $(document).ready(function() {
     });
   }
 
+  function getInputs() {
+    // get all the inputs into an array
+    var $inputs = $('#myForm :input');
+    var values = {};
+
+    // adjust settings according to the form data
+    $inputs.each(function() {
+        $(this.name).val($(this).val());
+    });
+
+    // set the number of generations to form input value
+    num_gens = $('#num-gens').val();
+  }
+
   function showStop() {
     document.getElementById('start').style.display = "none";
     document.getElementById('stop').style.display = "inline-block";
@@ -227,6 +297,17 @@ $(document).ready(function() {
   function showStart() {
     document.getElementById('start').style.display = "";
     document.getElementById('stop').style.display = "none";
+  }
+
+  function unselectButtons() {
+    $('button').css("background-color", "");
+    $('button').css("border", "");
+  }
+
+  function selectButton(this_button) {
+    $(this_button).blur();
+    $(this_button).css("background-color", "#aaa");
+    $(this_button).css("border", "none");
   }
 });
 
