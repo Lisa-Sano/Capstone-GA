@@ -75,7 +75,7 @@ $(document).ready(function() {
     selectButton(this);
     $('#random').prop("checked", true)
     $('#color').prop("checked", true)
-    formNumGens = $('#num-gens').val(400);
+    formNumGens = $('#num-gens').val(300);
     formPopSize = $('#pop-size').val(500);
     formMutRate = $('#mut-rate').val(0.0001);
     formFitness = $('#fitness').val(0.25);
@@ -92,6 +92,11 @@ $(document).ready(function() {
     formMutRate = $('#mut-rate').val(0.0001);
     formFitness = $('#fitness').val(0);
     $('#reset').click();
+  });
+
+  $('#try-out-color').click(function() {
+    $('#scenario-d').click();
+    $('#nav-sim').click();
   });
 
   $("#start").click(function() {
@@ -165,7 +170,7 @@ $(document).ready(function() {
   $("#nav-sim, #take-me-there").click(function (event){
       event.preventDefault();
       $('html, body').animate({
-          scrollTop: $("#all-visualizations").offset().top - 90
+          scrollTop: $("#all-visualizations").offset().top - 80
       }, 300);
   });
 
