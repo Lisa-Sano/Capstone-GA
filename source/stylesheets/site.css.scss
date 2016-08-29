@@ -367,7 +367,7 @@ footer {
 
 .scenarios button {
   margin: 1rem auto;
-  display: block;
+  display: inline-block;
   width: 40%;
 }
 
@@ -529,7 +529,11 @@ nav li {
 
 button {
   min-width: 275px;
+  display: inline-block;
   white-space: normal;
   box-sizing: content-box;
 }
 
+.scenarios tooltip {
+  display: inline-block;
+}
