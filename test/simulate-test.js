@@ -10,6 +10,7 @@ getPair = simulate.__get__('getPair');
 sumFitness = simulate.__get__('sumFitness');
 evalFitness = simulate.__get__('evalFitness');
 probabilities = simulate.__get__('probabilities');
+binarySearch = simulate.__get__('binarySearch');
 
 var sim;
 var moth_grey;
@@ -74,6 +75,39 @@ describe('Simulate', function() {
       value: {red: 255, green: 255, blue: 255},
       chrom_length: 8
     };
+  });
+
+  describe('binarySearch function', function() {
+    var probs;
+    var index;
+
+    before(function() {
+      probs = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0];
+    });
+
+    it('should return the index of the first element that the search term is equal to', function() {
+      index = binarySearch(0.5, probs);
+      assert.isNumber(index);
+      assert.equal(index, 4);
+    });
+
+    it('should return the index of the first element that the search term is less than', function() {
+      index = binarySearch(0.55, probs);
+      assert.isNumber(index);
+      assert.equal(index, 5);
+    });
+
+    it('should return -1 if all the elements are less than the search term', function() {
+      index = binarySearch(1.1, probs);
+      assert.isNumber(index);
+      assert.equal(index, -1);
+    });
+
+    it('should return 0 if the search term is less than the first element', function() {
+      index = binarySearch(0, probs);
+      assert.isNumber(index);
+      assert.equal(index, 0);
+    });
   });
 
   describe('config property', function() {

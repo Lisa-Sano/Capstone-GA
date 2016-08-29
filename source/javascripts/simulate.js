@@ -58,13 +58,42 @@ function buildChromosome(pair_chromosomes, types, config) {
 function getMoth(population, probabilities) {
   let r = Math.random();
 
-  for (let i = 0; i < population.length; i++) {
-    if (r < probabilities[i]) {
-      return population[i];
+  // for (let i = 0; i < population.length; i++) {
+  //   if (r < probabilities[i]) {
+  //     return population[i];
+  //   }
+  // }
+
+  var index = binarySearch(r, probabilities);
+
+  return population[index];
+
+  return population[probabilities.length - 1];
+}
+
+// find the first index at which the search term is less than the probability
+function binarySearch(searchElement, probabilities) {
+  var minIndex = 0;
+  var maxIndex = probabilities.length - 1;
+  var currentIndex;
+  var currentElement;
+  var prevElement;
+
+  while (minIndex <= maxIndex) {
+    currentIndex = Math.floor((minIndex + maxIndex) / 2);
+    currentElement = probabilities[currentIndex];
+    prevElement = probabilities[currentIndex - 1] || 0;
+
+    if (currentElement < searchElement) {
+      minIndex = currentIndex + 1;
+    } else if (currentElement >= searchElement && prevElement > searchElement) {
+      maxIndex = currentIndex - 1;
+    } else {
+      return currentIndex;
     }
   }
 
-  return population[probabilities.length - 1];
+  return -1;
 }
 
 function getPair(population, probabilities) {
