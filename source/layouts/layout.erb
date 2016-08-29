@@ -44,8 +44,8 @@
 
 
     <p class="generation">
-      <div class="tooltip gen-tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
-        <span class="tooltiptext">Generation: a new population of children, each created by 2 parents.<br>The simulation shows a snapshot of what the population looks like every 10 generations.</span>
+      <div class="tooltip gen-tooltip" rel="tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
+        <div class="tooltiptext">Generation: a new population of children, each created by 2 parents.<br>The simulation shows a snapshot of what the population looks like every 10 generations.</div>
       </div>
       Generation: <span class="gen">0</span>
     </p>
@@ -63,8 +63,8 @@
         <button class="scenario-button" id="scenario-a">
           <strong>Uncamouflaged population, with high mutation rate</strong>
         </button>
-        <div class="tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
-          <span class="tooltiptext scenario-description">The single-chromosome population, being white in a black environment, stands out easily and is highly unfit.<p></p>Random mutations occur that change the shade of some moths. If the mutation makes them darker, they're harder to see by predators, and they survive longer (their fitness increases). Because of this, they're more likely to reproduce and create more dark moths in the next generation.<p></p>Over time, all the moths in the population will become black.</span>
+        <div class="tooltip scenario-tooltip" rel="tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
+          <div class="tooltiptext scenario-description">The single-chromosome population, being white in a black environment, stands out easily and is highly unfit.<p></p>Random mutations occur that change the shade of some moths. If the mutation makes them darker, they're harder to see by predators, and they survive longer (their fitness increases). Because of this, they're more likely to reproduce and create more dark moths in the next generation.<p></p>Over time, all the moths in the population will become black.</div>
         </div>
       </div>
 
@@ -72,8 +72,8 @@
         <button class="scenario-button" id="scenario-b">
           <strong>Uncamouflaged population, with <em>no</em> mutation</strong>
         </button>
-        <div class="tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
-          <span class="tooltiptext scenario-description">The single-chromosome population, though highly unfit, will never change color.<p></p>With no mutation and no dark moths to begin with, there's simply no way for dark moths to have a presence. Fitness advantage makes no difference here, because all the moths are the same color and thus have the same fitness score.</span>
+        <div class="tooltip scenario-tooltip" rel="tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
+          <div class="tooltiptext scenario-description">The single-chromosome population, though highly unfit, will never change color.<p></p>With no mutation and no dark moths to begin with, there's simply no way for dark moths to have a presence. Fitness advantage makes no difference here, because all the moths are the same color and thus have the same fitness score.</div>
         </div>
       </div>
 
@@ -81,8 +81,8 @@
         <button class="scenario-button" id="scenario-c">
           <strong>Diverse population, with strong fitness advantage</strong>
         </button>
-        <div class="tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
-          <span class="tooltiptext scenario-description">The single-chromosome population contains a wide range of grey shades, some of which already blend in well, and others which are stark against their background (which is randomly selected with each reset).<p></p>The moths that are harder to see have a higher fitness since they won't get eaten by predators as often. This makes them more likely to reproduce and create more dark moths for the next generation.<p></p>Over time, all the moths in the population will match the environment.</span>
+        <div class="tooltip scenario-tooltip" rel="tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
+          <div class="tooltiptext scenario-description">The single-chromosome population contains a wide range of grey shades, some of which already blend in well, and others which are stark against their background (which is randomly selected with each reset).<p></p>The moths that are harder to see have a higher fitness since they won't get eaten by predators as often. This makes them more likely to reproduce and create more dark moths for the next generation.<p></p>Over time, all the moths in the population will match the environment.</div>
         </div>
       </div>
 
@@ -90,8 +90,8 @@
         <button class="scenario-button" id="scenario-d">
           <strong>Colorful population, with strong fitness advantage</strong>
         </button>
-        <div class="tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
-          <span class="tooltiptext scenario-description">The population is colorful. Each moth has 3 chromosomes that contribute to its overall appearance (they represent red, green, and blue values).<p></p>In this more complex system, a moth must be optimized in all 3 of these chromosomes in order to fully blend in with its environment. If a moth has a single optimal chromosome, it will have an increased likelihood of surviving and reproducing. Moths with <em>multiple</em> optimal chromosomes will have the <em>highest</em> chance of reproducing.<p></p>Over time, the population will optimize all 3 values and end up highly camouflaged.</span>
+        <div class="tooltip scenario-tooltip" rel="tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
+          <div class="tooltiptext scenario-description">The population is colorful. Each moth has 3 chromosomes that contribute to its overall appearance (they represent red, green, and blue values).<p></p>In this more complex system, a moth must be optimized in all 3 of these chromosomes in order to fully blend in with its environment. If a moth has a single optimal chromosome, it will have an increased likelihood of surviving and reproducing. Moths with <em>multiple</em> optimal chromosomes will have the <em>highest</em> chance of reproducing.<p></p>Over time, the population will optimize all 3 values and end up highly camouflaged.</div>
         </div>
       </div>
 
@@ -99,9 +99,9 @@
         <button class="scenario-button" id="scenario-e">
           <strong>Colorful population, with <em>no</em> fitness advantage</strong>
         </button>
-        <div class="tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
-          <span class="tooltiptext scenario-description">The population is colorful, with each moth containing 3 chromosomes that contribute to its overall appearance (red, green, and blue values).<p></p>With no selective advantage given to moths that are similar to the environment color, reproduction happens completely randomly&mdash;every moth in the population has the same chance of passing on its characteristics.<p></p>Over time, the population will trend toward a particular color, but this is due to the distribution of the starting population and the randomness of mating (if, by chance, the initial population is mostly pink, it's likely that more pink moths will mate than any other color).
-          <p></p>The final population color will likely be different from that of the environment, so the moths will not be camouflaged.</span>
+        <div class="tooltip scenario-tooltip" rel="tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
+          <div class="tooltiptext scenario-description">With no selective advantage given to moths that are similar to the environment color, reproduction is random&mdash;every moth has the same chance of passing on its characteristics.<p></p>Over time, the population will trend toward a particular color, but this is due to the distribution of the starting population and the randomness of mating (if, by chance, the initial population is mostly pink, it's likely that more pink moths will mate than any other color).
+          <p></p>The final population color will likely be different from that of the environment, so the moths will not be camouflaged.</div>
         </div>
       </div>
     </div>
@@ -117,15 +117,15 @@
         <td>
           <input class="radio" id="uniform" type="radio" name="starting-pop" value="uniform" checked>
           <label class="radio-label radio-middle" for="uniform">Uniform
-          <div class="tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
-            <span class="tooltiptext">Emphasizes the importance of <em>mutation</em> as the driver for achieving an optimal solution, since no good solutions already exist in the population</span>
+          <div class="tooltip" rel="tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
+            <div class="tooltiptext">Emphasizes the importance of <em>mutation</em> as the driver for achieving an optimal solution, since no good solutions already exist in the population</div>
           </div></label>
         </td>
         <td>
           <input class="radio" id="random" type="radio" name="starting-pop" value="random">
           <label class="radio-label" for="random">Random
-          <div class="tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
-            <span class="tooltiptext">Emphasizes the importance of <em>fitness advantage</em>. Good solutions already exist and will be selected for (if fitness advantage > 0)</span>
+          <div class="tooltip" rel="tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
+            <div class="tooltiptext">Emphasizes the importance of <em>fitness advantage</em>. Good solutions already exist and will be selected for (if fitness advantage > 0)</div>
           </div></label>
         </td>
       </tr>
@@ -137,15 +137,15 @@
         <td>
           <input class="radio" id="black-white" type="radio" name="pop-color" value="black-white" checked>
           <label class="radio-label radio-middle" for="black-white">Black & White
-          <div class="tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
-            <span class="tooltiptext">A simple case which optimizes only one trait (saturation)</span>
+          <div class="tooltip" rel="tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
+            <div class="tooltiptext">A simple case which optimizes only one trait (saturation)</div>
           </div></label>
         </td>
         <td>
           <input class="radio" id="color" type="radio" name="pop-color" value="color">
           <label class="radio-label" for="color">Multi-color
-          <div class="tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
-            <span class="tooltiptext">A more complex case; requires optimization of multiple traits (red, green, and blue values)</span>
+          <div class="tooltip" rel="tooltip"><i class="startin-pop fa fa-question-circle" aria-hidden="true"></i>
+            <div class="tooltiptext">A more complex case; requires optimization of multiple traits (red, green, and blue values)</div>
           </div></label>
         </td>
       </tr>
@@ -162,15 +162,15 @@
     <br>
     <div class="num-inputs num-inputs-2">
       <label class="input-label" for="mut-rate">Mutation rate <span class="range">(0-0.5)</span>:</label>
-      <div class="tooltip"><i class="fa fa-question-circle" aria-hidden="true"></i>
-        <span class="tooltiptext">A rate of 0.0001 means that there's a 1 in 10,000 chance that a mutation will occur. At a rate of 0, a Uniform population will never change color</span>
+      <div class="tooltip" rel="tooltip"><i class="fa fa-question-circle" aria-hidden="true"></i>
+        <div class="tooltiptext">A rate of 0.0001 means that there's a 1 in 10,000 chance that a mutation will occur. At a rate of 0, a Uniform population will never change color</div>
       </div>
       <input id="mut-rate" type="number" name="mut-rate" min="0" max="0.5" value="0.0002" step="0.0001">
     </div>
     <div class="num-inputs num-inputs-2">
       <label class="input-label" for="fitness">Fitness advantage <span class="range">(0-1)</span>:</label>
-      <div class="tooltip"><i class="fa fa-question-circle" aria-hidden="true"></i>
-        <span class="tooltiptext">Relative advantage given to individuals with higher fitness scores.<br>At 0, no advantage to being camouflaged (anyone can mate)<br>At 1, the most unfit individuals (white in a black environment, for instance) will have no chance of mating</span>
+      <div class="tooltip" rel="tooltip"><i class="fa fa-question-circle" aria-hidden="true"></i>
+        <div class="tooltiptext">Relative advantage given to individuals with higher fitness scores.<br>At 0, no advantage to being camouflaged (anyone can mate)<br>At 1, the most unfit individuals (white in a black environment, for instance) will have no chance of mating</div>
       </div>
       <input id="fitness" type="number" name="fitness" min="0" max="1" value="0.25" step="0.05">
     </div>

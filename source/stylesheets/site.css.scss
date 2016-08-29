@@ -271,52 +271,56 @@ footer {
   font-size: 0.6rem;
 }
 
-
-/* Tooltip container */
-.tooltip {
-    position: relative;
-    display: inline-block;
-}
-
-/* Tooltip text */
-.tooltip .tooltiptext {
-    visibility: hidden;
+#tooltip
+{
     font-size: 0.8rem;
     width: 400px;
     background-color: #555;
     color: #fff;
-    text-align: center;
-    padding: 7px 5px;
+    text-align: justify;
+    padding: 10px 10px;
     border-radius: 6px;
-
-    /* Position the tooltip text */
     position: absolute;
-    z-index: 1;
-    bottom: 85%;
+    z-index: 100;
+}
+
+#tooltip:after /* triangle decoration */
+{
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #555;
+    content: '';
+    position: absolute;
     left: 50%;
-    margin-left: -205px;
-
-    /* Fade in tooltip */
-    opacity: 0;
-    transition: opacity 0.25s;
+    bottom: -10px;
+    margin-left: -10px;
 }
 
-/* Tooltip arrow */
-.tooltip .tooltiptext::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: #555 transparent transparent transparent;
+#tooltip.top:after
+{
+    border-top-color: transparent;
+    border-bottom: 10px solid #555;
+    top: -20px;
+    bottom: auto;
 }
 
-/* Show the tooltip text when you mouse over the tooltip container */
-.tooltip:hover .tooltiptext {
-  visibility: visible;
-  opacity: 1;
+#tooltip.left:after
+{
+    left: 10px;
+    margin: 0;
+}
+
+#tooltip.right:after
+{
+    right: 10px;
+    left: auto;
+    margin: 0;
+}
+
+.tooltiptext {
+  display: none;
 }
 
 .fa {
@@ -360,8 +364,6 @@ footer {
 .scenarios {
   margin: 0 auto;
   width: 80%;
-  /*border: 0.5px solid #eee;*/
-  /*background-color: #eee;*/
   font-size: 0.8rem;
 }
 
@@ -369,6 +371,10 @@ footer {
   margin: 1rem auto;
   display: inline-block;
   width: 40%;
+  min-width: 275px;
+  display: inline-block;
+  white-space: normal;
+  box-sizing: content-box;
 }
 
 .scenarios li {
@@ -386,32 +392,13 @@ footer {
 }
 
 .scenario-description {
-  margin-top: 0;
+  margin: 0 auto;
+  width: 80%;
+  text-align: justify;
 }
 
-.how-to-inner {
-  -webkit-column-count: 2; /* Chrome, Safari, Opera */
-  -moz-column-count: 2; /* Firefox */
-  column-count: 2;
-
-  -webkit-column-gap: 30px; /* Chrome, Safari, Opera */
-  -moz-column-gap: 30px; /* Firefox */
-  column-gap: 30px;
-}
-
-.how-to-inner li.mut {
-  padding-top: 2rem;
-}
-
-.how-to > p {
-  text-align: center;
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
-}
-
-.how-to-explanation {
-  margin: 0;
-  color: #555;
+br.describe {
+  line-height: 150%;
 }
 
 .settings {
@@ -527,13 +514,6 @@ nav li {
   font-size: 0.7rem;
 }
 
-button {
-  min-width: 275px;
-  display: inline-block;
-  white-space: normal;
-  box-sizing: content-box;
-}
-
-.scenarios tooltip {
+.tooltip {
   display: inline-block;
 }

@@ -167,25 +167,82 @@ $(document).ready(function() {
     showStart();
   });
 
-  $("#nav-sim, #take-me-there").click(function (event){
-      event.preventDefault();
-      $('html, body').animate({
-          scrollTop: $("#all-visualizations").offset().top - 80
-      }, 300);
+  $('#nav-sim, #take-me-there').click(function (event){
+    event.preventDefault();
+    $('html, body').animate({
+        scrollTop: $('#all-visualizations').offset().top - 80
+    }, 300);
   });
 
-  $("#nav-history").click(function (event){
-      event.preventDefault();
-      $('html, body').animate({
-          scrollTop: $("#moth-history").offset().top - 90
-      }, 300);
+  $('#nav-history').click(function (event){
+    event.preventDefault();
+    $('html, body').animate({
+        scrollTop: $('#moth-history').offset().top - 90
+    }, 300);
   });
 
-  $("#nav-how").click(function (event){
-      event.preventDefault();
-      $('html, body').animate({
-          scrollTop: $("#how-it-works").offset().top - 90
-      }, 300);
+  $('#nav-how').click(function (event){
+    event.preventDefault();
+    $('html, body').animate({
+        scrollTop: $('#how-it-works').offset().top - 90
+    }, 300);
+  });
+
+  $(function() {
+    var targets = $('[rel~=tooltip]'),
+      target,
+      tooltip,
+      title,
+      tip;
+ 
+    targets.bind( 'mouseenter', function() {
+      target  = $(this);
+      tip     = $('.tooltiptext', this).html();
+      tooltip = $('<div id="tooltip"></div>');
+
+      if (!tip || tip == '') {
+        return false;
+      }
+
+      tooltip.css('opacity', 0)
+             .html( tip )
+             .appendTo('body');
+
+      var init_tooltip = function() {
+        if ($(window).width() < tooltip.outerWidth() * 1.5){
+          tooltip.css('max-width', $( window ).width() / 2);
+        } else {
+          tooltip.css('max-width', 340);
+        }
+
+        var pos_left = target.offset().left + (target.outerWidth() / 2) - (tooltip.outerWidth() / 2);
+        var pos_top  = target.offset().top - tooltip.outerHeight() - 20;
+
+        if (pos_top < 0) {
+          pos_top  = target.offset().top + target.outerHeight();
+          tooltip.addClass('top');
+        } else {
+          tooltip.removeClass('top');
+        }
+
+        tooltip.css({ left: pos_left, top: pos_top })
+               .animate({ top: '+=10', opacity: 1 }, 50);
+      };
+
+      init_tooltip();
+      $(window).resize(init_tooltip);
+
+      var remove_tooltip = function() {
+        tooltip.animate({ top: '-=10', opacity: 0 }, 50, function() {
+          $(this).remove();
+        });
+
+        $('.tooltiptext', this).html(tip);
+      };
+
+      target.bind('mouseleave', remove_tooltip);
+      tooltip.bind('click', remove_tooltip);
+    });
   });
 
   function resetSim() {
