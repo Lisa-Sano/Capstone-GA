@@ -225,8 +225,8 @@ $(document).ready(function() {
           tooltip.removeClass('top');
         }
 
-        // tooltip.css({ left: pos_left, top: pos_top })
-        //        .animate({ top: '+=10', opacity: 1 }, 50);
+        tooltip.css({ left: pos_left, top: pos_top })
+               .animate({ top: '+=10', opacity: 1 }, 50);
       };
 
       init_tooltip();
