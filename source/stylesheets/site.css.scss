@@ -526,3 +526,10 @@ nav li {
   margin-bottom: 2rem;
   font-size: 0.7rem;
 }
+
+button {
+  min-width: 275px;
+  white-space: normal;
+  box-sizing: content-box;
+}
+

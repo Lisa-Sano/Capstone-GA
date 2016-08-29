@@ -305,7 +305,7 @@ $(document).ready(function() {
   function selectButton(this_button) {
     $(this_button).blur();
     $(this_button).css("background-color", "#aaa");
-    $(this_button).css("border", "none");
+    $(this_button).css("border", "transparent");
   }
 });
 
