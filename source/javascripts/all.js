@@ -87,7 +87,7 @@ $(document).ready(function() {
     selectButton(this);
     $('#random').prop("checked", true)
     $('#color').prop("checked", true)
-    formNumGens = $('#num-gens').val(300);
+    formNumGens = $('#num-gens').val(500);
     formPopSize = $('#pop-size').val(500);
     formMutRate = $('#mut-rate').val(0.0001);
     formFitness = $('#fitness').val(0);
