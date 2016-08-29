@@ -21,7 +21,6 @@
 
   <nav>
     <ul>
-      <!-- <li><a href="#top" id="back-to-top">Back to Top</a></li> -->
       <li><a href="#moth-history" id="nav-history">Peppered Moth History</a></li>
       <li><a href="#all-visualizations" id="nav-sim">Simulation</a></li>
       <li><a href="#how-it-works" id="nav-how">How it works</a></li>
@@ -32,8 +31,6 @@
     <h2 class="explanation">Modeling color changes of peppered moths, a classic example of evolution, using a genetic algorithm</h2>
 
     <div id="moth-history">
-      <!-- <h2 id="moth-h2">A brief history...</h2> -->
-      <!-- <a href="#all-visualizations" id="take-me-there">(Skip)</a> -->
       <p>In the early-1800's, peppered moths lived on lichen-covered birch trees and were white with black speckles, making them blend in with their environment. An all-black variant of the peppered moth was virtually unknown.</p>
 
       <p>After the industrial revolution, soot was pumped out into the atmosphere, changing the moths' habitat by making the trees dark and bare. Moths that were previously well camouflaged became easy prey, and the black variant of the moth began to thrive. Within a century, most of the moths in the region were black.</p>
@@ -170,26 +167,11 @@
       <input id="fitness" type="number" name="fitness" min="0" max="1" value="0.25" step="0.05">
     </div>
   </form>
-
-
-<!--     <div class="how-to">
-      <div class="how-to-inner">
-      <ul>
-        <li><strong>Population type</strong><p class="how-to-explanation"><em>Uniform</em> emphasizes the effects of mutation, while <em>Random</em> emphasizes the effects of fitness advantage</p></li>
-        <li><strong>Color mode</strong><p class="how-to-explanation">Black & White is a simple case which optimizes only one trait (saturation), while multi-color is more complex and requires optimization of multiple traits</p></li>
-        <li><strong>Population size</strong> (100-1000) and <strong># of generations</strong> (100-1000)<p class="how-to-explanation">Smaller populations may take more generations to reach an optimal result.</p></li>
-        <li class="mut"><strong>Mutation rate</strong> (0-0.5)<p class="how-to-explanation">At 0, a Uniform population will always remain the same color, since no mutation will occur</p><p class="how-to-explanation">At 0.5, a mutation will occur at every other index of the chromosome on average</p></li>
-        <li><strong>Fitness advantage</strong> (0-1)<p class="how-to-explanation">At 0, there is no advantage to individuals being camouflaged (any can mate)</p><p class="how-to-explanation">At 1, the most "unfit" individuals (white in a black environment, for instance), will have no chance of mating</p></li>
-      </ul>
-      </div>
-    </div> -->
   </div>
 
   <div class="how-it-works">
-
-      
-      <h2 id="how-it-works">How does the simulation work?</h2>
-      <h3>Genetic algorithms (GAs) find solutions to optimization problems by utilizing techniques inspired by evolutionary genetics, where stronger individuals outcompete weaker ones.</h3>
+    <h2 id="how-it-works">How does the simulation work?</h2>
+    <h3>Genetic algorithms (GAs) find solutions to optimization problems by utilizing techniques inspired by evolutionary genetics, where stronger individuals outcompete weaker ones.</h3>
 
     <div class="list">
       <ul>
@@ -217,7 +199,6 @@
     <p>If we sum the fitness scores of each separate chromosome, we get an overall fitness score for a particular individual.  This overall score is used to determine the likelihood of being chosen to produce children for the next generation.</p>
 
     <p>As we see in the simulation, this system is able to produce a population of highly camouflaged moths even when multiple factors must be optimized.</p>
-
   </div>
 
   <footer id="copyright">

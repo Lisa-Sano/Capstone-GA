@@ -162,13 +162,6 @@ $(document).ready(function() {
     showStart();
   });
 
-  $("#back-to-top").click(function (event){
-      event.preventDefault();
-      $('html, body').animate({
-          scrollTop: $("h1").offset().top - 120
-      }, 300);
-  });
-
   $("#nav-sim, #take-me-there").click(function (event){
       event.preventDefault();
       $('html, body').animate({
