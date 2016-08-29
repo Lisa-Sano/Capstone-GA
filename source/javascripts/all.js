@@ -209,8 +209,8 @@ $(document).ready(function() {
              .appendTo('body');
 
       var init_tooltip = function() {
-        if ($(window).width() < tooltip.outerWidth() * 1.5){
-          tooltip.css('max-width', $( window ).width() / 2);
+        if ($(window).width() < tooltip.outerWidth() * 1.5) {
+          tooltip.css('max-width', $(window).width() / 2);
         } else {
           tooltip.css('max-width', 340);
         }
@@ -219,14 +219,14 @@ $(document).ready(function() {
         var pos_top  = target.offset().top - tooltip.outerHeight() - 20;
 
         if (pos_top < 0) {
-          pos_top  = target.offset().top + target.outerHeight();
+          pos_top = target.offset().top + target.outerHeight();
           tooltip.addClass('top');
         } else {
           tooltip.removeClass('top');
         }
 
-        tooltip.css({ left: pos_left, top: pos_top })
-               .animate({ top: '+=10', opacity: 1 }, 50);
+        // tooltip.css({ left: pos_left, top: pos_top })
+        //        .animate({ top: '+=10', opacity: 1 }, 50);
       };
 
       init_tooltip();
