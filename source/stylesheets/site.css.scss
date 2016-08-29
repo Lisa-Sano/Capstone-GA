@@ -198,7 +198,7 @@ p {
 }
 
 .generation {
-  padding-bottom: 0.2rem;
+  /*padding-bottom: 0.2rem;*/
   margin-top: 0;
 }
 
@@ -432,6 +432,10 @@ footer {
   padding: 1rem;
 }
 
+.container-for-3d {
+  padding-bottom: 0;
+}
+
 .caption {
   font-size: 0.9rem;
   color: #666;
@@ -493,10 +497,11 @@ nav li {
 }
 
 .above-gen {
-  font-size: 1rem;
+  font-size: 0.8rem;
+  vertical-align: top;
   color: red;
   text-align: center;
-  margin: 0;
+  line-height: 80%;
 }
 
 #moth-history {
@@ -514,4 +519,10 @@ nav li {
 .extending {
   padding-top: 3rem;
   border-top: 0.5px solid #ccc;
+  margin-bottom: 0.5rem;
+}
+
+#try-out-color {
+  margin-bottom: 2rem;
+  font-size: 0.7rem;
 }
