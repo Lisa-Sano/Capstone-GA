@@ -78,7 +78,7 @@ $(document).ready(function() {
     formNumGens = $('#num-gens').val(300);
     formPopSize = $('#pop-size').val(500);
     formMutRate = $('#mut-rate').val(0.0001);
-    formFitness = $('#fitness').val(0.25);
+    formFitness = $('#fitness').val(0.35);
     $('#reset').click();
   });
 
