@@ -298,27 +298,6 @@ footer {
     margin-left: -10px;
 }
 
-#tooltip.top:after
-{
-    border-top-color: transparent;
-    border-bottom: 10px solid #555;
-    top: -20px;
-    bottom: auto;
-}
-
-#tooltip.left:after
-{
-    left: 10px;
-    margin: 0;
-}
-
-#tooltip.right:after
-{
-    right: 10px;
-    left: auto;
-    margin: 0;
-}
-
 .tooltiptext {
   display: none;
 }

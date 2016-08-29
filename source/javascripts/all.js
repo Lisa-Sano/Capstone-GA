@@ -218,13 +218,6 @@ $(document).ready(function() {
         var pos_left = target.offset().left + (target.outerWidth() / 2) - (tooltip.outerWidth() / 2);
         var pos_top  = target.offset().top - tooltip.outerHeight() - 20;
 
-        if (pos_top < 0) {
-          pos_top = target.offset().top + target.outerHeight();
-          tooltip.addClass('top');
-        } else {
-          tooltip.removeClass('top');
-        }
-
         tooltip.css({ left: pos_left, top: pos_top })
                .animate({ top: '+=10', opacity: 1 }, 50);
       };
