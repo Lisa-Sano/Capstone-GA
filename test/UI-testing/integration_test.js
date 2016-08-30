@@ -148,7 +148,6 @@ test.describe('Evolution in Color', function() {
       driver.findElement(webdriver.By.className('gen')).getAttribute('innerHTML')
         .then(function(gen) {
           parseInt(gen).should.be.above(0);
-          done();
         });
 
       driver.findElement(webdriver.By.id('reset')).click();
@@ -161,6 +160,135 @@ test.describe('Evolution in Color', function() {
     });
   });
 
+  test.describe('Scenarios', function() {
+    it('the first scenario button is selected by default', function(done) {
+      driver.findElement(webdriver.By.id("mut-rate")).getAttribute("value")
+        .then(function(val) {
+          val.should.equal('0.0002');
+        });
+
+      driver.findElement(webdriver.By.id("num-gens")).getAttribute("value")
+        .then(function(val) {
+          val.should.equal('300');
+        });
+
+      driver.findElement(webdriver.By.id("pop-size")).getAttribute("value")
+        .then(function(val) {
+          val.should.equal('500');
+        });
+
+      driver.findElement(webdriver.By.id("fitness")).getAttribute("value")
+        .then(function(val) {
+          val.should.equal('0.2');
+        });
+
+      driver.findElement(webdriver.By.id("scenario-a")).getAttribute("style")
+        .then(function(style) {
+          style.should.equal("border: transparent; background-color: rgb(170, 170, 170);")
+          done();
+        });
+    });
+
+    it('settings are updated when the second scenario button is clicked', function(done) {
+      driver.findElement(webdriver.By.id("scenario-b")).click();
+
+      driver.findElement(webdriver.By.id("num-gens")).getAttribute("value")
+        .then(function(val) {
+          val.should.equal('200');
+        });
+
+      driver.findElement(webdriver.By.id("pop-size")).getAttribute("value")
+        .then(function(val) {
+          val.should.equal('500');
+        });
+
+      driver.findElement(webdriver.By.id("fitness")).getAttribute("value")
+        .then(function(val) {
+          val.should.equal('0.2');
+        });
+
+      driver.findElement(webdriver.By.id("mut-rate")).getAttribute("value")
+        .then(function(val) {
+          val.should.equal('0');
+          done();
+        });
+    });
+
+    it('settings are updated when the third scenario button is clicked', function(done) {
+      driver.findElement(webdriver.By.id("scenario-c")).click();
+
+      driver.findElement(webdriver.By.id("num-gens")).getAttribute("value")
+        .then(function(val) {
+          val.should.equal('300');
+        });
+
+      driver.findElement(webdriver.By.id("pop-size")).getAttribute("value")
+        .then(function(val) {
+          val.should.equal('500');
+        });
+
+      driver.findElement(webdriver.By.id("fitness")).getAttribute("value")
+        .then(function(val) {
+          val.should.equal('0.35');
+        });
+
+      driver.findElement(webdriver.By.id("mut-rate")).getAttribute("value")
+        .then(function(val) {
+          val.should.equal('0.0001');
+          done();
+        });
+    });
+
+    it('settings are updated when the third scenario button is clicked', function(done) {
+      driver.findElement(webdriver.By.id("scenario-e")).click();
+
+      driver.findElement(webdriver.By.id("num-gens")).getAttribute("value")
+        .then(function(val) {
+          val.should.equal('500');
+        });
+
+      driver.findElement(webdriver.By.id("pop-size")).getAttribute("value")
+        .then(function(val) {
+          val.should.equal('500');
+        });
+
+      driver.findElement(webdriver.By.id("fitness")).getAttribute("value")
+        .then(function(val) {
+          val.should.equal('0');
+        });
+
+      driver.findElement(webdriver.By.id("mut-rate")).getAttribute("value")
+        .then(function(val) {
+          val.should.equal('0.0001');
+          done();
+        });
+    });
+
+    it('settings are updated when the third scenario button is clicked', function(done) {
+      driver.findElement(webdriver.By.id("scenario-d")).click();
+
+      driver.findElement(webdriver.By.id("num-gens")).getAttribute("value")
+        .then(function(val) {
+          val.should.equal('300');
+        });
+
+      driver.findElement(webdriver.By.id("pop-size")).getAttribute("value")
+        .then(function(val) {
+          val.should.equal('500');
+        });
+
+      driver.findElement(webdriver.By.id("fitness")).getAttribute("value")
+        .then(function(val) {
+          val.should.equal('0.35');
+        });
+
+      driver.findElement(webdriver.By.id("mut-rate")).getAttribute("value")
+        .then(function(val) {
+          val.should.equal('0.0001');
+          done();
+        });
+    });
+  });
 
   test.after(function() {
     driver.quit();
