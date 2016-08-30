@@ -1,11 +1,13 @@
 var chai = require('chai');
 var assert = chai.assert;
 var rewire = require('rewire');
+var sinon = require('sinon');
 var Moth = require('../source/javascripts/moth');
 
 var moth = rewire('../source/javascripts/moth.js');
 
 lpad = moth.__get__('lpad');
+randChromosome = moth.__get__('randChromosome');
 
 var m;
 var m2;
@@ -70,5 +72,26 @@ describe('Moth', function() {
 
       assert.equal(pad2, '00001111');
     })
+  });
+
+  describe('randChromosome function', function() {
+    // stub out Math.random so it always returns a predictable value
+    before(function() {
+      sinon.stub(Math, 'random').returns(1);
+    });
+
+    it('should return an object a key "grey" with value of a binary string with 8 digits', function() {
+      var new_chrom = randChromosome(8, ["grey"]);
+
+      // because of stubbed Math.random function, binary string should always be '11111111'
+      assert.deepEqual(new_chrom, {grey: '11111111'});
+      assert.isString(new_chrom.grey);
+      assert.lengthOf(new_chrom.grey, 8);
+      assert.match(new_chrom.grey, /^[01]+$/);
+    });
+
+    after(function() {
+      Math.random.restore();
+    });
   });
 });
