@@ -1,10 +1,10 @@
 # Evolution in Color
-Exploring genetic algorithms and data visualization (using D3 and three.js)
+Exploring genetic algorithms and data visualization
 
 ### What is the product?
 An educational tool for anyone interested in learning about genetics and evolution, and how they can be modeled using programming. It will familiarize users with the concept of natural selection (a process where individuals that are better suited to a particular environment tend to survive better and produce more offspring).
 
-This tool will simulate the classic example of color variation in [peppered moths during the Industrial Revolution](https://en.wikipedia.org/wiki/Peppered_moth_evolution). In short, white moths were abundant (and dark moths were unknown) in a particular area at the beginning of the 19th century. These moths lived in light-colored trees covered in light-colored lichen. When the Industrial Revolution happened and the air became smoky and polluted, the environment changed and the trees became dark and bare, which led to an increase in predation of the white moths by birds. By the end of the 19th century, 98% of the moths were black. This tool will demonstrate how the population color was able to adapt so quickly to the environment using a genetic algorithm.
+This tool will simulate the classic example of color variation in [peppered moths during the Industrial Revolution](https://en.wikipedia.org/wiki/Peppered_moth_evolution). In short, white moths were abundant (and dark moths were unknown) in a particular area at the beginning of the 19th century. These moths lived in light-colored trees covered in light-colored lichen. When the Industrial Revolution happened and the air became smoky and polluted, the environment changed and the trees became dark and bare, which led to an increase in predation of the white moths by birds. By the end of the 19th century, 98% of the moths were black. This tool will demonstrate how the population color was able to adapt so quickly to the environment using a genetic algorithm. 
 
 ### What is a genetic algorithm?
 A [Genetic Algorithm](https://en.wikipedia.org/wiki/Genetic_algorithm) (GA) is modeled after the process of natural selection, and it's used for optimization and search problems. It begins by using a randomly generated population of individuals with varying characteristics ('chromosomes'), each of which represents a potential solution to a problem. With each generation, the fitness of each individual is calculated using a [fitness function](https://en.wikipedia.org/wiki/Fitness_function), and a weighted sampling (based on fitness score) is taken to create a population of new individuals (children). Each new child has a chromosome which is a random combination of its parents' chromosomes, with the potential for mutations to occur in any part of the chromosome. This scoring/sampling/recombination/mutation is repeated either until a specific number of generations has passed, or until a minimum set of criteria is reached.
@@ -32,7 +32,40 @@ In my genetics class at UW, we used a simulator created by the professor that wa
 I didn't know GA's were a thing until recently, and there are probably a lot of programmers who have never encountered them before. Maybe this simple example will inspire them to explore what GA's can do too!
 
 ### Tech features
-* Visualization tools: Three.js (using WebGL), D3
+* Visualization tools: Three.js, D3
 * Static-site framework: Middleman
 * Deployment: PubStorm
 * Genetic Algorithm (my main motivation for doing this project is to explore this algorithm, which I think is SO DAMN COOL!)
+* Testing: Mocha, Chai, Selenium WebDriver, Sinon
+
+### How to run on your machine
+After cloning this project, you'll need the following installed:
+
+* ruby (v2.3.1)
+* node/npm
+* bundler
+* chromedriver (for running integration tests in Chrome. See http://brewformulas.org/Chromedriver to install)
+
+Then, run the following commands in the root folder:
+```
+bundle
+```
+
+```
+npm install
+```
+
+To run a local server (port 4567):
+```
+middleman server
+```
+
+Integration tests can be run from the root folder with:
+```
+mocha test/UI-testing/integration_test.js
+```
+
+Unit tests can be run from the root folder with:
+```
+npm test
+```
