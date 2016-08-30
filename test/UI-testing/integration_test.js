@@ -162,6 +162,26 @@ test.describe('Evolution in Color', function() {
 
   test.describe('Scenarios', function() {
     it('the first scenario button is selected by default', function(done) {
+      driver.findElement(webdriver.By.id("uniform")).isSelected()
+        .then(function(val) {
+          val.should.equal(true);
+        });
+
+      driver.findElement(webdriver.By.id("random")).isSelected()
+        .then(function(val) {
+          val.should.equal(false);
+        });
+
+      driver.findElement(webdriver.By.id("black-white")).isSelected()
+        .then(function(val) {
+          val.should.equal(true);
+        });
+
+      driver.findElement(webdriver.By.id("color")).isSelected()
+        .then(function(val) {
+          val.should.equal(false);
+        });
+
       driver.findElement(webdriver.By.id("mut-rate")).getAttribute("value")
         .then(function(val) {
           val.should.equal('0.0002');
@@ -192,6 +212,26 @@ test.describe('Evolution in Color', function() {
     it('settings are updated when the second scenario button is clicked', function(done) {
       driver.findElement(webdriver.By.id("scenario-b")).click();
 
+      driver.findElement(webdriver.By.id("uniform")).isSelected()
+        .then(function(val) {
+          val.should.equal(true);
+        });
+
+      driver.findElement(webdriver.By.id("random")).isSelected()
+        .then(function(val) {
+          val.should.equal(false);
+        });
+
+      driver.findElement(webdriver.By.id("black-white")).isSelected()
+        .then(function(val) {
+          val.should.equal(true);
+        });
+
+      driver.findElement(webdriver.By.id("color")).isSelected()
+        .then(function(val) {
+          val.should.equal(false);
+        });
+
       driver.findElement(webdriver.By.id("num-gens")).getAttribute("value")
         .then(function(val) {
           val.should.equal('200');
@@ -216,6 +256,26 @@ test.describe('Evolution in Color', function() {
 
     it('settings are updated when the third scenario button is clicked', function(done) {
       driver.findElement(webdriver.By.id("scenario-c")).click();
+
+      driver.findElement(webdriver.By.id("uniform")).isSelected()
+        .then(function(val) {
+          val.should.equal(false);
+        });
+
+      driver.findElement(webdriver.By.id("random")).isSelected()
+        .then(function(val) {
+          val.should.equal(true);
+        });
+
+      driver.findElement(webdriver.By.id("black-white")).isSelected()
+        .then(function(val) {
+          val.should.equal(true);
+        });
+
+      driver.findElement(webdriver.By.id("color")).isSelected()
+        .then(function(val) {
+          val.should.equal(false);
+        });
 
       driver.findElement(webdriver.By.id("num-gens")).getAttribute("value")
         .then(function(val) {
@@ -242,6 +302,26 @@ test.describe('Evolution in Color', function() {
     it('settings are updated when the third scenario button is clicked', function(done) {
       driver.findElement(webdriver.By.id("scenario-e")).click();
 
+      driver.findElement(webdriver.By.id("uniform")).isSelected()
+        .then(function(val) {
+          val.should.equal(false);
+        });
+
+      driver.findElement(webdriver.By.id("random")).isSelected()
+        .then(function(val) {
+          val.should.equal(true);
+        });
+
+      driver.findElement(webdriver.By.id("black-white")).isSelected()
+        .then(function(val) {
+          val.should.equal(false);
+        });
+
+      driver.findElement(webdriver.By.id("color")).isSelected()
+        .then(function(val) {
+          val.should.equal(true);
+        });
+
       driver.findElement(webdriver.By.id("num-gens")).getAttribute("value")
         .then(function(val) {
           val.should.equal('500');
@@ -266,6 +346,26 @@ test.describe('Evolution in Color', function() {
 
     it('settings are updated when the third scenario button is clicked', function(done) {
       driver.findElement(webdriver.By.id("scenario-d")).click();
+
+      driver.findElement(webdriver.By.id("uniform")).isSelected()
+        .then(function(val) {
+          val.should.equal(false);
+        });
+
+      driver.findElement(webdriver.By.id("random")).isSelected()
+        .then(function(val) {
+          val.should.equal(true);
+        });
+
+      driver.findElement(webdriver.By.id("black-white")).isSelected()
+        .then(function(val) {
+          val.should.equal(false);
+        });
+
+      driver.findElement(webdriver.By.id("color")).isSelected()
+        .then(function(val) {
+          val.should.equal(true);
+        });
 
       driver.findElement(webdriver.By.id("num-gens")).getAttribute("value")
         .then(function(val) {
