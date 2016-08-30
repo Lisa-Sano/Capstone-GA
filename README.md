@@ -47,6 +47,7 @@ After cloning this project, you'll need the following installed:
 * chromedriver (for running integration tests in Chrome. See http://brewformulas.org/Chromedriver to install)
 
 Then, run the following commands in the root folder:
+
     bundle
 
     npm install  
