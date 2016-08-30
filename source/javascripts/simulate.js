@@ -58,17 +58,9 @@ function buildChromosome(pair_chromosomes, types, config) {
 function getMoth(population, probabilities) {
   let r = Math.random();
 
-  // for (let i = 0; i < population.length; i++) {
-  //   if (r < probabilities[i]) {
-  //     return population[i];
-  //   }
-  // }
-
   var index = binarySearch(r, probabilities);
 
   return population[index];
-
-  return population[probabilities.length - 1];
 }
 
 // find the first index at which the search term is less than the probability
