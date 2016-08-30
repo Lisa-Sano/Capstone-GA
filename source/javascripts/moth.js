@@ -26,7 +26,7 @@ function randChromosome(length, chrom_types) {
   var chrom = {};
 
   for (let type of chrom_types) {
-    num = Math.floor(Math.random() * 256) + 1;
+    num = Math.floor(Math.random() * 254);
     chrom[type] = lpad(num.toString(2), "0", length);
   }
 
