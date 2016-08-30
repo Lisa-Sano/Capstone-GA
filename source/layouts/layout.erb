@@ -31,7 +31,7 @@
     <h2 class="explanation">Modeling color changes of peppered moths, a classic example of evolution, using a genetic algorithm</h2>
 
     <div id="moth-history">
-      <p>In the early-1800's, <a href="https://en.wikipedia.org/wiki/Peppered_moth_evolution">peppered moths</a> lived on lichen-covered birch trees and were white with black speckles, making them blend in with their environment. An all-black variant of the peppered moth was virtually unknown.</p>
+      <p>In the early-1800's, <a  target="_blank" href="https://en.wikipedia.org/wiki/Peppered_moth_evolution">peppered moths</a> lived on lichen-covered birch trees and were white with black speckles, making them blend in with their environment. An all-black variant of the peppered moth was virtually unknown.</p>
 
       <p>After the industrial revolution, soot was pumped out into the atmosphere, changing the moths' habitat by making the trees dark and bare. Moths that were previously well camouflaged became easy prey, and the black variant of the moth began to thrive. Within a century, most of the moths in the region were black.</p>
 
@@ -179,11 +179,11 @@
 
   <div class="how-it-works">
     <h2 id="how-it-works">How does the simulation work?</h2>
-    <h3><a href="https://en.wikipedia.org/wiki/Genetic_algorithm">Genetic algorithms</a> (GAs) find solutions to optimization problems by utilizing techniques inspired by evolutionary genetics, where stronger individuals outcompete weaker ones.</h3>
+    <h3><a  target="_blank" href="https://en.wikipedia.org/wiki/Genetic_algorithm">Genetic algorithms</a> (GAs) find solutions to optimization problems by utilizing techniques inspired by evolutionary genetics, where stronger individuals outcompete weaker ones.&nbsp;&nbsp;<a target="_blank" href="https://en.wikipedia.org/wiki/List_of_genetic_algorithm_applications">See what cool things GA's have been used for.</a></h3>
 
     <div class="list">
       <ul>
-        <li>Each <strong>individual</strong> in a population represents a <strong>candidate solution</strong> to a problem.<p class="little">For example, if the problem to be solved is <em>finding the optimal color to make a moth camouflaged in its environment</em>, and the environment color is a value from 0 to 255, an individual may represent a <em>candidate solution</em> of any value within that range.</p></li>
+        <li>Each <strong>individual</strong> in a population represents a <strong>candidate solution</strong> to a problem.<p class="little">For example, if the problem to be solved is <em>how to camouflage a moth in its environment</em>, and the environment color is a value from 0 to 255, an individual may represent a <em>candidate solution</em> of any value within that range.</p></li>
         <li>Individuals contain properties (called <strong>chromosomes</strong>) which are evaluated for their <strong>fitness</strong> (how well they solve the problem).<p class="little">If the environment's color value is 255, and an individual has a binary chromosome '11111111' (which evaluates to 255), it has a very high <em>fitness score</em> because it solves the problem (of matching its environment) very well. On the other hand, an individual with a chromosome '00001111' (which evaluates to 15) would be very visible in its environment and would have a low fitness score.</p></li>
         <li>A weighted sampling of two individuals is taken for reproduction based on their relative fitness scores, with more fit individuals more likely to be chosen.</li>
 
