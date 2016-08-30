@@ -349,13 +349,13 @@ $(document).ready(function() {
 
   function unselectButtons() {
     $('button').css("background-color", "");
-    // $('button').css("border", "");
+    $('button').css("border", "");
   }
 
   function selectButton(this_button) {
     $(this_button).blur();
     $(this_button).css("background-color", "#aaa");
-    // $(this_button).css("border", "transparent");
+    $(this_button).css("border", "transparent");
   }
 });
 
