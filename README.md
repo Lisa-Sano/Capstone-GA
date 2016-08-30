@@ -43,7 +43,7 @@ After cloning this project, you'll need the following installed:
 
 * ruby (v2.3.1)
 * node/npm
-* bundler
+* bundler gem
 * chromedriver (for running integration tests in Chrome. See http://brewformulas.org/Chromedriver to install)
 
 Then, run the following commands in the root folder:
@@ -62,6 +62,6 @@ Integration tests can be run from the root folder with:
 
 
 Unit tests can be run from the root folder with:
-```
-npm test
-```
+
+    npm test
+
