@@ -184,12 +184,24 @@ describe('Simulate', function() {
   });
 
   describe('getMoth', function() {
+    after(function() {
+      Math.random.restore();
+    });
+
     it('should return a moth object', function() {
       let chosen = getMoth(sim.population, [1]);
       let chosen_multi = getMoth(sim_multi.population, [1]);
 
       assert.deepEqual(chosen, moth_grey);
       assert.deepEqual(chosen_multi, moth_multi);
+    });
+
+    // stub Math.random() to always return the value 0.15
+    it('should return the element chosen by the Math.random() probability search_term', function() {
+      sinon.stub(Math, 'random').returns(0.15);
+      let chosen = getMoth([moth_grey, moth_grey, moth_grey_2, moth_grey, moth_grey], [0.1, 0.12, 0.2, 0.7, 1]);
+
+      assert.deepEqual(chosen, moth_grey_2);
     });
   });
 
