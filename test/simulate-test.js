@@ -1,5 +1,6 @@
 var chai = require('chai');
 var assert = chai.assert;
+var sinon = require('sinon');
 var rewire = require('rewire');
 var Simulation = require('../source/javascripts/simulate');
 var simulate = rewire('../source/javascripts/simulate.js');
@@ -20,7 +21,7 @@ var moth_multi_2;
 
 var config_grey = {
   max_env: 255,
-  population_size: 1,
+  population_size: 2,
   mutation_rate: 0,
   uniform: false,
   fitness_advantage: 1,
@@ -35,14 +36,14 @@ var config_grey = {
   moth_type: ["grey"],
   matchmaker: function(properties) {
     return {
-      mate: function(pair_arr) { return '00000000'; }
+      mate: function(pair_arr) { return '11111111'; }
     }
   }
 };
 
 var config_multi = {
   max_env: 255,
-  population_size: 1,
+  population_size: 2,
   mutation_rate: 0,
   uniform: false,
   fitness_advantage: 1,
@@ -159,13 +160,21 @@ describe('Simulate', function() {
     });
   });
 
+  describe('runSimulation', function() {
+    it('should update its population property when the simulation is run', function() {
+      let sim_to_run = new Simulation(config_grey);
+      sim_to_run.runSimulation(1);
+      assert.deepEqual(sim_to_run.population[0].chromosome, {"grey":"11111111"})
+    });
+  });
+
   describe('buildChromosome', function() {
     it('should return a chromosome object', function() {
       var new_grey_chrom = buildChromosome([moth_grey.chromosome, moth_grey_2.chromosome], ["grey"], config_grey);
       var new_multi_chrom = buildChromosome([moth_multi.chromosome, moth_multi_2.chromosome], ["red", "green", "blue"], config_multi);
 
       assert.property(new_grey_chrom, "grey");
-      assert.deepEqual(new_grey_chrom, {grey: '00000000'});
+      assert.deepEqual(new_grey_chrom, {grey: '11111111'});
 
       assert.property(new_multi_chrom, "red");
       assert.property(new_multi_chrom, "green");
