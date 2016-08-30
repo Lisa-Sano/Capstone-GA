@@ -32,11 +32,11 @@ In my genetics class at UW, we used a simulator created by the professor that wa
 I didn't know GA's were a thing until recently, and there are probably a lot of programmers who have never encountered them before. Maybe this simple example will inspire them to explore what GA's can do too!
 
 ### Tech features
-* Visualization tools: Three.js, D3
-* Static-site framework: Middleman
-* Deployment: PubStorm
+* Visualization tools: [Three.js](http://threejs.org/), [D3.js](https://d3js.org/)
+* Static-site framework: [Middleman](https://middlemanapp.com/)
+* Deployment: [PubStorm](https://www.pubstorm.com/)
 * Genetic Algorithm (my main motivation for doing this project is to explore this algorithm, which I think is SO DAMN COOL!)
-* Testing: Mocha, Chai, Selenium WebDriver, Sinon
+* Testing: [Mocha](https://mochajs.org/), [Chai](http://chaijs.com/), [Selenium WebDriver](http://docs.seleniumhq.org/docs/03_webdriver.jsp), [Sinon](http://sinonjs.org/)
 
 ### How to run on your machine
 After cloning this project, you'll need the following installed:
@@ -47,23 +47,19 @@ After cloning this project, you'll need the following installed:
 * chromedriver (for running integration tests in Chrome. See http://brewformulas.org/Chromedriver to install)
 
 Then, run the following commands in the root folder:
-```
-bundle
-```
+    bundle
 
-```
-npm install
-```
+    npm install  
 
 To run a local server (port 4567):
-```
-middleman server
-```
+
+    middleman server
+
 
 Integration tests can be run from the root folder with:
-```
-mocha test/UI-testing/integration_test.js
-```
+
+    mocha test/UI-testing/integration_test.js
+
 
 Unit tests can be run from the root folder with:
 ```
