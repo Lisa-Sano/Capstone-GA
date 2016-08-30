@@ -56,12 +56,17 @@ To run a local server (port 4567):
     middleman server
 
 
-Integration tests can be run from the root folder with:
+Integration tests (using Selenium WebDriver) can be run from the root folder with:
 
     mocha test/UI-testing/integration_test.js
 
 
-Unit tests can be run from the root folder with:
+Unit tests (using Mocha, Chai, and Sinon) can be run from the root folder with:
 
     npm test
 
+
+A coverage report (using Istanbul) can be generated and then opened with:
+
+    npm run coverage
+    open coverage/lcov-report/*.html
