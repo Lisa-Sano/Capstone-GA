@@ -36,7 +36,7 @@ I didn't know GA's were a thing until recently, and there are probably a lot of 
 * Static-site framework: [Middleman](https://middlemanapp.com/)
 * Deployment: [PubStorm](https://www.pubstorm.com/)
 * Genetic Algorithm (my main motivation for doing this project is to explore this algorithm, which I think is SO DAMN COOL!)
-* Testing: [Mocha](https://mochajs.org/), [Chai](http://chaijs.com/), [Selenium WebDriver](http://docs.seleniumhq.org/docs/03_webdriver.jsp), [Sinon](http://sinonjs.org/)
+* Testing: [Mocha](https://mochajs.org/), [Chai](http://chaijs.com/), [Selenium WebDriver](http://docs.seleniumhq.org/docs/03_webdriver.jsp), [Sinon](http://sinonjs.org/), [Istanbul](https://github.com/gotwarlost/istanbul)
 
 ### How to run on your machine
 After cloning this project, you'll need the following installed:
