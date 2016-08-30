@@ -82,13 +82,19 @@ describe('Simulate', function() {
     var index;
 
     before(function() {
-      probs = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0];
+      probs = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.7, 0.9, 1.0];
     });
 
-    it('should return the index of the first element that the search term is equal to', function() {
+    it('should return the index of the element that the search term is equal to', function() {
       index = binarySearch(0.5, probs);
       assert.isNumber(index);
       assert.equal(index, 4);
+    });
+
+    it('should return the index of the first element that the search term is less than or equal to, if there are duplicate values', function() {
+      index = binarySearch(0.7, probs);
+      assert.isNumber(index);
+      assert.equal(index, 6);
     });
 
     it('should return the index of the first element that the search term is less than', function() {

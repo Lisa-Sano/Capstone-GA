@@ -88,6 +88,8 @@ function binarySearch(searchElement, probabilities) {
       minIndex = currentIndex + 1;
     } else if (currentElement >= searchElement && prevElement > searchElement) {
       maxIndex = currentIndex - 1;
+    } else if (currentElement === prevElement) {
+      return currentIndex - 1;
     } else {
       return currentIndex;
     }
