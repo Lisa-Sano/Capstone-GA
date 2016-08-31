@@ -299,7 +299,7 @@ test.describe('Evolution in Color', function() {
         });
     });
 
-    it('settings are updated when the third scenario button is clicked', function(done) {
+    it('settings are updated when the fifth scenario button is clicked', function(done) {
       driver.findElement(webdriver.By.id("scenario-e")).click();
 
       driver.findElement(webdriver.By.id("uniform")).isSelected()
@@ -344,7 +344,7 @@ test.describe('Evolution in Color', function() {
         });
     });
 
-    it('settings are updated when the third scenario button is clicked', function(done) {
+    it('settings are updated when the fourth scenario button is clicked', function(done) {
       driver.findElement(webdriver.By.id("scenario-d")).click();
 
       driver.findElement(webdriver.By.id("uniform")).isSelected()
