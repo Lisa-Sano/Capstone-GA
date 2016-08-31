@@ -57,7 +57,7 @@ To run a local server (port 4567):
     middleman server
 
 
-Integration tests (using Selenium WebDriver) can be run from the root folder with:
+Integration tests (using Selenium WebDriver) require a local server to be running. Run tests with:
 
     mocha test/UI-testing/integration_test.js
 
